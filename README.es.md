@@ -5,6 +5,7 @@
 <p align="center">
     <img title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/189005578-f5e44412-dfa5-42e7-a0d0-dfeb49a6c318.png"/>
 </p>
+<br/>
 <h2>Requerimientos</h2>
 <p>Python 3.9.2</p>
 <p>python3-pyqt5</p>
@@ -56,5 +57,5 @@ config:
     
 </details>
 <details><summary><h2>Novedades</h2></summary>
-
+<p></p>
 </details>
