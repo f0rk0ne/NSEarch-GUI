@@ -9,17 +9,19 @@
 </p>
 <br/>
 <h2>Requerimientos</h2>
-<p>Python 3.9.2</p>
-<p>python3-pyqt5</p>
-<p>python3-pyqt5.qtwebkit</p>
-<p>python-i18n</p>
-<p>python3-yaml</p>
-<p>python3-rich</p>
+
+- [x] Python 3
+- [x] python3-pyqt5
+- [x] python3-pyqt5.qtwebkit
+- [x] python-i18n
+- [x] python3-yaml
+- [x] python3-rich
+
 <br/>
 <h2>Instalación</h2>
-<p>
-    Ejecutar install.sh para verificar e instalar los requerimientos de la aplicación.
-</p>
+    <p>
+        Ejecutar install.sh para verificar e instalar los requerimientos de la aplicación.
+    </p>
 
 ```bash
 sh install.sh
@@ -50,10 +52,19 @@ config:
 </details>
 <details><summary><h2>Novedades</h2></summary>
 <h3>Consola</h3>
-<p>Al integrar el módulo Python rich, se incluyeron varias de las funcionalidades en la versión consola, por ejemplo resultados en columnas, animaciones al crear la BD entre otras.</p>
-<p>Se agrego el comando showcat que muestra las Categorías y permite listar los scripts en una categoría y al finalizar ver la ayuda de estos.</p>
-<p>Se agrego el comando history el cual permite visualizar el histórico de comandos ejecutados, muy similar al comando history de Linux.</p>
+
+- Al integrar el módulo Python rich, se incluyeron varias de las funcionalidades en la versión consola, por ejemplo resultados en columnas, animaciones al crear la BD entre otras.
+- Se agrego el comando showcat que muestra las Categorías y permite listar los scripts en una categoría y al finalizar ver la ayuda de estos.
+- Se agrego el comando history el cual permite visualizar el histórico de comandos ejecutados, muy similar al comando history de Linux.
+
 </details>
+<h2>GUI</h2>
+<p>La GUI fue escrita en Python Qt5, y contiene dos QDockWidgets para gestionar los scripts y los favoritos.</p>
+<p>Los contenidos de ayuda de los scripts se visualizan en formato HTML en pestañas.</p>
+<p>La selección del idioma aplica para la versión consola también.</p>
+<h3>Temas</h3>
+<p>La GUI integra tres temas:</p>
 
-
-
+- Oscuro
+- Claro
+- Predeterminado
