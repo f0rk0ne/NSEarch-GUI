@@ -4,6 +4,8 @@
 </p>
 <br>
 <p align="center">
-  <a title="NSEarch en Español" href="README.es.md"><img title="NSEarch español" src="https://user-images.githubusercontent.com/77067446/188995348-237538e7-546f-4f4c-816c-52a958192f9d.png"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="README.en.md" title="NSEarch in English"><img title="NSEarch english" src="https://user-images.githubusercontent.com/77067446/188995414-ab936bf6-fa68-4eb9-879b-dfd805b7ea35.png"/></a>
+  <a title="NSEarch en Español" href="README.es.md"><img title="NSEarch español" src="https://user-images.githubusercontent.com/77067446/189012440-2a88ecf5-d1a5-4501-a1ff-c2ff80fb1a49.png"/></a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="README.en.md" title="NSEarch in English"><img title="NSEarch english" src="https://user-images.githubusercontent.com/77067446/189012485-1f9afa76-73ec-42ef-9035-f9a157365d9d.png"/></a>
 </p>
 
