@@ -55,8 +55,6 @@ config:
 ```
     
 </details>
-<details><summary>Novedades</summary>
-<p>NSearch GUI se ejecuta con python 3</p>
-<p>Se agrego el comando showcat en la versión consola</p>
-<p></p>
+<details><summary><h2>Novedades</h2></summary>
+
 </details>
