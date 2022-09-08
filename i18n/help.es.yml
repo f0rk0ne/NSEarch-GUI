@@ -1,0 +1,32 @@
+es:
+  doc_header: Comandos de Nsearch
+  misc_header: Plugins de Nsearch
+  undoc_header: Otros Comandos
+  help_usage: Uso
+  help_search: Busca scripts
+  help_showcat: Muestra las categorías y permite ver la ayuda de los scripts
+  help_showcat_id: Id del script  
+  help_search_name: Buscar por el Nombre del Script
+  help_search_category: Buscar por Categoria
+  help_search_author: Buscar por Autor
+  help_search_error: Escriba 'help search' para ver el menu de ayuda
+  help_last: Muestra la lista de los resultados de la última consulta
+  help_doc: Muestra la documentación de un script seleccionado
+  help_doc_exmp: doc <nombre del script incluido .nse>
+  help_fav_name: Nombre del Script
+  help_fav_ranking: Ranking del Script
+  help_showfav: Muestra los Scripts Favoritos
+  help_addfav: Establece un script como Favorito
+  help_delfav: Elimina un script como Favorito
+  help_modfav: Actualiza un script Favorito
+  help_or: o
+  help_history: Muestra el historico de comandos
+  help_history_clear: Limpia el archivo de historico
+  help_clear: Limpia la pantalla
+  help_run: Ejecuta nmap usando las platillas
+  help_run_template: Nombre de la platilla
+  help_run_net: Red o Host Objetivo
+  help_run_error: El comando no es valido por favor use 'help run'
+  help_command_error: Escriba 'help command' para ver el menu de ayuda
+  great: genial
+  running_scan: Ejecutando Escaneo

@@ -1,0 +1,32 @@
+en:
+  doc_header: Nsearch Commands
+  misc_header: Nsearch Plugins
+  undoc_header: Others Commands
+  help_usage: Usage
+  help_search: Search scripts
+  help_showcat: Show categories and allows view scripts help
+  help_showcat_id: Script id  
+  help_search_name: Search by script's name
+  help_search_category: Search by category
+  help_search_author: Search by author
+  help_search_error: Type <<help search>> to see the help menu
+  help_last: Display the last query's result
+  help_doc: Displays the documentation of a selected script
+  help_doc_exmp: doc <script's name including .nse>
+  help_fav_name: Name of the Script
+  help_fav_ranking: Set the ranking
+  help_showfav: Display the favorites scripts
+  help_addfav: Set  favorite script
+  help_delfav: Unset favorite script
+  help_modfav: Update favorite script
+  help_or: or
+  help_history: Show executed commands
+  help_history_clear: Clear history file
+  help_clear: Clear screen
+  great: great
+  #help_run: Run nmap with the templates
+  #help_run_template: Name of the template
+  #help_run_net: Target
+  help_run_error: The command is not valid please type help run
+  help_command_error: Type 'help command' to see the help menu
+  #running_scan: Running Scan  

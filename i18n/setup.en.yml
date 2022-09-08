@@ -1,0 +1,37 @@
+en:
+  create_db: Creating the Database
+  update_db: Updating the Database
+  db_is_update: The DB is updated
+  checking_db: Cheking DB
+  create_backup: Creating backup for file script.db
+  create_backup_ok: The Backup was created successfully
+  create_backup_error: The Backup was not created
+  create_script_table: Creating Table For Script
+  create_category_table: Creating Table for Categories  
+  create_category_script_table: Creating Table for Scripts per Category  
+  upload_categories: Upload Categories
+  create_favorites_table: Create Favorites Table
+  add_fav_ok: The Script was added successfully
+  add_fav_error: The script already exists
+  update_fav_ok: The Script was updated successfully
+  update_fav_error: The Script was not updated
+  del_fav_ok: The Script was removed successfully
+  del_fav_error: The Script dont exists
+  bad_params: The params are not allowed
+  search_not_found: Script not found !
+  category_not_found: Category not found !
+  insert_script: Saving Script
+  ranking_normal: normal
+  ranking_great: great
+  ranking_super_great: super-great
+  updateapp_error: "Error update_app %{error}"
+  ask_category_script: "Do you want to display some category (0 exit/catid)"
+  ask_history: "Do you want to execute some command ?(0 exit/histid)"  
+  script_help: "Do you want to display some script (0 exit/scriptid )"
+  result_for: "Results for "
+  name: "Name"
+  ranking: "Ranking"
+  categories: "Categories"
+  hist_clear: "History cleared !"
+  exit: "Closing NSEarch"
+  not_hist: "No history yet !"
