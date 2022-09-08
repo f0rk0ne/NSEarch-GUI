@@ -1,6 +1,8 @@
 <h1 align="center">Nmap Scripting Engine Search GUI</h1>
 <br/>
-<p>Es un fork de la aplicación NSEarch de <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquirá</a> de la comunidad <a href="https://www.dragonjar.org">DragonJAR</a>, el cuál integra una intefaz gráfica y agrega nuevos comandos.
+<p>
+    Es un fork de la aplicación NSEarch de <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquirá</a> de la comunidad
+    <a href="https://www.dragonjar.org">DragonJAR</a>, el cuál integra una interfaz gráfica y agrega nuevos comandos.
 </p>
 <p align="center">
     <img title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/189005578-f5e44412-dfa5-42e7-a0d0-dfeb49a6c318.png"/>
@@ -28,34 +30,29 @@ sh install.sh
     
 ```yaml
 config.yaml
-config:
-    ; Idíoma de la aplicación
-    lang: "es"
-    ; Ruta de los scripts de Nmap
-    scriptsPath: /usr/share/nmap/scripts/
-    ; ruta del archivo de la BD de Nmap
-    filePath: /usr/share/nmap/scripts/script.db
-    ; Backup de la BD de la aplicación
-    fileBackup: scriptbk.db
-    ; Archivo de BD de la aplicación
-    scriptdb: nmap_scripts.sqlite3
+config:    
+    lang: "es" ; Idíoma de la aplicación
+    scriptsPath: /usr/share/nmap/scripts/ ; Ruta de los scripts de Nmap
+    filePath: /usr/share/nmap/scripts/script.db ; ruta del archivo de la BD de Nmap
+    fileBackup: scriptbk.db ; Backup de la BD de Nmap
+    scriptdb: nmap_scripts.sqlite3 ; Archivo de BD de la aplicación
     ; Categorías de los scripts de Nmap
     categories: ["auth","broadcast","brute","default","discovery","dos","exploit","external","fuzzer","intrusive","malware","safe","version","vuln"]
-    ; Hash del archivo de la BD
-    checksum: 7c773a63720928125492e2034b7dcc445afb24c1555626ab710bd15db7bf82a3
-    ; GUI activa la búsqueda al teclear en scripts y favoritos
-    searchOnKey: 1
-    ; GUI activa por defecto buscar por
-    searchOpt: 3
-    ; El tema de la GUI
-    theme: 1
-    ; el máximo de registros en el archivo history
-    histLen: 100
-    ; Activa/Desactiva la animación en la SplashScreen
-    splashAnim: 0
+    checksum: 7c773a63720928125492e2034b7dcc445afb24c1555626ab710bd15db7bf82a3 ; Hash del archivo de la BD
+    searchOnKey: 1 ; GUI activa la búsqueda al teclear en scripts y favoritos
+    searchOpt: 3 ; GUI activa por defecto buscar por nombre o autor o categoría  
+    theme: 1 ; GUI tema
+    histLen: 100 ; el máximo de registros en el archivo history
+    splashAnim: 0 ; Activa/Desactiva la animación en la SplashScreen
 ```
     
 </details>
 <details><summary><h2>Novedades</h2></summary>
-<p></p>
+<h3>Consola</h3>
+<p>Al integrar el módulo Python rich, se incluyeron varias de las funcionalidades en la versión consola, por ejemplo resultados en columnas, animaciones al crear la BD entre otras.</p>
+<p>Se agrego el comando showcat que muestra las Categorías y permite listar los scripts en una categoría y al finalizar ver la ayuda de estos.</p>
+<p>Se agrego el comando history el cual permite visualizar el histórico de comandos ejecutados, muy similar al comando history de Linux.</p>
 </details>
+
+
+
