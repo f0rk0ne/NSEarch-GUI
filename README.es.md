@@ -1,5 +1,8 @@
-<h1>Nmap Scripting Engine Search GUI</h1>
+<h1 align="center">Nmap Scripting Engine Search GUI</h1> 
+<br/>
 <p>Es un fork de la aplicación NSEarch de <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquirá</a> de la comunidad <a href="https://www.dragonjar.org">DragonJAR</a>, el cuál integra una intefaz gráfica y agrega nuevos comandos.
+</p>
+<p>Ahora integra python-rich con cambios en la versión de consola.
 </p>
 <p align="center">
     <img title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/189005578-f5e44412-dfa5-42e7-a0d0-dfeb49a6c318.png"/>
