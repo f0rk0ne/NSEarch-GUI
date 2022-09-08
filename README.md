@@ -1,3 +1,11 @@
+<!--
+  Title:NSEarch GUI v 1.0
+  Description:Fork for NSEarch with Graphical Interface 
+  Author: Miguel Baez
+-->
+<meta name="keywords" content="NSEarch GUI, NSEarch, Nmap scripting search engine">
+<meta name="description" content="Fork for NSEarch (Nmap Scripting Search Engine) with Graphical Interface.">
+<meta name="author" content="Miguel Baez">
 <h1 align="center">NSEarch GUI</h1>
 <h3 align="center">Version 1.0</h3>
 <p align="center">
