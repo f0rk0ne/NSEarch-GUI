@@ -1,12 +1,17 @@
-<h1 align="center">Nmap Scripting Engine Search GUI</h1> 
+<h1 align="center">Nmap Scripting Engine Search GUI</h1>
 <br/>
 <p>Es un fork de la aplicación NSEarch de <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquirá</a> de la comunidad <a href="https://www.dragonjar.org">DragonJAR</a>, el cuál integra una intefaz gráfica y agrega nuevos comandos.
-</p>
-<p>Ahora integra python-rich en la versión de consola.
 </p>
 <p align="center">
     <img title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/189005578-f5e44412-dfa5-42e7-a0d0-dfeb49a6c318.png"/>
 </p>
+<h2>Requerimientos</h2>
+<p>Python 3.9.2</p>
+<p>python3-pyqt5</p>
+<p>python3-pyqt5.qtwebkit</p>
+<p>python-i18n</p>
+<p>python3-yaml</p>
+<br/>
 <h2>Instalación</h2>
 <p>
     Ejecutar install.sh para verificar e instalar los requerimientos de la aplicación.
@@ -49,4 +54,9 @@ config:
     splashAnim: 0
 ```
     
+</details>
+<details><summary>Novedades</summary>
+<p>NSearch GUI se ejecuta con python 3</p>
+<p>Se agrego el comando showcat en la versión consola</p>
+<p></p>
 </details>
