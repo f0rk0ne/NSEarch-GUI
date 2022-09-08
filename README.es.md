@@ -10,7 +10,7 @@
 <br/>
 <h2>Requerimientos</h2>
 
-- [x] Python 3
+- [x] Python 3.9.2
 - [x] python3-pyqt5
 - [x] python3-pyqt5.qtwebkit
 - [x] python-i18n
@@ -59,12 +59,28 @@ config:
 
 </details>
 <h2>GUI</h2>
+<br>
 <p>La GUI fue escrita en Python Qt5, y contiene dos QDockWidgets para gestionar los scripts y los favoritos.</p>
 <p>Los contenidos de ayuda de los scripts se visualizan en formato HTML en pestañas.</p>
 <p>La selección del idioma aplica para la versión consola también.</p>
-<h3>Temas</h3>
-<p>La GUI integra tres temas:</p>
 
-- Oscuro
-- Claro
-- Predeterminado
+<h3>Configuración GUI</h3>
+<br>
+<p>Permite establecer las opciones de la interfaz.</p>
+<br>
+<p align="center">    
+    <img src="https://user-images.githubusercontent.com/77067446/189161657-46ade1aa-723b-40e3-9c4c-70c14c362055.png"/>
+</p>
+<h4>Opciones</h4>
+
+Opción | Valores
+ :--- | :---
+Idioma | - Español<br>- Ingles
+Tema | - Oscuro<br>- Claro<br>- Predeterminado
+Buscar al teclear | - Activo<br>- Desactivo
+Activar animación | - Activo<br>- Desactivo
+Opciones de búsqueda | - Nombre<br>- Author<br>- categoría
+
+<h3>Panel Scripts</h3>
+<p>Permite visualizar y buscar scripts por nombre, autor y categoría.</p>
+<p></p>
