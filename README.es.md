@@ -14,6 +14,7 @@
 <p>python3-pyqt5.qtwebkit</p>
 <p>python-i18n</p>
 <p>python3-yaml</p>
+<p>python3-rich</p>
 <br/>
 <h2>Instalación</h2>
 <p>
