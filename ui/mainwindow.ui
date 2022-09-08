@@ -1,0 +1,1318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>873</width>
+    <height>444</height>
+   </rect>
+  </property>
+  <property name="sizeIncrement">
+   <size>
+    <width>1</width>
+    <height>1</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>1</width>
+    <height>1</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Nsearch</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../resources/nmap-logo-small.png</normaloff>../resources/nmap-logo-small.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>true</bool>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="main_container">
+   <property name="minimumSize">
+    <size>
+     <width>350</width>
+     <height>400</height>
+    </size>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>9</number>
+    </property>
+    <property name="topMargin">
+     <number>9</number>
+    </property>
+    <property name="rightMargin">
+     <number>9</number>
+    </property>
+    <property name="bottomMargin">
+     <number>9</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tab_view">
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
+      </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>873</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family:Architects Daughter;</string>
+   </property>
+   <widget class="QMenu" name="menu_options">
+    <property name="title">
+     <string>O&amp;ptions</string>
+    </property>
+    <widget class="QMenu" name="menu_theme">
+     <property name="statusTip">
+      <string/>
+     </property>
+     <property name="title">
+      <string>Theme</string>
+     </property>
+     <addaction name="m_default"/>
+     <addaction name="separator"/>
+     <addaction name="m_dark"/>
+     <addaction name="separator"/>
+     <addaction name="m_light"/>
+    </widget>
+    <widget class="QMenu" name="menu_search_opts">
+     <property name="statusTip">
+      <string/>
+     </property>
+     <property name="title">
+      <string>Search Options</string>
+     </property>
+     <addaction name="m_name"/>
+     <addaction name="separator"/>
+     <addaction name="m_author"/>
+     <addaction name="separator"/>
+     <addaction name="m_category"/>
+    </widget>
+    <widget class="QMenu" name="menu_language">
+     <property name="statusTip">
+      <string/>
+     </property>
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <addaction name="m_spanish"/>
+     <addaction name="separator"/>
+     <addaction name="m_english"/>
+    </widget>
+    <addaction name="menu_language"/>
+    <addaction name="separator"/>
+    <addaction name="menu_theme"/>
+    <addaction name="separator"/>
+    <addaction name="m_searchkey"/>
+    <addaction name="separator"/>
+    <addaction name="m_splash"/>
+    <addaction name="separator"/>
+    <addaction name="menu_search_opts"/>
+   </widget>
+   <widget class="QMenu" name="menu_about">
+    <property name="title">
+     <string>A&amp;bout</string>
+    </property>
+    <addaction name="m_about"/>
+    <addaction name="separator"/>
+    <addaction name="m_about_qt"/>
+   </widget>
+   <widget class="QMenu" name="menu_windows">
+    <property name="statusTip">
+     <string>Show hide windows</string>
+    </property>
+    <property name="title">
+     <string>&amp;Windows</string>
+    </property>
+    <addaction name="m_scriptdock"/>
+    <addaction name="separator"/>
+    <addaction name="m_favoritedock"/>
+   </widget>
+   <widget class="QMenu" name="menu_app">
+    <property name="title">
+     <string>&amp;App</string>
+    </property>
+    <addaction name="m_configuration"/>
+    <addaction name="separator"/>
+    <addaction name="m_quit"/>
+   </widget>
+   <addaction name="menu_app"/>
+   <addaction name="menu_options"/>
+   <addaction name="menu_windows"/>
+   <addaction name="menu_about"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="sizeGripEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QDockWidget" name="scriptdock">
+   <property name="minimumSize">
+    <size>
+     <width>251</width>
+     <height>305</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>350</width>
+     <height>524287</height>
+    </size>
+   </property>
+   <property name="statusTip">
+    <string/>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">text-align:center;</string>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Scripts</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="search_container">
+    <layout class="QVBoxLayout" name="searchContainerLayout" stretch="0,0,1">
+     <property name="topMargin">
+      <number>9</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="sc_search_fields" stretch="1,0,0">
+       <item>
+        <widget class="QLineEdit" name="search_text">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="statusTip">
+          <string>type search pattern and press enter</string>
+         </property>
+         <property name="placeholderText">
+          <string>type search pattern</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="search_btn">
+         <property name="minimumSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="statusTip">
+          <string>Press to search scripts</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../resources/glass.png</normaloff>../resources/glass.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="clear_btn">
+         <property name="minimumSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="statusTip">
+          <string>Clear script search</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../resources/brush.png</normaloff>../resources/brush.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="sc_search_opts">
+       <item>
+        <widget class="QRadioButton" name="s_name">
+         <property name="statusTip">
+          <string>Search by name</string>
+         </property>
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="s_author">
+         <property name="statusTip">
+          <string>Search bt author</string>
+         </property>
+         <property name="text">
+          <string>Author</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="s_category">
+         <property name="statusTip">
+          <string>Search by category</string>
+         </property>
+         <property name="text">
+          <string>Category</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTreeView" name="scr_treeview">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size:13px;</string>
+       </property>
+       <property name="indentation">
+        <number>10</number>
+       </property>
+       <property name="animated">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="favoritedock">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>1</horstretch>
+     <verstretch>1</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>260</width>
+     <height>285</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>350</width>
+     <height>524287</height>
+    </size>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Favorites</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="favorite_container">
+    <layout class="QVBoxLayout" name="favoriteContainerLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0,0">
+       <item>
+        <widget class="QLineEdit" name="fsearch_text">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="statusTip">
+          <string>type search pattern and press enter</string>
+         </property>
+         <property name="placeholderText">
+          <string>type search pattern</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="fsearch_btn">
+         <property name="minimumSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="statusTip">
+          <string>Press to search favorites</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../resources/glass.png</normaloff>../resources/glass.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="fclear_btn">
+         <property name="minimumSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="statusTip">
+          <string>Clear favorites search</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../resources/brush.png</normaloff>../resources/brush.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTreeView" name="fav_treeview">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size:13px;</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>55</width>
+         <height>22</height>
+        </size>
+       </property>
+       <property name="indentation">
+        <number>5</number>
+       </property>
+       <property name="sortingEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="animated">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="mExit">
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/exit.png</normaloff>../resources/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="statusTip">
+    <string>Exit app</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="confAct2">
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/config.png</normaloff>../resources/config.png</iconset>
+   </property>
+   <property name="text">
+    <string>Configuration</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="m_about">
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/people.png</normaloff>../resources/people.png</iconset>
+   </property>
+   <property name="text">
+    <string>Developer</string>
+   </property>
+   <property name="statusTip">
+    <string>Show developer information</string>
+   </property>
+  </action>
+  <action name="m_about_qt">
+   <property name="icon">
+    <iconset theme="QT">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+   <property name="statusTip">
+    <string>Show Qt version</string>
+   </property>
+  </action>
+  <action name="m_spanish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Spanish</string>
+   </property>
+   <property name="statusTip">
+    <string>Set Spanish like default language</string>
+   </property>
+  </action>
+  <action name="m_english">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>English</string>
+   </property>
+   <property name="statusTip">
+    <string>Set English like default language</string>
+   </property>
+  </action>
+  <action name="m_default">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Default</string>
+   </property>
+   <property name="statusTip">
+    <string>Set default theme</string>
+   </property>
+  </action>
+  <action name="m_dark">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Dark</string>
+   </property>
+   <property name="statusTip">
+    <string>Set dark theme</string>
+   </property>
+  </action>
+  <action name="m_light">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Light</string>
+   </property>
+   <property name="statusTip">
+    <string>Set light theme</string>
+   </property>
+  </action>
+  <action name="m_searchkey">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Search on key Pressed</string>
+   </property>
+   <property name="statusTip">
+    <string>Set search on key pressed</string>
+   </property>
+  </action>
+  <action name="m_name">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Name</string>
+   </property>
+   <property name="statusTip">
+    <string>Set search by name</string>
+   </property>
+   <property name="font">
+    <font/>
+   </property>
+  </action>
+  <action name="m_author">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Author</string>
+   </property>
+   <property name="statusTip">
+    <string>Set search by author</string>
+   </property>
+  </action>
+  <action name="m_category">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Categories</string>
+   </property>
+   <property name="statusTip">
+    <string>Set search by category</string>
+   </property>
+  </action>
+  <action name="mConfig">
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/config.png</normaloff>../resources/config.png</iconset>
+   </property>
+   <property name="text">
+    <string>Configuration</string>
+   </property>
+   <property name="iconText">
+    <string>Configuration</string>
+   </property>
+   <property name="statusTip">
+    <string>Establish app configuration</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="m_scriptdock">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Search</string>
+   </property>
+   <property name="statusTip">
+    <string>Show/Hide script window</string>
+   </property>
+  </action>
+  <action name="m_favoritedock">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Favorites</string>
+   </property>
+   <property name="statusTip">
+    <string>Show/Hide favorites window</string>
+   </property>
+  </action>
+  <action name="m_configuration">
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/config.png</normaloff>../resources/config.png</iconset>
+   </property>
+   <property name="text">
+    <string>Configuration</string>
+   </property>
+   <property name="statusTip">
+    <string>App configuration</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="m_quit">
+   <property name="icon">
+    <iconset>
+     <normaloff>../resources/exit.png</normaloff>../resources/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="statusTip">
+    <string>Close application</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::WindowShortcut</enum>
+   </property>
+  </action>
+  <action name="m_splash">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Splash Animation</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>mExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_about</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>init_author_window()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_about_qt</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>init_qt_version()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>search_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>init_search()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>174</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clear_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>clear_search()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>220</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scr_treeview</sender>
+   <signal>customContextMenuRequested(QPoint)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_add_fav()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>125</x>
+     <y>278</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fclear_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>clear_fav_search()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>782</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fsearch_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>init_fav_search()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>736</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>search_text</sender>
+   <signal>editingFinished()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>search_enter_pressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>79</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>search_text</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>search_key_pressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>79</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fsearch_text</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>fav_key_pressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>641</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fsearch_text</sender>
+   <signal>editingFinished()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>fav_enter_pressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>641</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fav_treeview</sender>
+   <signal>customContextMenuRequested(QPoint)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_fav_opts()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>687</x>
+     <y>263</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tab_view</sender>
+   <signal>customContextMenuRequested(QPoint)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tab_view</sender>
+   <signal>tabBarClicked(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_item()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tab_view</sender>
+   <signal>tabCloseRequested(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close_script_tab()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mConfig</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_config()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_default</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_theme()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_light</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_theme()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_dark</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_theme()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_searchkey</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_key_on()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_name</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_searchby()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_author</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_searchby()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_category</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_searchby()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>406</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_favoritedock</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_dock()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_scriptdock</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_dock()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scriptdock</sender>
+   <signal>visibilityChanged(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>dock_visibility()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>125</x>
+     <y>221</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>431</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>favoritedock</sender>
+   <signal>visibilityChanged(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>dock_visibility()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>737</x>
+     <y>221</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>431</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_configuration</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_config()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_quit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_english</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_lang()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_spanish</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_lang()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_splash</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>toggle_splash_anim()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>show_config()</slot>
+  <slot>init_author_window()</slot>
+  <slot>init_search()</slot>
+  <slot>clear_search()</slot>
+  <slot>init_fav_search()</slot>
+  <slot>clear_fav_search()</slot>
+  <slot>init_qt_version()</slot>
+  <slot>search_key_pressed()</slot>
+  <slot>search_enter_pressed()</slot>
+  <slot>fav_enter_pressed()</slot>
+  <slot>fav_key_pressed()</slot>
+  <slot>show_add_fav()</slot>
+  <slot>show_fav_opts()</slot>
+  <slot>show_close()</slot>
+  <slot>select_item()</slot>
+  <slot>close_script_tab()</slot>
+  <slot>select_lang()</slot>
+  <slot>selectSearchOpt()</slot>
+  <slot>selectSearchOnKey()</slot>
+  <slot>select_theme()</slot>
+  <slot>select_key_on()</slot>
+  <slot>select_searchby()</slot>
+  <slot>showWelcome()</slot>
+  <slot>show_dock()</slot>
+  <slot>dock_visibility()</slot>
+  <slot>toggle_splash_anim()</slot>
+ </slots>
+</ui>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FavDialog</class>
+ <widget class="QDialog" name="FavDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>280</width>
+    <height>200</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>280</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>280</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Ranking</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../resources/nmap-logo-small.png</normaloff>../resources/nmap-logo-small.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+   <property name="spacing">
+    <number>5</number>
+   </property>
+   <item row="4" column="0">
+    <widget class="QPushButton" name="accept_btn">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Accept</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="fav_label">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="text">
+      <string>Select script ranking {0}</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QComboBox" name="ranking_cb">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>65</width>
+       <height>22</height>
+      </size>
+     </property>
+     <item>
+      <property name="text">
+       <string>normal</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../resources/normal.png</normaloff>../resources/normal.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>great</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../resources/great.png</normaloff>../resources/great.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>super great</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../resources/super-great.png</normaloff>../resources/super-great.png</iconset>
+      </property>
+     </item>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>accept_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>FavDialog</receiver>
+   <slot>save_result()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>139</x>
+     <y>150</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>139</x>
+     <y>99</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>save_result()</slot>
+ </slots>
+</ui>
