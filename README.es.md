@@ -76,7 +76,8 @@ config:
         <img src="https://user-images.githubusercontent.com/77067446/189161657-46ade1aa-723b-40e3-9c4c-70c14c362055.png"/>
 </p>
 <h4>Opciones</h4>
-<br>    
+<br>
+
 Opción | Valores
  :--- | :---
 Idioma | - Español<br>- Ingles
