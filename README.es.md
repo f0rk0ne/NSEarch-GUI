@@ -31,7 +31,7 @@
 sh install.sh
 ```
 
-<details><summary><h2>Configuración</h2></summary>    
+<h2>Configuración</h2>
     <p>Una vez instaladas las dependencias de la aplicación, se inicia la creación de la base de datos de los scripts de Nmap y el archivo de configuración</p>
     <h3>Archivo de configuración</h3>
     
@@ -53,30 +53,30 @@ config:
     splashAnim: 0 ; Activa/Desactiva la animación en la SplashScreen
 ```
     
-</details>
-<details><summary><h2>Novedades</h2></summary>
+
+<h2>Novedades</h2>
 <h3>Consola</h3>
 
 - Al integrar el módulo Python rich, se incluyeron varias de las funcionalidades en la versión consola, por ejemplo resultados en columnas, animaciones al crear la BD entre otras.
 - Se agrego el comando showcat que muestra las Categorías y permite listar los scripts en una categoría y al finalizar ver la ayuda de estos.
 - Se agrego el comando history el cual permite visualizar el histórico de comandos ejecutados, muy similar al comando history de Linux.
 
-</details>
+
 <h2>GUI</h2>
 <br>
 <p>La GUI fue escrita en Python Qt5, y contiene dos QDockWidgets para gestionar los scripts y los favoritos.</p>
 <p>Los contenidos de ayuda de los scripts se visualizan en formato HTML en pestañas.</p>
 <p>La selección del idioma aplica para la versión consola también.</p>
 
-<h3>Configuración GUI</h3>
+<details><summary><h3>Configuración GUI</h3></summary>
 <br>
 <p>Permite establecer las opciones de la interfaz.</p>
 <br>
 <p align="center">    
-    <img src="https://user-images.githubusercontent.com/77067446/189161657-46ade1aa-723b-40e3-9c4c-70c14c362055.png"/>
+        <img src="https://user-images.githubusercontent.com/77067446/189161657-46ade1aa-723b-40e3-9c4c-70c14c362055.png"/>
 </p>
 <h4>Opciones</h4>
-
+<br>    
 Opción | Valores
  :--- | :---
 Idioma | - Español<br>- Ingles
@@ -84,8 +84,10 @@ Tema | - Oscuro<br>- Claro<br>- Predeterminado
 Buscar al teclear | - Activo<br>- Desactivo
 Activar animación | - Activo<br>- Desactivo
 Opciones de búsqueda | - Nombre<br>- Author<br>- categoría
+
+</details>
 <br>
-<h3>Panel Scripts</h3>
+<details><summary><h3>Panel Scripts</h3></summary>
 <p>Permite gestionar los scripts NSE.</p>
 <p align="center">   
     <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/189177845-864da081-50bc-42de-99e3-389cab3f9c68.png"/>
@@ -96,8 +98,9 @@ Opciones de búsqueda | - Nombre<br>- Author<br>- categoría
     <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/189174323-2b75702e-e936-466c-a7af-aacbde47faae.png"/>
 </p>
 <p></p>
+</details>
 <br>
-<h3>Panel Favoritos</h3>
+<details><summary><h3>Panel Favoritos</h3></summary>
 <p>Permite gestionar los scripts favoritos.</p>
 <p align="center">    
     <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/189177066-dc39edbe-cd3f-42e0-9d59-e9c4869fd501.png"/>   </p>
@@ -106,3 +109,4 @@ Opciones de búsqueda | - Nombre<br>- Author<br>- categoría
  <p align="center">
     <img title="NSEarch actualizar favorito" src="https://user-images.githubusercontent.com/77067446/189179248-5805f7c4-23e9-45e8-8b51-6c8062feaa9f.png"/>    
  </p>
+</details>
