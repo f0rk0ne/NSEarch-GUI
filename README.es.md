@@ -80,7 +80,25 @@ Tema | - Oscuro<br>- Claro<br>- Predeterminado
 Buscar al teclear | - Activo<br>- Desactivo
 Activar animación | - Activo<br>- Desactivo
 Opciones de búsqueda | - Nombre<br>- Author<br>- categoría
-
+<br>
 <h3>Panel Scripts</h3>
-<p>Permite visualizar y buscar scripts por nombre, autor y categoría.</p>
+<p>Permite gestionar los scripts NSE.</p>
+<p align="center">   
+    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/189177845-864da081-50bc-42de-99e3-389cab3f9c68.png"/>
+</p>
+<h4>Agregar script a favoritos</h4>
+<p>Permite agregar un script a favoritos con un ranking.</p>
+<p align="center">
+    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/189174323-2b75702e-e936-466c-a7af-aacbde47faae.png"/>
+</p>
 <p></p>
+<br>
+<h3>Panel Favoritos</h3>
+<p>Permite gestionar los scripts favoritos.</p>
+<p align="center">    
+    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/189177066-dc39edbe-cd3f-42e0-9d59-e9c4869fd501.png"/>   </p>
+ <h4>Actualizar favoritos</h4>
+ <p>Permite actualizar el ranking de un script favorito.</p>
+ <p align="center">
+    <img title="NSEarch actualizar favorito" src="https://user-images.githubusercontent.com/77067446/189179248-5805f7c4-23e9-45e8-8b51-6c8062feaa9f.png"/>    
+ </p>
