@@ -62,7 +62,7 @@ function create_config_file(){
   fi
   printf "[+] NSEarch is ready for be launched uses python3 nsearch.py\n"
 }
-create_config_file && exit
+create_config_file
 function installPipRequeriments(){
   printf "[+] Checking pip libs ...\n"
   pip install -r requirements.txt
