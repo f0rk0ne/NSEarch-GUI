@@ -82,7 +82,7 @@ function installpipRedHat(){
 
 if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  apt-get install unzip libreadline-gplv2-dev build-essential checkinstall unzip sqlite3 libsqlite3-dev python3-pyqt5 python3-pyqt5.qtwebkit -y  
+  apt-get install unzip build-essential checkinstall sqlite3 libsqlite3-dev python3-pyqt5 python3-pyqt5.qtwebkit -y  
   exit
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
@@ -107,7 +107,7 @@ if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
   create_config_file
 elif [ -f /etc/redhat-release ]; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel xz-devel -y
+  yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel tk-devel gdbm-devel xz-devel -y
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
