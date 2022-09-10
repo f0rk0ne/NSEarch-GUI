@@ -95,8 +95,7 @@ def init_setup():
     create_backup()
     stream.close
   except Exception as e:
-    utils.print_traceback(e)
-    print(e)
+    utils.print_traceback(e)    
     utils.print("Error init_setup %s:" % e.args[0])    
     sys.exit(1)
   finally:
