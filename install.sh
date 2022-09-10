@@ -65,7 +65,7 @@ function create_config_file(){
 create_config_file
 function installPipRequeriments(){
   printf "[+] Checking pip libs ...\n"
-  pip install -r requirements.txt
+  pip3 install -r requirements.txt
 }
 
 function installpipDebian(){
