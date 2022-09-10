@@ -75,7 +75,7 @@ function installpipDebian(){
 
 function installpipRedHat(){
   printf "[+] Installing pip ...\n"
-  rpm -iUvh rpm -iUvh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm; yum -y update; yum -y update
+  rpm -iUvh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm; yum -y update; yum -y update
   yum install python3-pip3 -y
   installPipRequeriments
 }
