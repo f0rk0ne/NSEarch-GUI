@@ -56,8 +56,7 @@ function create_config_file(){
     printf "  searchOpt: 1\n" >> config.yaml
     printf "  searchOnKey: 1\n" >> config.yaml
     printf "  theme: 1\n" >> config.yaml
-    printf "  splashAnim: 1\n" >> config.yaml
-    printf "  histLen: 100" >> config.yaml
+    printf "  splashAnim: 1\n" >> config.yaml    
     chmod 777 config.yaml
   fi
   printf "[+] NSEarch is ready for be launched uses python3 nsearch.py\n"
