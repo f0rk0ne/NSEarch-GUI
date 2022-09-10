@@ -34,7 +34,7 @@ class Utils:
   footer += "Email:🙎jko@dragonjar.org | 🙎www.dragonjar.org"
   lastcommand, lastargs = '', '' 
   history, __hist_file = [], 'history'
-  spinner_text, __debug = '', True
+  spinner_text, __debug = '', False
   conf_keys = ["config", "scriptsPath", "filePath",
                "fileBackup", "scriptdb", "categories",
                "checksum", "searchOnKey", "searchOpt",
