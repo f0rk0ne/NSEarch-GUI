@@ -176,8 +176,7 @@ def get_author_from_file(current_script):
 
 #update app if the db exists
 def update_app():  
-  utils.show_spinner(i18n.t("setup.checking_db")+" "+dbname)
-  #time.sleep(.5)
+  utils.show_spinner(i18n.t("setup.checking_db")+" "+dbname)  
   db = None
   try:
     db,cursor = __dbconnect()
