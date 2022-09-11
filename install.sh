@@ -69,7 +69,7 @@ function installPipRequeriments(){
 
 function installpipDebian(){
   printf "[+] Installing pip ...\n"
-  apt-get install python-pip3 -y
+  apt-get install python3-pip -y
   installPipRequeriments
 }
 
