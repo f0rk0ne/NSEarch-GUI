@@ -23,10 +23,5 @@ en:
   help_history: Show executed commands
   help_history_clear: Clear history file
   help_clear: Clear screen
-  great: great
-  #help_run: Run nmap with the templates
-  #help_run_template: Name of the template
-  #help_run_net: Target
-  help_run_error: The command is not valid please type help run
+  great: great  
   help_command_error: Type 'help command' to see the help menu
-  #running_scan: Running Scan  
