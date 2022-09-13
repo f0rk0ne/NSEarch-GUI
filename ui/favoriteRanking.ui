@@ -105,33 +105,6 @@
        <height>22</height>
       </size>
      </property>
-     <item>
-      <property name="text">
-       <string>normal</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../resources/normal.png</normaloff>../resources/normal.png</iconset>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>great</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../resources/great.png</normaloff>../resources/great.png</iconset>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>super great</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>../resources/super-great.png</normaloff>../resources/super-great.png</iconset>
-      </property>
-     </item>
     </widget>
    </item>
   </layout>
