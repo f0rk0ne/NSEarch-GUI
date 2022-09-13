@@ -1,7 +1,9 @@
-import os, sys, i18n
-from PyQt5.QtWidgets import QDialog, QLabel, QCheckBox, QComboBox, QPushButton, QRadioButton, qApp
-from PyQt5.QtCore import Qt, QCoreApplication, QLocale, pyqtSignal
+#!/usr/bin/python
+#-*- coding: utf-8 -*- 
+import i18n
+from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5 import uic
+from PyQt5.QtGui import QIcon
 from traceback import print_exc
 
 try:
@@ -13,9 +15,9 @@ class FavDlg(base, form):
 
   saveRanking = pyqtSignal(str, int, name='saveResult')
   ranking = [ 
-              i18n.t("gui.ranking_normal"),
-              i18n.t("gui.ranking_great"),
-              i18n.t("gui.ranking_super_great") 
+              (i18n.t("gui.ranking_normal"), "normal.png"),
+              (i18n.t("gui.ranking_great"), "great.png"),
+              (i18n.t("gui.ranking_super_great"), "super-great.png")
             ]
   script = ''
 
@@ -23,9 +25,14 @@ class FavDlg(base, form):
     super(base, self).__init__(parent)
     self.setupUi(self)
     self.setWindowModality(Qt.WindowModal)
-    self.accept_btn.setText(i18n.t("gui.accept"))
-    for a in range(0, self.ranking_cb.count()):
-      self.ranking_cb.setItemText(a, self.ranking[a])
+    self.accept_btn.setText(i18n.t("gui.accept"))    
+
+  def set_images(self, icon_path):
+    for a, b in self.ranking:      
+      self.ranking_cb.addItem(
+        QIcon(f"{icon_path}{b}"),
+        a
+      )
 
   def set_label_script(self, script, ranking):
     self.script = script
