@@ -22,11 +22,6 @@ es:
   help_or: o
   help_history: Muestra el historico de comandos
   help_history_clear: Limpia el archivo de historico
-  help_clear: Limpia la pantalla
-  help_run: Ejecuta nmap usando las platillas
-  help_run_template: Nombre de la platilla
-  help_run_net: Red o Host Objetivo
-  help_run_error: El comando no es valido por favor use 'help run'
+  help_clear: Limpia la pantalla  
   help_command_error: Escriba 'help command' para ver el menu de ayuda
   great: genial
-  running_scan: Ejecutando Escaneo
