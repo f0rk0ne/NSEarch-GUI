@@ -1,15 +1,17 @@
+#!/usr/bin/python
+#-*- coding: utf-8 -*- 
+import sys
+sys.path.append("../libs")
 import os
-import libs.dbmodule as dbmodule
-import libs.utils as utils
-from rich.prompt import IntPrompt
+import dbmodule
+import utils
 
 class Helper:
 
   utils = utils.Utils()
   categories = [] 
   __result_type = 0
-  __parent = None
-  __data = None
+  __parent = None  
   i18n = dbmodule.i18n
   dbmodule = dbmodule
   ARG_NAME = "name:"
@@ -20,39 +22,39 @@ class Helper:
   def __init__(self, args="",command="", parent=None):
     self.args = args
     self.command = command
-    self.__parent = parent    
-    self.__data = self.dbmodule.get_data()
+    self.__parent = parent
 
   # process the commands
   def process(self):
     if self.command == "search":
       self.exec_search()
     elif self.command == "addfav" and self.args:
-      self.exec_addfav()      
+      self.exec_addfav()
     elif self.command == "modfav" and self.args:
-      self.exec_modfav()      
+      self.exec_modfav()
     elif self.command == "delfav" and self.args:
-      self.dbmodule.delete_favorite(**self.__delfavparams())
+      self.exec_delfav()
     elif self.command == "showfav":
       self.exec_showfav()
     elif self.command == "showcat":
       self.exec_showcat()
     elif self.command == "history":
-      self.exec_history()                 
+      self.exec_history()
     else:
       self.utils.print(self.i18n.t("help.help_command_error"))
 
   # exec search command
-  def exec_search(self):    
-    if not self.args:
+  def exec_search(self):
+    params = self.__searchparams()   
+    if not self.args:      
       self.dbmodule.lastresults = self.dbmodule.search_all()
       self.__result_type = 1
-      self.print_last_result()
-    elif not self.__searchparams():
-      self.utils.print(self.i18n.t("help.help_search_error"))
-    else:      
+      self.print_last_result()      
+    elif not params:      
+      self.__parent.do_help("search")
+    else:           
       self.dbmodule.lastresults = self.dbmodule.search_by_criterial(
-        **self.__searchparams()
+        **params
       )      
       self.__result_type = 1
       self.print_last_result()
@@ -62,12 +64,12 @@ class Helper:
     params = self.__addfavparams()
     if params != False:
       self.dbmodule.create_favorite(**params)
-
+    
   # exec modify favorite command
   def exec_modfav(self):
-    params = self.__modfavparams()
-    if params != None:
-      self.dbmodule.update_favorite(**params)
+    params = self.__modfavparams()    
+    if params != False:
+      self.dbmodule.update_favorite(**params)    
 
   # exec show favorites command
   def exec_showfav(self):
@@ -82,7 +84,13 @@ class Helper:
           **params
         )
         self.__result_type = 2
-        self.print_last_result()        
+        self.print_last_result() 
+
+  # exec delete favorite
+  def exec_delfav(self):
+    params = self.__delfavparams()
+    if params != False:
+      self.dbmodule.delete_favorite(**params)
 
   # exec show categories command
   def exec_showcat(self):
@@ -95,8 +103,8 @@ class Helper:
       self.categories = [ f"{a}. {b}" for a,b in self.categories ]
       self.ask_scripts_cat()
     else:        
-      self.category, self.dbmodule.lastresults = self.dbmodule\
-      .get_scripts_cat(**self.__showcatparams())
+      self.category, self.dbmodule.lastresults = \
+      self.dbmodule.get_scripts_cat(**self.__showcatparams())
       self.__result_type = 3
       self.print_last_result()
 
@@ -115,7 +123,9 @@ class Helper:
 
   # Display ask to execute history command
   def ask_history(self):
-    res = IntPrompt.ask(self.i18n.t("setup.ask_history"))
+    res = self.utils.ask(
+      self.i18n.t("setup.ask_history")
+    )
     if res != 0 and res <= len(self.utils.history):
       res -= 1
       self.utils.print("", True)
@@ -148,7 +158,9 @@ class Helper:
 
   # Display ask to select category
   def ask_scripts_cat(self):
-    answer = IntPrompt.ask(self.i18n.t("setup.ask_category_script"))
+    answer = self.utils.ask(
+      self.i18n.t("setup.ask_category_script")
+    )
     if answer > 0:
       self.category, self.dbmodule.lastresults = self.dbmodule\
       .get_scripts_cat(**{'id':str(answer)})
@@ -162,7 +174,9 @@ class Helper:
 
   # Display ask to select script
   def ask_script(self):
-    answer = IntPrompt.ask(self.i18n.t("setup.script_help"))
+    answer = self.utils.ask(
+      self.i18n.t("setup.script_help")
+    )
     if answer > 0:
       if answer in self.dbmodule.lastresults.keys():        
         self.show_doc_from_ask(
@@ -178,7 +192,7 @@ class Helper:
     self.command = 'doc'
     self.args = args    
     cmd_str = f"doc {self.get_script_name()}\n"    
-    self.__parent.append_history(cmd_str)    
+    self.utils.append_history(cmd_str, dbmodule.hist_len)
     self.display_doc()
 
   # Display the last results
@@ -207,9 +221,9 @@ class Helper:
     elif self.__result_type == 2:
       cols = {}
       cols['name'] = self.i18n.t("setup.name")
-      cols['ranking'] = self.i18n.t("setup.ranking")
+      cols['ranking'] = self.i18n.t("setup.ranking")      
       self.utils.print_favs(
-        self.dbmodule.lastresults.items(),
+        self.dbmodule.get_fav_formmated(),
         cols
       )
     else:
@@ -228,10 +242,10 @@ class Helper:
   # Display the documentation per script
   def display_doc(self):    
     try:
-      script_path = f"{self.dbmodule.scripts_path}{self.get_script_name()}"
+      script_path = f"{self.dbmodule.scripts_path}{self.get_script_name()}"      
       if not os.path.exists(script_path) and \
       not script_path.endswith(".nse"):
-        script_path = f"{script_path}.nse"
+        script_path = f"{script_path}.nse"      
       if not os.path.exists(script_path):
         self.utils.print(self.i18n.t("setup.del_fav_error"))
         return None
@@ -240,11 +254,13 @@ class Helper:
       self.utils.print_traceback(e)
 
   # get script name from args
-  def get_script_name(self):    
-    if type(self.args) == str:
-      return self.args
+  def get_script_name(self):
+    arg = 'empty'
+    if type(self.args) == str:      
+        arg = self.args      
     elif type(self.args) == dict:
-      return self.args["name"]
+      arg = self.args["name"]
+    return arg
 
   # used for the autocomplete
   def resultitems(self):
@@ -255,17 +271,6 @@ class Helper:
       i = i + 1
     return items
 
-  # get all scripts
-  def get_all_items(self):
-    items = []
-    i = 0
-    for a in self.__data:
-      for b in self.__data[a]:
-        if b not in items:
-          items.insert(i , b)
-      i += 1
-    return items
-
   # get all favorites
   def get_favorites(self):
     favs = self.dbmodule.get_favorites()
@@ -273,12 +278,14 @@ class Helper:
 
   # private function to set params for search command
   def __searchparams(self):    
-    if self.args.find(self.ARG_NAME) != -1 or\
-    self.args.find(self.ARG_CATEGORY) != -1 or\
-    self.args.find(self.ARG_AUTHOR) != -1:
+    if (
+        self.args.find(self.ARG_NAME) != -1 or 
+        self.args.find(self.ARG_CATEGORY) != -1 or
+        self.args.find(self.ARG_AUTHOR) != -1
+      ):      
       return self.__set_params()
-    elif len(self.args.split(':')) == 1:
-      self.args = f"{self.ARG_NAME}{self.args}"
+    elif len(self.args.split(':')) == 1 and len(self.args.split(" ")) == 0:
+      self.args = f"{self.ARG_NAME}{self.args}"      
       return self.__set_params()
     else:      
       return False
@@ -314,7 +321,8 @@ class Helper:
     self.args.find('newranking:') != -1):
       return self.__set_params()
     else:
-      self.__parent.do_help("modfav")      
+      self.__parent.do_help("modfav")
+      return False    
 
   #private function to set params for showcat command
   def __showcatparams(self):    
@@ -356,6 +364,10 @@ class Helper:
             self.args.split(":")[1].split(" ")[0]
         }
       )
-    else:
+    else:      
       self.utils.print(self.i18n.t("setup.bad_params"))
+      return False
+    if "" in argsdic.values():
+      self.utils.print(self.i18n.t("setup.bad_params"))
+      return False
     return argsdic
