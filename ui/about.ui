@@ -175,7 +175,7 @@
       <string notr="true">&lt;a href=&quot;mailto:ktools2017@gmail.com&quot; style=&quot;text-decoration:none;&quot;&gt;&lt;span style=&quot;color:{color};&quot;&gt;ktools2017@gmail.com&lt;/span&gt;&lt;/a&gt;</string>
      </property>
      <property name="textFormat">
-      <enum>Qt::MarkdownText</enum>
+      <enum>Qt::RichText</enum>
      </property>
      <property name="openExternalLinks">
       <bool>true</bool>
@@ -237,7 +237,7 @@
       <string notr="true">&lt;a href=&quot;https://github.com/f0rk0ne&quot; style=&quot;text-decoration:none;&quot;&gt;&lt;span style=&quot;color:{color};&quot;&gt;https://github.com/f0rk0ne&lt;/span&gt;&lt;/a&gt;</string>
      </property>
      <property name="textFormat">
-      <enum>Qt::MarkdownText</enum>
+      <enum>Qt::RichText</enum>
      </property>
      <property name="openExternalLinks">
       <bool>true</bool>
@@ -302,7 +302,7 @@
       <string>&lt;a  href=&quot;https://ktools-linux-en.blogspot.com&quot; style=&quot;text-decoration:none;&quot;&gt;&lt;span style=&quot;color:{color};&quot;&gt;https://ktools-linux-en.blogspot.com&lt;/span&gt;&lt;/a&gt;</string>
      </property>
      <property name="textFormat">
-      <enum>Qt::MarkdownText</enum>
+      <enum>Qt::RichText</enum>
      </property>
      <property name="openExternalLinks">
       <bool>true</bool>
