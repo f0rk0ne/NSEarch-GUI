@@ -1,44 +1,39 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from email.charset import QP
-import sys
-import time
-import os
-import libs.dbmodule as dbm
-import re
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtWidgets import QDesktopWidget
-from PyQt5.QtWidgets import QAction
-from PyQt5.QtWidgets import QMenu
-from PyQt5.QtWidgets import QMessageBox
-from PyQt5.QtWidgets import QProgressBar
-from PyQt5.QtWidgets import QLabel
-from PyQt5.QtWidgets import QMessageBox
-from PyQt5.QtWidgets import QTabBar
-from PyQt5.QtWidgets import QToolTip
-from PyQt5.QtGui import QIcon
-from PyQt5.QtGui import QStandardItemModel
-from PyQt5.QtGui import QStandardItem
-from PyQt5.QtGui import QFontDatabase
-from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtGui import QDesktopServices
-from PyQt5.QtGui import QCloseEvent
-from PyQt5.QtCore import Qt
-from PyQt5.QtCore import QPoint
-from PyQt5.QtCore import QRect
-from PyQt5.QtCore import QSize
-from PyQt5.QtCore import QModelIndex
-from PyQt5.QtCore import QLocale
-from PyQt5.QtCore import QRegExp
-from PyQt5.QtCore import QUrl
-from PyQt5.QtCore import QSettings
-from PyQt5.QtWebKitWidgets import QWebView
-from PyQt5.QtWebKitWidgets import QWebPage
-from PyQt5.QtWebKit import QWebSettings
 from PyQt5 import uic
-from libs.utils import Utils
-from libs.splash import NSplash
+from PyQt5.QtWebKit import QWebSettings
+from PyQt5.QtWebKitWidgets import QWebPage
+from PyQt5.QtWebKitWidgets import QWebView
+from PyQt5.QtCore import QSettings
+from PyQt5.QtCore import QUrl
+from PyQt5.QtCore import QRegExp
+from PyQt5.QtCore import QLocale
+from PyQt5.QtCore import QModelIndex
+from PyQt5.QtCore import QSize
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QCloseEvent
+from PyQt5.QtGui import QDesktopServices
+from PyQt5.QtGui import QRegExpValidator
+from PyQt5.QtGui import QFontDatabase
+from PyQt5.QtGui import QStandardItem
+from PyQt5.QtGui import QStandardItemModel
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QTabBar
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QProgressBar
+from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMenu
+from PyQt5.QtWidgets import QAction
+from PyQt5.QtWidgets import QDesktopWidget
+from PyQt5.QtWidgets import QApplication
 from traceback import print_exc
+import splash
+import dbmodule
+import utils
+import os
+import time
+import sys
+sys.path.append("../libs")
 
 try:
     form, base = uic.loadUiType("ui/mainwindow.ui")
@@ -74,12 +69,12 @@ class NGui(base, form):
     author_txt = ""
     welcome = ""
     tooltip = None
-    utils = Utils()
+    utils = None
 
     def __init__(self):
         super(base, self).__init__()
         self.conf_vars_updated = self.load_yaml_vars()
-        self.utils = Utils()        
+        self.utils = utils.Utils()
         self.setupUi(self)
         self.init_UI()
 
@@ -88,7 +83,8 @@ class NGui(base, form):
         try:
             self.load_language()
             settings = QSettings()
-            self.welcome = dbm.i18n.t("gui.welcome", user=os.getenv("USER"))
+            self.welcome = dbmodule.i18n.t(
+                "gui.welcome", user=os.getenv("USER"))
             if "windowstate" in settings.childKeys():
                 self.restoreState(settings.value("windowstate"))
             if "geometry" in settings.childKeys():
@@ -108,7 +104,7 @@ class NGui(base, form):
     def init_splash(self):
         splash_img = self.resources_path
         splash_img += self.utils.get_splash_img(self.show_anim)
-        self.splash = NSplash(splash_img, Qt.WindowStaysOnTopHint)
+        self.splash = splash.NSplash(splash_img, Qt.WindowStaysOnTopHint)
         self.progressbar = QProgressBar(self.splash)
         self.progressbar.setMaximum(92)
         self.progressbar.setGeometry(
@@ -129,40 +125,40 @@ class NGui(base, form):
     def show_splash_messages(self, counter):
         if counter == 18:
             self.splash.showMessage(
-                dbm.i18n.t("gui.splash_conf_vars"),
+                dbmodule.i18n.t("gui.splash_conf_vars"),
                 Qt.AlignHCenter | Qt.AlignBottom,
                 Qt.black
             )
             if self.conf_vars_updated:
                 self.splash.showMessage(
-                    dbm.i18n.t("gui.splash_upd_conf_file"),
+                    dbmodule.i18n.t("gui.splash_upd_conf_file"),
                     Qt.AlignHCenter | Qt.AlignBottom,
                     Qt.black
                 )
         elif counter == 36:
-            self.total_scripts = dbm.get_total_scripts()
+            self.total_scripts = dbmodule.get_total_scripts()
             self.scripts_found = self.total_scripts
-            self.scripts_list = dbm.get_data()
-            self.author_list = dbm.get_author_data()
+            self.scripts_list = dbmodule.get_data()
+            self.author_list = dbmodule.get_author_data()
             self.splash.showMessage(
-                dbm.i18n.t("gui.splash_script_data"),
+                dbmodule.i18n.t("gui.splash_script_data"),
                 Qt.AlignHCenter | Qt.AlignBottom,
                 Qt.black
             )
             self.load_text_translations()
         elif counter == 54:
             self.splash.showMessage(
-                dbm.i18n.t("gui.splash_load_font"),
+                dbmodule.i18n.t("gui.splash_load_font"),
                 Qt.AlignHCenter | Qt.AlignBottom,
                 Qt.black
             )
-            font_family  = "ArchitectsDaughter-Regular.ttf"
+            font_family = "ArchitectsDaughter-Regular.ttf"
             font_name = f"{self.resources_path}{font_family}"
             if not os.path.exists(font_name):
                 QMessageBox.information(
                     self,
                     "Font",
-                    dbm.i18n.t("gui.splash_font_not_found"),
+                    dbmodule.i18n.t("gui.splash_font_not_found"),
                     QMessageBox.Ok,
                     QMessageBox.Ok
                 )
@@ -171,19 +167,18 @@ class NGui(base, form):
                 QMessageBox.information(
                     self,
                     "Font",
-                    dbm.i18n.t("gui.splash_font_error"),
+                    dbmodule.i18n.t("gui.splash_font_error"),
                     QMessageBox.Ok,
                     QMessageBox.Ok
                 )
         elif counter == 72:
             self.splash.showMessage(
-                dbm.i18n.t("gui.splash_init_gui"),
+                dbmodule.i18n.t("gui.splash_init_gui"),
                 Qt.AlignHCenter | Qt.AlignBottom,
                 Qt.black
             )
             self.progressbar.setValue(counter)
         elif counter == 90:
-            # self.progressbar.setValue(92)
             self.progressbar.close()
             self.splash.finish(self)
             self.show()
@@ -194,10 +189,10 @@ class NGui(base, form):
 
     # load i18n language
     def load_language(self, load_text=False):
-        if len(dbm.i18n.get("load_path")) == 0:
-            dbm.i18n.load_path.append("i18n")
-        dbm.i18n.set("locale", self.lang)
-        dbm.i18n.set("fallback", "en" if self.lang == "es" else "es")
+        if len(dbmodule.i18n.get("load_path")) == 0:
+            dbmodule.i18n.load_path.append("i18n")
+        dbmodule.i18n.set("locale", self.lang)
+        dbmodule.i18n.set("fallback", "en" if self.lang == "es" else "es")
         self.load_translations()
         if load_text:
             self.load_text_translations()
@@ -210,88 +205,92 @@ class NGui(base, form):
 
     # load menu text
     def load_menu_translastions(self):
-        self.author_txt = dbm.i18n.t("gui.act_author")
-        self.menu_app.setTitle(dbm.i18n.t("gui.menu_app"))
-        self.m_configuration.setText(dbm.i18n.t("gui.act_configuration"))
-        self.m_quit.setText(dbm.i18n.t("gui.act_quit"))
-        self.menu_options.setTitle(dbm.i18n.t("gui.menu_options"))
-        self.menu_language.setTitle(dbm.i18n.t("gui.menu_language"))
-        self.m_spanish.setText(dbm.i18n.t("gui.act_spanish"))
-        self.m_english.setText(dbm.i18n.t("gui.act_english"))
-        self.menu_theme.setTitle(dbm.i18n.t("gui.menu_theme"))
-        self.m_default.setText(dbm.i18n.t("gui.act_default"))
-        self.m_dark.setText(dbm.i18n.t("gui.act_dark"))
-        self.m_light.setText(dbm.i18n.t("gui.act_light"))
-        self.m_searchkey.setText(dbm.i18n.t("gui.act_search_on_key"))
-        self.menu_search_opts.setTitle(dbm.i18n.t("gui.menu_search_opts"))
-        self.m_name.setText(dbm.i18n.t("gui.act_name"))
+        self.author_txt = dbmodule.i18n.t("gui.act_author")
+        self.menu_app.setTitle(dbmodule.i18n.t("gui.menu_app"))
+        self.m_configuration.setText(dbmodule.i18n.t("gui.act_configuration"))
+        self.m_quit.setText(dbmodule.i18n.t("gui.act_quit"))
+        self.menu_options.setTitle(dbmodule.i18n.t("gui.menu_options"))
+        self.menu_language.setTitle(dbmodule.i18n.t("gui.menu_language"))
+        self.m_spanish.setText(dbmodule.i18n.t("gui.act_spanish"))
+        self.m_english.setText(dbmodule.i18n.t("gui.act_english"))
+        self.menu_theme.setTitle(dbmodule.i18n.t("gui.menu_theme"))
+        self.m_default.setText(dbmodule.i18n.t("gui.act_default"))
+        self.m_dark.setText(dbmodule.i18n.t("gui.act_dark"))
+        self.m_light.setText(dbmodule.i18n.t("gui.act_light"))
+        self.m_searchkey.setText(dbmodule.i18n.t("gui.act_search_on_key"))
+        self.menu_search_opts.setTitle(dbmodule.i18n.t("gui.menu_search_opts"))
+        self.m_name.setText(dbmodule.i18n.t("gui.act_name"))
         self.m_author.setText(self.author_txt)
-        self.m_category.setText(dbm.i18n.t("gui.act_category"))
-        self.menu_windows.setTitle(dbm.i18n.t("gui.menu_windows"))
-        self.m_scriptdock.setText(dbm.i18n.t("gui.act_scripts"))
-        self.m_favoritedock.setText(dbm.i18n.t("gui.act_favorite"))
-        self.menu_about.setTitle(dbm.i18n.t("gui.menu_about"))
-        self.m_about.setText(dbm.i18n.t("gui.act_developer"))
-        self.m_about_qt.setText(dbm.i18n.t("gui.act_about_qt"))
+        self.m_category.setText(dbmodule.i18n.t("gui.act_category"))
+        self.menu_windows.setTitle(dbmodule.i18n.t("gui.menu_windows"))
+        self.m_scriptdock.setText(dbmodule.i18n.t("gui.act_scripts"))
+        self.m_favoritedock.setText(dbmodule.i18n.t("gui.act_favorite"))
+        self.menu_about.setTitle(dbmodule.i18n.t("gui.menu_about"))
+        self.m_about.setText(dbmodule.i18n.t("gui.act_developer"))
+        self.m_about_qt.setText(dbmodule.i18n.t("gui.act_about_qt"))
         self.load_menu_data()
 
     # set menu info data
     def load_menu_data(self):
-        self.m_configuration.setStatusTip(dbm.i18n.t("gui.st_configuration"))
-        self.m_quit.setStatusTip(dbm.i18n.t("gui.st_quit"))
-        self.m_spanish.setStatusTip(dbm.i18n.t("gui.st_spanish"))
-        self.m_english.setStatusTip(dbm.i18n.t("gui.st_english"))
-        self.m_default.setStatusTip(dbm.i18n.t("gui.st_default"))
-        self.m_dark.setStatusTip(dbm.i18n.t("gui.st_dark"))
-        self.m_light.setStatusTip(dbm.i18n.t("gui.st_light"))
-        self.m_searchkey.setStatusTip(dbm.i18n.t("gui.st_search_on"))
-        self.m_name.setStatusTip(dbm.i18n.t("gui.st_name"))
-        self.m_author.setStatusTip(dbm.i18n.t("gui.st_author"))
-        self.m_category.setStatusTip(dbm.i18n.t("gui.st_category"))
-        self.m_scriptdock.setStatusTip(dbm.i18n.t("gui.st_scripts"))
-        self.m_favoritedock.setStatusTip(dbm.i18n.t("gui.st_favorite"))
-        self.m_about.setStatusTip(dbm.i18n.t("gui.st_developer"))
-        self.m_about_qt.setStatusTip(dbm.i18n.t("gui.st_about_qt"))
+        self.m_configuration.setStatusTip(
+            dbmodule.i18n.t("gui.st_configuration"))
+        self.m_quit.setStatusTip(dbmodule.i18n.t("gui.st_quit"))
+        self.m_spanish.setStatusTip(dbmodule.i18n.t("gui.st_spanish"))
+        self.m_english.setStatusTip(dbmodule.i18n.t("gui.st_english"))
+        self.m_default.setStatusTip(dbmodule.i18n.t("gui.st_default"))
+        self.m_dark.setStatusTip(dbmodule.i18n.t("gui.st_dark"))
+        self.m_light.setStatusTip(dbmodule.i18n.t("gui.st_light"))
+        self.m_searchkey.setStatusTip(dbmodule.i18n.t("gui.st_search_on"))
+        self.m_name.setStatusTip(dbmodule.i18n.t("gui.st_name"))
+        self.m_author.setStatusTip(dbmodule.i18n.t("gui.st_author"))
+        self.m_category.setStatusTip(dbmodule.i18n.t("gui.st_category"))
+        self.m_scriptdock.setStatusTip(dbmodule.i18n.t("gui.st_scripts"))
+        self.m_favoritedock.setStatusTip(dbmodule.i18n.t("gui.st_favorite"))
+        self.m_about.setStatusTip(dbmodule.i18n.t("gui.st_developer"))
+        self.m_about_qt.setStatusTip(dbmodule.i18n.t("gui.st_about_qt"))
         self.main_container.setStatusTip(self.welcome)
 
     # set scripts dockwidget translations
     def load_scripts_text(self):
-        self.scriptdock.setWindowTitle(dbm.i18n.t("gui.dock_scripts"))
+        self.scriptdock.setWindowTitle(dbmodule.i18n.t("gui.dock_scripts"))
         self.search_text.setPlaceholderText(
-            dbm.i18n.t(
+            dbmodule.i18n.t(
                 "gui.search_placeholder"
             )
         )
-        self.search_text.setStatusTip(dbm.i18n.t("gui.st_search"))
-        self.search_btn.setStatusTip(dbm.i18n.t("gui.st_search_scripts"))
-        self.clear_btn.setStatusTip(dbm.i18n.t("gui.st_clear_script_search"))
-        self.s_name.setText(dbm.i18n.t("gui.act_name"))
-        self.s_name.setStatusTip(dbm.i18n.t("gui.st_name"))
+        self.search_text.setStatusTip(dbmodule.i18n.t("gui.st_search"))
+        self.search_btn.setStatusTip(dbmodule.i18n.t("gui.st_search_scripts"))
+        self.clear_btn.setStatusTip(
+            dbmodule.i18n.t("gui.st_clear_script_search"))
+        self.s_name.setText(dbmodule.i18n.t("gui.act_name"))
+        self.s_name.setStatusTip(dbmodule.i18n.t("gui.st_name"))
         self.s_author.setText(self.author_txt)
-        self.s_author.setStatusTip(dbm.i18n.t("gui.st_author"))
-        self.s_category.setText(dbm.i18n.t("gui.act_category"))
-        self.s_category.setStatusTip(dbm.i18n.t("gui.st_category"))
+        self.s_author.setStatusTip(dbmodule.i18n.t("gui.st_author"))
+        self.s_category.setText(dbmodule.i18n.t("gui.act_category"))
+        self.s_category.setStatusTip(dbmodule.i18n.t("gui.st_category"))
 
 # set favorites dockwidget translations
     def load_favorites_text(self):
-        self.favoritedock.setWindowTitle(dbm.i18n.t(self.gui_dock_fav))
+        self.favoritedock.setWindowTitle(dbmodule.i18n.t(self.gui_dock_fav))
         self.fsearch_text.setPlaceholderText(
-            dbm.i18n.t(
+            dbmodule.i18n.t(
                 "gui.search_placeholder"
             )
         )
-        self.fsearch_text.setStatusTip(dbm.i18n.t("gui.st_search"))
-        self.fsearch_btn.setStatusTip(dbm.i18n.t("gui.st_search_favorite"))
-        self.fclear_btn.setStatusTip(dbm.i18n.t("gui.st_clear_fav_search"))
+        self.fsearch_text.setStatusTip(dbmodule.i18n.t("gui.st_search"))
+        self.fsearch_btn.setStatusTip(
+            dbmodule.i18n.t("gui.st_search_favorite"))
+        self.fclear_btn.setStatusTip(
+            dbmodule.i18n.t("gui.st_clear_fav_search"))
 
     # load language translations
     def load_text_translations(self):
-        self.total_text = dbm.i18n.t(
+        self.total_text = dbmodule.i18n.t(
             "gui.total_scripts",
             total=self.total_scripts
         )
         print(self.welcome)
-        self.total_fav_text = dbm.i18n.t(
+        self.total_fav_text = dbmodule.i18n.t(
             "gui.total_favorites",
             total=len(self.fav_list)
         )
@@ -302,58 +301,85 @@ class NGui(base, form):
 
     # load theme
     def set_theme(self):
-        theme_file = f"{self.style_path}{self.css_files[self.theme-1]}.css"
-        app.setStyleSheet("")
-        if os.path.exists(theme_file):
-            css_file = open(theme_file, 'r')
-            css_content = css_file.read().replace(
-                '\n', ''
-            ).replace('{file}', self.resources_path)
-            app.setStyleSheet(css_content)
-            css_file.close()
-        self.load_icons()
-        app.style().unpolish(self)
-        app.style().polish(self)
-        # app.update()
+        try:
+            theme_file = f"{self.style_path}{self.css_files[self.theme-1]}.css"
+            app.setStyleSheet("")
+            if os.path.exists(theme_file):
+                css_file = open(theme_file, 'r')
+                css_content = css_file.read().replace(
+                    '\n', ''
+                ).replace('{file}', self.resources_path)
+                app.setStyleSheet(css_content)
+                css_file.close()
+            self.load_icons()
+            app.style().unpolish(self)
+            app.style().polish(self)
+        except Exception as e:
+            self.utils.print_traceback(e)
 
     # load window icons
     def load_icons(self):
         icon_path = f"{self.resources_path}{self.css_files[self.theme-1]}/"
-        self.m_configuration.setIcon(QIcon(f"{icon_path}config.png"))
-        self.m_quit.setIcon(QIcon(f"{icon_path}exit.png"))
-        self.m_about.setIcon(QIcon(f"{icon_path}people.png"))
-        self.m_about_qt.setIcon(QIcon(f"{icon_path}qt.png"))
-        self.menu_language.setIcon(QIcon(f"{icon_path}lang.png"))
-        self.menu_theme.setIcon(QIcon(f"{icon_path}theme.png"))
-        self.menu_search_opts.setIcon(QIcon(f"{icon_path}searchopt.png"))
+        self.m_configuration.setIcon(
+            QIcon(f"{icon_path}config.png")
+        )
+        self.m_quit.setIcon(
+            QIcon(f"{icon_path}exit.png"))
+        self.m_about.setIcon(
+            QIcon(f"{icon_path}people.png")
+        )
+        self.m_about_qt.setIcon(
+            QIcon(f"{icon_path}qt.png")
+        )
+        self.menu_language.setIcon(
+            QIcon(f"{icon_path}lang.png")
+        )
+        self.menu_theme.setIcon(
+            QIcon(f"{icon_path}theme.png")
+        )
+        self.menu_search_opts.setIcon(
+            QIcon(f"{icon_path}searchopt.png")
+        )
+        self.search_btn.setIcon(
+            QIcon(f"{self.resources_path}glass.png")
+        )
+        self.clear_btn.setIcon(
+            QIcon(f"{self.resources_path}brush.png")
+        )
+        self.fsearch_btn.setIcon(
+            QIcon(f"{self.resources_path}glass.png")
+        )
+        self.fclear_btn.setIcon(
+            QIcon(f"{self.resources_path}brush.png")
+        )
 
     # load config file vars
     def load_yaml_vars(self):
         to_update = False
-        if 'lang' not in dbm.item['config'].keys():
+        if 'lang' not in dbmodule.item['config'].keys():
             self.lang = QLocale.system().name()
             to_update = True
         else:
-            self.lang = dbm.item['config']['lang']
-        if 'searchOpt' in dbm.item['config'].keys():
-            self.search_opt = dbm.item['config']['searchOpt']
+            self.lang = dbmodule.item['config']['lang']
+        if 'searchOpt' in dbmodule.item['config'].keys():
+            self.search_opt = dbmodule.item['config']['searchOpt']
             self.search_opt_cp = self.search_opt
         else:
             self.search_opt = 1
             self.search_opt_cp = self.search_opt
             to_update = True
-        if 'searchOnKey' in dbm.item['config'].keys():
-            self.search_onkey = dbm.item['config']['searchOnKey']
+        if 'searchOnKey' in dbmodule.item['config'].keys():
+            self.search_onkey = dbmodule.item['config']['searchOnKey']
         else:
             self.search_onkey = 1
             to_update = True
-        if 'theme' in dbm.item['config'].keys():
-            self.theme = dbm.item['config']['theme']
+        if 'theme' in dbmodule.item['config'].keys():
+            self.theme = dbmodule.item['config']['theme']
         else:
             self.theme = 1
             to_update = True
-        if 'splashAnim' in dbm.item['config'].keys():
-            self.show_anim = dbm.item['config']['splashAnim']
+        if 'splashAnim' in dbmodule.item['config'].keys():
+            self.show_anim = dbmodule.item['config']['splashAnim']
         else:
             self.show_anim = 1
             to_update = True
@@ -369,13 +395,13 @@ class NGui(base, form):
             self.search_onkey, self.search_opt,
             self.theme, self.show_anim
         )
-        '''dbm.stream.seek(0)
-        dbm.stream.truncate()
+        '''dbmodule.stream.seek(0)
+        dbmodule.stream.truncate()
         newconfig = {'config': {
-            'scriptsPath': dbm.scripts_path,
-            'filePath': dbm.file_path,
-            'fileBackup': dbm.file_backup,
-            'scriptdb': dbm.dbname,
+            'scriptsPath': dbmodule.scripts_path,
+            'filePath': dbmodule.file_path,
+            'fileBackup': dbmodule.file_backup,
+            'scriptdb': dbmodule.dbname,
             'categories': '[\
                      "auth", "broadcast", "brute",\
                      "default", "discovery", "dos",\
@@ -383,13 +409,13 @@ class NGui(base, form):
                      "intrusive", "malware", "safe",\
                      "version", "vuln"\
                      ]',
-            'checksum': dbm.current_checksum,
+            'checksum': dbmodule.current_checksum,
             'searchOpt': self.search_opt,
             'searchOnKey': self.search_onkey,
             'lang': self.lang,
             'theme': self.theme,
             'splashAnim': self.show_anim}}
-        dbm.yaml.dump(newconfig, dbm.stream)'''
+        dbmodule.yaml.dump(newconfig, dbmodule.stream)'''
 
     # init menubar items
     def init_menu(self, init_gui=False):
@@ -458,17 +484,17 @@ class NGui(base, form):
             return QRegExp("[A-Za-z0-9]{0,100}")
 
     # remove all scripts tabs
-    def remove_script_tabs(self):        
+    def remove_script_tabs(self):
         self.tab_view.clear()
         self.create_home_tab()
 
     # load favorites data in dict
     def load_favorites_data(self):
-        self.fav_list = dbm.get_favorites()
+        self.fav_list = dbmodule.get_favorites()
         tmp = {}
         for index in self.fav_list:
             fav = self.fav_list[index]
-            tmp[str(fav["name"]).replace(".nse", "")] = fav["ranking"]
+            tmp[str(fav["name"])] = fav["ranking"]
         self.fav_list = tmp
 
     # load favorites data in treeview
@@ -483,19 +509,18 @@ class NGui(base, form):
                 fav = QStandardItem(name)
                 if name in self.author_list.keys():
                     fav.setData(
-                        dbm.i18n.t(
+                        dbmodule.i18n.t(
                             "gui.fav_info",
                             script=name,
                             author=self.author_list[name]
-                        )
-                    , Qt.StatusTipRole)
+                        ), Qt.StatusTipRole)
                 fav.setEditable(False)
                 fav.setSizeHint(QSize(160, 25))
                 fav_icon = QStandardItem(
                     self.get_favorite_img(
                         self.fav_list[name]
                     ),
-                    dbm.get_ranking_text(
+                    dbmodule.get_ranking_text(
                         self.fav_list[name]
                     )
                 )
@@ -521,10 +546,10 @@ class NGui(base, form):
     def load_scripts(self):
         model = self.scr_treeview.model()
         model.clear()
-        for cat_key in sorted(self.scripts_list.keys()):
+        for cat_key in sorted(self.scripts_list):
             category = QStandardItem(cat_key)
             category.setData(
-                dbm.i18n.t(
+                dbmodule.i18n.t(
                     self.gui_script_cat,
                     count=len(self.scripts_list[cat_key]),
                     category=cat_key
@@ -543,7 +568,7 @@ class NGui(base, form):
                 category.appendRow(script)
             model.appendRow(category)
         model.setHorizontalHeaderLabels(
-            [f"  {dbm.i18n.t('gui.categories')}"]
+            [f"  {dbmodule.i18n.t('gui.categories')}"]
         )
 
     # Show dialog with configuration values
@@ -587,14 +612,14 @@ class NGui(base, form):
     # set focus in qlinedit on tab selected
     def favorites_tab_selected(self):
         current_index = self.sender().tabText(self.sender().currentIndex())
-        if dbm.i18n.t(self.gui_dock_fav) == current_index:
+        if dbmodule.i18n.t(self.gui_dock_fav) == current_index:
             self.fsearch_text.setFocus()
             self.status_right.setText(self.total_fav_text)
             if self.last_fav_result != "":
                 self.status_left.setText(self.last_fav_result)
             else:
                 self.status_left.setText(self.welcome)
-        elif dbm.i18n.t(self.gui_script_cat) == current_index:
+        elif dbmodule.i18n.t(self.gui_script_cat) == current_index:
             self.search_text.setFocus()
             self.status_right.setText(self.total_text)
             if self.last_scr_result != "":
@@ -610,13 +635,13 @@ class NGui(base, form):
                 QIcon(
                     f"{self.resources_path}close.png"
                 ),
-                dbm.i18n.t("gui.close_tab")
+                dbmodule.i18n.t("gui.close_tab")
             )
             close_all = QAction(
                 QIcon(
                     f"{self.resources_path}closeall.png"
                 ),
-                dbm.i18n.t("gui.close_all_tabs")
+                dbmodule.i18n.t("gui.close_all_tabs")
             )
             close_menu.addAction(close_tab)
             close_menu.addSeparator()
@@ -654,11 +679,11 @@ class NGui(base, form):
                 break
 
     # show script data when a favorite is selected
-    def favorite_selected(self, current, previous):        
+    def favorite_selected(self, current, previous):
         if self.fav_treeview.model().rowCount() > 1:
             script = self.fav_treeview.model().itemFromIndex(current).text()\
-            if current.column() == 0 else\
-            self.fav_treeview.model().item(current.row(), 0).text()
+                if current.column() == 0 else\
+                self.fav_treeview.model().item(current.row(), 0).text()
             if script in self.fav_list.keys():
                 self.create_script_tab(script)
 
@@ -671,9 +696,9 @@ class NGui(base, form):
     # create home tab
     def create_home_tab(self):
         home_view = self.get_web_view()
-        title = dbm.i18n.t("gui.app_title")
-        description = dbm.i18n.t("gui.app_description")
-        version = dbm.i18n.t("gui.app_version")
+        title = dbmodule.i18n.t("gui.app_title")
+        description = dbmodule.i18n.t("gui.app_description")
+        version = dbmodule.i18n.t("gui.app_version")
         home_view.setHtml(
             self.utils.get_home_html(
                 title,
@@ -690,7 +715,7 @@ class NGui(base, form):
             QIcon(
                 f'{self.resources_path}nmap-logo-small.png'
             ),
-            dbm.i18n.t("gui.home")
+            dbmodule.i18n.t("gui.home")
         )
         self.tab_view.setCurrentIndex(0)
         self.tab_view.tabBar().setTabButton(0, QTabBar.RightSide, None)
@@ -709,19 +734,19 @@ class NGui(base, form):
                 tab_index if tab_index != None else 1
             )
         else:
-            script_path = dbm.scripts_path + script
-            if not os.path.exists(f"{script_path}.nse"):
+            script_path = f"{dbmodule.scripts_path}{script}.nse"
+            if not os.path.exists(script_path):
                 QMessageBox.information(
                     self,
                     "Error",
-                    dbm.i18n.t(self.gui_script_not),
+                    dbmodule.i18n.t(self.gui_script_not),
                     QMessageBox.Ok
                 )
                 return False
             description, usage, author, script_license,\
-            categories = self.utils.get_script_data(
-              f"{dbm.scripts_path}{script}"
-            )
+                categories = self.utils.get_script_data(
+                    script_path
+                )
             script_license = script_license.replace(
                 "https://nmap.org/book/man-legal.html",
                 "<a href='https://nmap.org/book/man-legal.html'\
@@ -760,7 +785,7 @@ class NGui(base, form):
             )
             self.tab_view.setCurrentIndex(self.tab_view.count() - 1)
             script_view.page().linkClicked.connect(
-              self.open_license_link
+                self.open_license_link
             )
 
     # get webview instance
@@ -803,7 +828,7 @@ class NGui(base, form):
     # open license link in browser
     def open_license_link(self, url):
         if not url.isEmpty() and url.url() ==\
-        "https://nmap.org/book/man-legal.html":
+                "https://nmap.org/book/man-legal.html":
             QDesktopServices.openUrl(url)
 
     # remove script tab
@@ -829,15 +854,15 @@ class NGui(base, form):
         if len(pattern) >= 2 and self.last_scr_search != pattern:
             if self.search_opt == 1:
                 self.show_search_results(
-                  self.get_search_results(pattern)
+                    self.get_search_results(pattern)
                 )
             elif self.search_opt == 2:
                 self.show_author_results(
-                  self.get_author_results(pattern)
+                    self.get_author_results(pattern)
                 )
             elif self.search_opt == 3:
                 self.show_category_results(
-                  self.get_category_results(pattern)
+                    self.get_category_results(pattern)
                 )
         else:
             self.reset_search_results(pattern)
@@ -869,10 +894,10 @@ class NGui(base, form):
             for cat_key in sorted(results.keys()):
                 category = QStandardItem(cat_key)
                 category.setData(
-                    dbm.i18n.t(
-                      self.gui_script_cat,
-                      count=len(results[cat_key]),
-                      category=cat_key
+                    dbmodule.i18n.t(
+                        self.gui_script_cat,
+                        count=len(results[cat_key]),
+                        category=cat_key
                     ), Qt.StatusTipRole
                 )
                 category.setEditable(False)
@@ -881,7 +906,7 @@ class NGui(base, form):
                     self.scripts_found += 1
                     script = QStandardItem(name)
                     script.setData(
-                        self.author_txt + 
+                        self.author_txt +
                         f": {self.author_list[name]}",
                         Qt.StatusTipRole
                     )
@@ -890,10 +915,10 @@ class NGui(base, form):
                 model.appendRow(category)
             self.scr_treeview.setModel(model)
             self.scr_treeview.model().setHorizontalHeaderLabels(
-                [f"  {dbm.i18n.t('gui.act_category')}"]
+                [f"  {dbmodule.i18n.t('gui.act_category')}"]
             )
             self.scr_treeview.expandAll()
-            self.last_scr_result = dbm.i18n.t(
+            self.last_scr_result = dbmodule.i18n.t(
                 self.gui_scripts_found, count=self.scripts_found)
             self.status_left.setText(self.last_scr_result)
 
@@ -924,7 +949,7 @@ class NGui(base, form):
             for cat_key in sorted(results.keys()):
                 category = QStandardItem(cat_key)
                 category.setData(
-                    dbm.i18n.t(
+                    dbmodule.i18n.t(
                         self.gui_script_cat,
                         count=len(results[cat_key]),
                         category=cat_key
@@ -937,7 +962,7 @@ class NGui(base, form):
                     self.scripts_found += 1
                     script = QStandardItem(name)
                     script.setEditable(False)
-                    script.setData(                         
+                    script.setData(
                         f"{self.author_txt}: {self.author_list[name]}",
                         Qt.StatusTipRole
                     )
@@ -945,10 +970,10 @@ class NGui(base, form):
                 model.appendRow(category)
             self.scr_treeview.setModel(model)
             self.scr_treeview.model().setHorizontalHeaderLabels(
-                [f"  {dbm.i18n.t('gui.act_category')}"]
+                [f"  {dbmodule.i18n.t('gui.act_category')}"]
             )
             self.scr_treeview.expandAll()
-            self.last_scr_result = dbm.i18n.t(
+            self.last_scr_result = dbmodule.i18n.t(
                 self.gui_scripts_found,
                 count=self.scripts_found
             )
@@ -975,7 +1000,7 @@ class NGui(base, form):
             for cat_key in results.keys():
                 category = QStandardItem(cat_key)
                 category.setData(
-                    dbm.i18n.t(
+                    dbmodule.i18n.t(
                         self.gui_script_cat,
                         count=len(self.scripts_list[cat_key]),
                         category=cat_key
@@ -995,10 +1020,10 @@ class NGui(base, form):
                 model.appendRow(category)
             self.scr_treeview.setModel(model)
             self.scr_treeview.model().setHorizontalHeaderLabels(
-                [f"  {dbm.i18n.t('gui.act_category')}"]
+                [f"  {dbmodule.i18n.t('gui.act_category')}"]
             )
             self.scr_treeview.expandAll()
-            self.last_scr_result = dbm.i18n.t(
+            self.last_scr_result = dbmodule.i18n.t(
                 self.gui_scripts_found,
                 count=self.scripts_found
             )
@@ -1008,9 +1033,9 @@ class NGui(base, form):
     def search_not_found(self):
         model = self.scr_treeview.model()
         model.clear()
-        result = QStandardItem(dbm.i18n.t(self.gui_script_not))
+        result = QStandardItem(dbmodule.i18n.t(self.gui_script_not))
         result.setData(
-            dbm.i18n.t(self.gui_script_not),
+            dbmodule.i18n.t(self.gui_script_not),
             Qt.StatusTipRole
         )
         result.setEditable(False)
@@ -1018,16 +1043,16 @@ class NGui(base, form):
         model.appendRow(result)
         self.scr_treeview.setModel(model)
         self.scr_treeview.model().setHorizontalHeaderLabels(
-            [f"  {dbm.i18n.t('gui.search_results')}"]
+            [f"  {dbmodule.i18n.t('gui.search_results')}"]
         )
-        self.last_scr_result = dbm.i18n.t(self.gui_script_not)
+        self.last_scr_result = dbmodule.i18n.t(self.gui_script_not)
         self.status_left.setText(self.last_scr_result)
 
     # reset search results
     def reset_search_results(self, pattern):
         self.last_scr_search = pattern
         if self.scripts_found != self.total_scripts and\
-        len(self.last_scr_search) < 2:
+                len(self.last_scr_search) < 2:
             self.scripts_found = self.total_scripts
             self.load_scripts()
             self.last_scr_search = ""
@@ -1051,7 +1076,7 @@ class NGui(base, form):
     def search_fav(self):
         pattern = self.fsearch_text.text()
         if len(pattern) >= 2 and self.last_fav_search != pattern\
-        and len(self.fav_list) > 0:
+                and len(self.fav_list) > 0:
             results = {}
             self.last_fav_search = pattern
             fav_found = 0
@@ -1063,7 +1088,7 @@ class NGui(base, form):
         else:
             self.last_fav_search = pattern
             if self.fav_treeview.model().rowCount() < len(self.fav_list)\
-            and len(self.last_fav_search) < 2:
+                    and len(self.last_fav_search) < 2:
                 self.load_favorites()
                 self.last_fav_search = ""
                 self.last_fav_result = ""
@@ -1078,13 +1103,13 @@ class NGui(base, form):
                 fav_name = QStandardItem(str(fav))
                 fav_name.setEditable(False)
                 fav_name.setSizeHint(QSize(160, 25))
-                fav_name.setData(dbm.i18n.t(
+                fav_name.setData(dbmodule.i18n.t(
                     "gui.fav_info",
                     script=fav,
                     author=self.author_list[fav]
                 ), Qt.StatusTipRole)
                 fav_icon = QStandardItem(self.get_favorite_img(
-                    results[fav]), dbm.get_ranking_text(results[fav]))
+                    results[fav]), dbmodule.get_ranking_text(results[fav]))
                 fav_icon.setEditable(False)
                 fav_icon.setSizeHint(QSize(60, 25))
                 fmodel.appendRow([fav_name, fav_icon])
@@ -1093,23 +1118,23 @@ class NGui(base, form):
                 [self.script_text, "Ranking"])
             self.fav_treeview.setColumnWidth(0, 160)
             self.fav_treeview.setColumnWidth(1, 60)
-            self.last_fav_result = dbm.i18n.t(
-              "gui.fav_found",
-              count=fav_count
+            self.last_fav_result = dbmodule.i18n.t(
+                "gui.fav_found",
+                count=fav_count
             )
             self.status_left.setText(self.last_fav_result)
         else:
             fmodel.clear()
-            result = QStandardItem(dbm.i18n.t("gui.fav_not_found"))
+            result = QStandardItem(dbmodule.i18n.t("gui.fav_not_found"))
             result.setEditable(False)
             result.setSelectable(False)
             fmodel.appendRow(result)
             self.fav_treeview.setModel(fmodel)
             self.fav_treeview.model().setHorizontalHeaderLabels(
-                [f"  {dbm.i18n.t('gui.search_results')}"])
+                [f"  {dbmodule.i18n.t('gui.search_results')}"])
             self.fav_treeview.setColumnWidth(0, 247)
             self.fav_treeview.setColumnWidth(1, 60)
-            self.last_fav_result = dbm.i18n.t("gui.fav_not_found")
+            self.last_fav_result = dbmodule.i18n.t("gui.fav_not_found")
             self.status_left.setText(self.last_fav_result)
 
     # clear script qlineedit text and reload data in treeview
@@ -1138,7 +1163,7 @@ class NGui(base, form):
                 if script.parent() != None:
                     self.exec_add_fav(script, pos)
                 else:
-                    if script.text() != dbm.i18n.t(self.gui_script_not):
+                    if script.text() != dbmodule.i18n.t(self.gui_script_not):
                         self.exec_category_opts(pos)
         except Exception as e:
             self.utils.print_traceback(e)
@@ -1150,15 +1175,16 @@ class NGui(base, form):
             QIcon(
                 f"{self.resources_path}plus.png"
             ),
-            dbm.i18n.t("gui.add_fav")
+            dbmodule.i18n.t("gui.add_fav")
         )
         add_fav.addAction(add_menu)
         click_btn = add_fav.exec_(
-          self.sender().viewport().mapToGlobal(pos)
+            self.sender().viewport().mapToGlobal(pos)
         )
         if add_menu == click_btn:
             from libs.fav_dlg import FavDlg
             ranking_dlg = FavDlg(self)
+            ranking_dlg.set_images(self.resources_path)            
             ranking_dlg.set_label_script(script.text(), 0)
             ranking_dlg.saveRanking.connect(self.add_favorite)
             ranking_dlg.exec_()
@@ -1167,16 +1193,16 @@ class NGui(base, form):
     def exec_category_opts(self, pos):
         tree_menu = QMenu(self)
         collapse_menu = QAction(
-          QIcon(
-            f"{self.resources_path}minus.png"),
-            dbm.i18n.t("gui.collapse_all"
-          )
+            QIcon(
+                f"{self.resources_path}minus.png"),
+            dbmodule.i18n.t("gui.collapse_all"
+                            )
         )
         expand_menu = QAction(
-          QIcon(
-            f"{self.resources_path}plus.png"),
-            dbm.i18n.t("gui.expand_all"
-          )
+            QIcon(
+                f"{self.resources_path}plus.png"),
+            dbmodule.i18n.t("gui.expand_all"
+                            )
         )
         tree_menu.addAction(collapse_menu)
         tree_menu.addSeparator()
@@ -1193,8 +1219,8 @@ class NGui(base, form):
     def add_favorite(self, script, ranking):
         try:
             result, msg = self.create_gui_fav(
-              name=script,
-              ranking=ranking
+                name=script,
+                ranking=ranking
             )
             if result:
                 fav_name = QStandardItem(script)
@@ -1202,7 +1228,7 @@ class NGui(base, form):
                 fav_name.setSizeHint(QSize(240, 25))
                 fav_icon = QStandardItem(
                     self.get_favorite_img(ranking),
-                    dbm.get_ranking_text(ranking)
+                    dbmodule.get_ranking_text(ranking)
                 )
                 fav_icon.setSizeHint(QSize(20, 25))
                 self.fav_treeview.model().appendRow([fav_name, fav_icon])
@@ -1211,7 +1237,7 @@ class NGui(base, form):
                 self.clear_fav_search()
                 QMessageBox.information(
                     self,
-                    dbm.i18n.t(self.gui_dock_fav),
+                    dbmodule.i18n.t(self.gui_dock_fav),
                     msg,
                     QMessageBox.Ok,
                     QMessageBox.Ok
@@ -1239,21 +1265,21 @@ class NGui(base, form):
                         QIcon(
                             f"{self.resources_path}minus.png"
                         ),
-                        dbm.i18n.t("gui.del_fav")
+                        dbmodule.i18n.t("gui.del_fav")
                     )
                     del_fav_act.setObjectName("del_fav")
                     del_all_fav_act = QAction(
                         QIcon(
                             f"{self.resources_path}minus.png"
                         ),
-                        dbm.i18n.t("gui.del_all_favs")
+                        dbmodule.i18n.t("gui.del_all_favs")
                     )
                     del_all_fav_act.setObjectName("del_all_fav")
                     mod_fav_act = QAction(
                         QIcon(
                             f"{self.resources_path}update.png"
                         ),
-                        dbm.i18n.t("gui.update_ranking")
+                        dbmodule.i18n.t("gui.update_ranking")
                     )
                     mod_fav_act.setObjectName("mod_fav")
                     show_menu.addAction(mod_fav_act)
@@ -1290,8 +1316,8 @@ class NGui(base, form):
             )
 
     # update favorite from context menu
-    def mod_fav(self, script):        
-        if script.text() not in self.fav_list.values():            
+    def mod_fav(self, script):
+        if script.text() not in self.fav_list.values():
             self.load_favorites_data()
             ranking = self.fav_list[script.text()]
             self.create_fav_dlg(script.text(), ranking)
@@ -1312,6 +1338,7 @@ class NGui(base, form):
     def create_fav_dlg(self, script, ranking):
         from libs.fav_dlg import FavDlg
         fav_dlg = FavDlg(self)
+        fav_dlg.set_images(self.resources_path)
         fav_dlg.set_label_script(script=script, ranking=ranking)
         fav_dlg.saveRanking.connect(self.update_favorite)
         fav_dlg.exec_()
@@ -1336,25 +1363,26 @@ class NGui(base, form):
                 if result:
                     self.fav_list[script] = ranking
                     item_img = self.fav_treeview.model().item(
-                      sc_item.row(),
-                      1
+                        sc_item.row(),
+                        1
                     )
-                    item_img.setText(dbm.get_ranking_text(ranking))
+                    item_img.setText(dbmodule.get_ranking_text(ranking))
                     item_img.setIcon(self.get_favorite_img(ranking))
-                    self.status_left.setText(dbm.i18n.t(self.gui_dock_fav))                                        
+                    self.status_left.setText(
+                        dbmodule.i18n.t(self.gui_dock_fav))
                     QMessageBox.information(
                         self,
-                        dbm.i18n.t(self.gui_dock_fav),
+                        dbmodule.i18n.t(self.gui_dock_fav),
                         msg, QMessageBox.Ok,
                         QMessageBox.Ok
-                    )                    
+                    )
                 else:
                     self.show_exception(msg)
             else:
                 QMessageBox.information(
                     self,
                     "Ranking",
-                    dbm.i18n.t("gui.different_ranking"),
+                    dbmodule.i18n.t("gui.different_ranking"),
                     QMessageBox.Ok,
                     QMessageBox.Ok
                 )
@@ -1491,11 +1519,12 @@ class NGui(base, form):
     def init_author_window(self):
         from libs.about_dlg import AbtDlg
         abt = AbtDlg(self)
+        abt.setLogo(f"{self.resources_path}logo-small.png")
         abt.exec_()
 
     # show qt version
     def init_qt_version(self):
-        QMessageBox.aboutQt(self, dbm.i18n.t("gui.act_about_qt"))
+        QMessageBox.aboutQt(self, dbmodule.i18n.t("gui.act_about_qt"))
 
     # open links from developer dialog
     def open_link(self, url):
@@ -1514,20 +1543,21 @@ class NGui(base, form):
 
     ''' Database Functions '''
     # create favorite
+
     def create_gui_fav(self, **kwargs):
         db = None
         try:
-            db, cursor = dbm.get_connect()
+            db, cursor = dbmodule.get_connect()
             cursor.execute(
                 "INSERT INTO favorites (name, ranking) VALUES (?, ?);",
                 (kwargs["name"], kwargs["ranking"])
             )
             db.commit()
             if cursor.rowcount == 1:
-                return (True, dbm.i18n.t("gui.fav_add"))
+                return (True, dbmodule.i18n.t("gui.fav_add"))
         except Exception as e:
             if "UNIQUE" in e.args[0]:
-                return (False, dbm.i18n.t("gui.fav_already_added"))
+                return (False, dbmodule.i18n.t("gui.fav_already_added"))
             else:
                 self.utils.print_traceback(e)
                 return (False, "Error : " + e.args[0])
@@ -1539,7 +1569,7 @@ class NGui(base, form):
     def delete_gui_fav(self, **kwargs):
         db = None
         try:
-            db, cursor = dbm.get_connect()
+            db, cursor = dbmodule.get_connect()
             cursor = db.cursor()
             cursor.execute(
                 "DELETE FROM favorites WHERE name=?;",
@@ -1549,8 +1579,8 @@ class NGui(base, form):
             if cursor.rowcount == 1:
                 QMessageBox.information(
                     self,
-                    dbm.i18n.t(self.gui_dock_fav),
-                    dbm.i18n.t("gui.fav_deleted"),
+                    dbmodule.i18n.t(self.gui_dock_fav),
+                    dbmodule.i18n.t("gui.fav_deleted"),
                     QMessageBox.Ok, QMessageBox.Ok
                 )
                 return True
@@ -1564,15 +1594,15 @@ class NGui(base, form):
     def delete_all_fav(self):
         db = None
         try:
-            db, cursor = dbm.get_connect()
+            db, cursor = dbmodule.get_connect()
             cursor = db.cursor()
             cursor.execute("DELETE FROM favorites;")
             db.commit()
             if cursor.rowcount >= 1:
                 QMessageBox.information(
                     self,
-                    dbm.i18n.t(self.gui_dock_fav),
-                    dbm.i18n.t("gui.favs_deleted"),
+                    dbmodule.i18n.t(self.gui_dock_fav),
+                    dbmodule.i18n.t("gui.favs_deleted"),
                     QMessageBox.Ok, QMessageBox.Ok
                 )
                 return True
@@ -1586,7 +1616,7 @@ class NGui(base, form):
     def update_gui_fav(self, **kwargs):
         db = None
         try:
-            db, cursor = dbm.get_connect()
+            db, cursor = dbmodule.get_connect()
             cursor.execute(
                 "UPDATE favorites set ranking=? WHERE name=?;",
                 (kwargs["ranking"], kwargs["name"])
@@ -1594,7 +1624,7 @@ class NGui(base, form):
             db.commit()
             if cursor.rowcount == 1:
                 cursor.close()
-            return (True, dbm.i18n.t("gui.fav_updated"))
+            return (True, dbmodule.i18n.t("gui.fav_updated"))
         except Exception as e:
             self.show_exception(e)
             return (False, "Error : " + e.args[0])
@@ -1624,7 +1654,7 @@ class NGui(base, form):
         msg = e.args[0] if type(e) == Exception else e
         QMessageBox.information(
             self,
-            dbm.i18n.t("gui.exception"),
+            dbmodule.i18n.t("gui.exception"),
             str(msg), QMessageBox.Ok,
             QMessageBox.Ok
         )
