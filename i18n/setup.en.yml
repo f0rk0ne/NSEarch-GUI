@@ -20,7 +20,7 @@ en:
   bad_params: The params are not allowed
   search_not_found: Script not found !
   category_not_found: Category not found !
-  insert_script: Saving Script
+  insert_script: Saving Scripts !
   ranking_normal: normal
   ranking_great: great
   ranking_super_great: super-great

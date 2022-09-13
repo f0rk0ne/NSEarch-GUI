@@ -20,7 +20,7 @@ es:
   bad_params: Los parametros no estan permitidos
   search_not_found: No se encontraron scripts !
   category_not_found: Categoría no encontrada !
-  insert_script: Guardando Script
+  insert_script: Guardando Scripts !
   ranking_normal: normal
   ranking_great: genial
   ranking_super_great: super-genial
