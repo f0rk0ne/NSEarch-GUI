@@ -1,14 +1,16 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*- 
-import dbm
+from ast import In
 import os
 import hashlib
 import re
+import html
+import time
+from rich import box
 from rich.console import Console
 from rich.console import Group
 from rich.table import Table
 from rich.panel import Panel
-from rich import box
 from rich.text import Text
 from rich.align import Align
 from rich.padding import Padding
@@ -16,9 +18,7 @@ from rich.columns import Columns
 from rich.tree import Tree
 from rich.spinner import Spinner
 from rich.live import Live
-import html
-import time
-import libs.dbmodule as dbmodule
+from rich.prompt import IntPrompt
 
 class Utils:
 
@@ -49,6 +49,7 @@ class Utils:
   def __init__(self):    
     self.console = Console()
 
+  # print contents
   def print(self, renderable, print_header=False):
     render = Panel(renderable, box.MINIMAL) if "str"\
     in str(type(renderable)) else renderable
@@ -61,6 +62,7 @@ class Utils:
     elif render != None:
       self.console.print(render)
 
+  # get banner
   def get_banner(self):
     table = Table(
       expand = True,
@@ -89,10 +91,12 @@ class Utils:
    )
     return Panel(table,padding=(0,0),box=box.MINIMAL)
 
+  # print exit message
   def print_exit(self, text):
     self.print(Text(f'{text} ... ', style=self.COLOR_3))
     self.save_history()
 
+  # show spinner on create DB
   def show_spinner(self, text):
     self.print(
       Padding(
@@ -118,12 +122,14 @@ class Utils:
       time.sleep(.48)
       live.stop()
 
+  # create a rich table instance
   def get_result_table(self, show_expand = True):
     table = Table.grid(expand=show_expand, padding=(1,2), pad_edge=True)
     table.add_column()
     table.add_column()
     return table
 
+  # print search results
   def print_results(self, items, params, result_text):    
     sc = [ 
       f"[{self.COLOR_2}]{a[0]}.[/{self.COLOR_2}] {html.escape(a[1]['name'])}"
@@ -158,6 +164,7 @@ class Utils:
     else:
       return False
 
+  # print search by author results
   def print_author_results(self, items, params, result_text):      
     title = f'[{self.COLOR_1}]{result_text}[/{self.COLOR_1}]'
     for a in params.keys():
@@ -174,8 +181,8 @@ class Utils:
         style = self.BOLD_COLOR_2
       )
     )
-    for a in items:      
-      script = html.escape(a[1]['name'].replace('.nse',''))
+    for a in items:       
+      script = html.escape(a[1]['name'])
       script = f"[{self.COLOR_2}]{str(a[0])}.[/{self.COLOR_2}] {script}"
       author = a[1]['author'].replace(
         params['author'],
@@ -192,6 +199,7 @@ class Utils:
       )
     self.print(Group(Align.center(title), table), True)
 
+  # get ranking
   def get_ranking(self, ranking):
     if ranking == 0:
       return '[yellow]⭐️[/yellow]'
@@ -200,6 +208,7 @@ class Utils:
     if ranking == 2:
       return '[yellow]⭐️⭐️⭐️[/yellow]'
 
+  # print favorites
   def print_favs(self, items, cols):
     table = self.get_result_table(False)
     table.add_column()
@@ -214,28 +223,35 @@ class Utils:
      ),
       ''
    )
-    for key, value in items:
+    for value in items:
       table.add_row(
         value['name'],
-        dbmodule.get_ranking_text(value['ranking']),
-        self.get_ranking(value['ranking'])
+        value['ranking'],
+        value['stars']
      )
     self.print(table, True)
 
+  # get script file content
   def get_script_data(self, script_path):    
-    script_path = f"{script_path}.nse" \
-    if not script_path.endswith(".nse") else script_path
-    script_file = open(script_path, 'r').read()
-    author = self.get_author(script_file)
-    description = self.get_description(script_file)
-    script_license = self.get_license(script_file)
-    categories = self.get_categories(script_file)
-    usage = self.get_usage(script_file)
-    return (
-            self.get_description_formatted(description),
-            usage, f"{author} ",
-            script_license, categories
-           )
+    script_file = None     
+    try:
+      script_file = open(script_path, 'r', errors='ignore')
+      data = script_file.read()
+      author = self.get_author(data)
+      description = self.get_description(data)
+      script_license = self.get_license(data)
+      categories = self.get_categories(data)
+      usage = self.get_usage(data)      
+      return (
+              self.get_description_formatted(description),
+              usage, f"{author} ",
+              script_license, categories
+            )
+    except Exception as e:
+      self.print_traceback(e)
+    finally:
+      if script_file != None:
+        script_file.close()
 
   # get splash image
   def get_splash_img(self, show_anim):
@@ -318,21 +334,28 @@ class Utils:
 
   # get author name
   def get_author(self, data):
-    lindex = 0
+    lindex = 0    
     try:
-      lindex = data.index("author =") + len("author =")
-    except ValueError as e:
-      del e
       try:
-        lindex = data.index("-- @author") + len("-- @author")
+        lindex = data.index("author =") + len("author =")
       except ValueError as e:
         del e
-        return ""
-    author = data[lindex:].split("\n")[0]
-    if author.endswith("{"):
-      author = data[lindex:].split("}")[0]
-    author = re.sub(r'[\'\"\{\}\<\>\-\=\@\(\)\;\[\]]','', author)
-    return re.sub(r'^\s', '',author).strip("\n")
+        try:
+          lindex = data.index("-- @author") + len("-- @author")
+        except ValueError as e:
+          del e
+          return "Brandon Enright <bmenrigh@ucsd.edu>, Duane Wessels <wessels@dns-oarc.net>"
+      author = data[lindex:].split("\n")[0]
+      if author.endswith("{"):
+        author = data[lindex:].split("}")[0]
+      author = re.sub(r'[\'\"\{\}\<\>\-\=\@\(\)\;\[\]]','', author)
+      return re.sub(r'^\s', '',author).strip("\n")
+    except Exception as e:
+      if "UTF" in e:
+        pass
+        return False
+      else:
+        self.print_traceback(e)
 
   # print script help
   def print_doc(self, script_path):    
@@ -340,7 +363,7 @@ class Utils:
     self.get_script_data(script_path)
     table = Table.grid(expand = True, padding = (1,2), pad_edge = True)
     table.add_column()
-    sc = script_path.split('/')[-1].replace('.nse','')
+    sc = script_path.split('/')[-1]
     table.add_row(
       Padding(
         Align.center(
@@ -401,7 +424,7 @@ class Utils:
   # print scripts in a category    
   def print_script_category(self, cat, scripts):    
     sc = [
-          f"[{self.COLOR_2}]{a}.[/{self.COLOR_2}] {html.escape(b.replace('.nse',''))}"
+          f"[{self.COLOR_2}]{a}.[/{self.COLOR_2}] {html.escape(b)}"
           for a,b in scripts
           ]    
     if len(sc) >= 1:
@@ -433,40 +456,46 @@ class Utils:
 
   # get scripts path
   def get_scripts_path(self):
-    current_checksum = ''
-    scripts_path = '/usr/share/nmap/scripts/'
-    if not os.path.exists(scripts_path):
-      scripts_path = ''
-    file_path = scripts_path + 'script.db'
-    if not os.path.exists(file_path):
-      file_path = ''
-    else:
-      current_checksum = hashlib.sha256(
-        open(file_path,'rb').read() 
-     ).hexdigest()
-    file_backup = 'scriptbk.db'
-    dbname = 'nmap_scripts.sqlite3'     
-    return (
-      scripts_path,
-      file_path,
-      file_backup,
-      dbname,
-      current_checksum
-   )
+    try:
+      current_checksum = ''
+      scripts_path = '/usr/share/nmap/scripts/'
+      if not os.path.exists(scripts_path):
+        scripts_path = ''
+      file_path = scripts_path + 'script.db'
+      if not os.path.exists(file_path):
+        file_path = ''
+      else:
+        current_checksum = hashlib.sha256(
+          open(file_path,'rb').read() 
+      ).hexdigest()
+      file_backup = 'scriptbk.db'
+      dbname = 'nmap_scripts.sqlite3'     
+      return (
+        scripts_path,
+        file_path,
+        file_backup,
+        dbname,
+        current_checksum
+      )
+    except Exception as e:
+      self.print_traceback(e)
 
   # check configuration file
-  def check_config_file(self, conf_file):    
-    if self.config_file_exits(conf_file):      
-      content = open(conf_file, 'r')
-      lines = content.read().splitlines()
-      if len(lines) == 0 or len(lines) < len(self.conf_keys):        
-        self.create_config_file()
-        return False
-      else:
-        for a in lines:          
-          if a.split(":")[0].strip(" ") not in self.conf_keys:
-            self.create_config_file()
-            break                  
+  def check_config_file(self, conf_file):
+    try:    
+      if self.config_file_exits(conf_file):  
+        content = open(conf_file, 'r')
+        lines = content.read().splitlines()
+        if len(lines) == 0 or len(lines) < len(self.conf_keys):        
+          self.create_config_file()
+          return False
+        else:
+          for a in lines:          
+            if a.split(":")[0].strip(" ") not in self.conf_keys:
+              self.create_config_file()
+              break
+    except Exception as e:                  
+      self.print_traceback(e)
 
   # check if configuration file exists
   def config_file_exits(self, conf_file):    
@@ -479,27 +508,30 @@ class Utils:
   def create_config_file(self, search_on_key = 1,
                          search_opt = 1, theme = 1,
                          splash_anim = 1):
-    scripts_path, file_path, file_backup,\
-    dbname, current_checksum = self.get_scripts_path()
-    stream = open('config.yaml', 'w')
-    stream.write("config:\n")
-    stream.write(
-      f'  lang: "{"es" if "es" in os.environ["LANG"] else "en"}"\n'
-   )
-    stream.write(f"  scriptsPath: {scripts_path}\n")
-    stream.write(f"  filePath: {file_path}\n")
-    stream.write(f"  fileBackup: {file_backup}\n")
-    stream.write(f"  scriptdb: {dbname}\n")
-    stream.write('  categories: ["auth","broadcast","brute","default",\
-    "discovery","dos","exploit","external","fuzzer","intrusive",\
-    "malware","safe","version","vuln"]\n')
-    stream.write(f"  checksum: {current_checksum}\n")
-    stream.write(f"  searchOnKey: {search_on_key}\n")
-    stream.write(f"  searchOpt: {search_opt}\n")
-    stream.write(f"  theme: {theme}\n")
-    stream.write("  histLen: 100\n")
-    stream.write(f"  splashAnim: {splash_anim}")
-    stream.close()
+    try:
+      scripts_path, file_path, file_backup,\
+      dbname, current_checksum = self.get_scripts_path()
+      stream = open('config.yaml', 'w')
+      stream.write("config:\n")
+      stream.write(
+        f'  lang: "{"es" if "es" in os.environ["LANG"] else "en"}"\n'
+      )
+      stream.write(f"  scriptsPath: {scripts_path}\n")
+      stream.write(f"  filePath: {file_path}\n")
+      stream.write(f"  fileBackup: {file_backup}\n")
+      stream.write(f"  scriptdb: {dbname}\n")
+      stream.write('  categories: ["auth","broadcast","brute","default",\
+      "discovery","dos","exploit","external","fuzzer","intrusive",\
+      "malware","safe","version","vuln"]\n')
+      stream.write(f"  checksum: {current_checksum}\n")
+      stream.write(f"  searchOnKey: {search_on_key}\n")
+      stream.write(f"  searchOpt: {search_opt}\n")
+      stream.write(f"  theme: {theme}\n")
+      stream.write("  histLen: 100\n")
+      stream.write(f"  splashAnim: {splash_anim}")
+      stream.close()
+    except Exception as e:
+      self.print_traceback(e)
 
   # get script usage html
   def get_script_usage(self, usage):
@@ -687,9 +719,10 @@ class Utils:
         hist_file.close()
 
   # append command to history 
-  def append_history(self, cmd):
-    self.history.append(cmd)
-    if len(self.history) > int(dbmodule.hist_len):      
+  def append_history(self, cmd, hist_len):    
+    if "history" not in cmd:
+      self.history.append(cmd)
+    if len(self.history) > int(hist_len):      
       self.history.pop(0)
 
   # print history list
@@ -724,16 +757,19 @@ class Utils:
     return True
 
   # clear history list
-  def clear_history(self, hist_text):    
-    if os.path.exists(self.__hist_file):
-      file = open(self.__hist_file, "w")
-      file.write("")
-      file.close()
-      self.print(
-        f"[{self.COLOR_2}]{hist_text}[/{self.COLOR_2}]",
-        True
-      )
-      self.history.clear()
+  def clear_history(self, hist_text):
+    try:
+      if os.path.exists(self.__hist_file):
+        file = open(self.__hist_file, "w")
+        file.write("")
+        file.close()
+        self.print(
+          f"[{self.COLOR_2}]{hist_text}[/{self.COLOR_2}]",
+          True
+        )
+        self.history.clear()
+    except Exception as e:
+      self.print_traceback(e)
 
   # save history on exit
   def save_history(self):
@@ -785,10 +821,11 @@ class Utils:
       True if command == "help" else False
     )
 
+  # rich int prompt
+  def ask(self, msg):
+    return IntPrompt.ask(msg)
+
   # print exception traceback
-  def print_traceback(self, e):
-    print(type(e))
-    if self.__debug and type(e) == Exception\
-    or type(e) == TypeError: 
-      self.print(e.args[0])
+  def print_traceback(self, e):        
+    if self.__debug:      
       self.console.print_exception()
