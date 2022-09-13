@@ -1,3 +1,5 @@
+#!/usr/bin/python
+#-*- coding: utf-8 -*- 
 import i18n
 from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5 import uic
