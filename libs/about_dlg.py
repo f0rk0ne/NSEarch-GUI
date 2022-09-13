@@ -1,6 +1,8 @@
-import os, sys, i18n
-from PyQt5.QtWidgets import QDialog, QLabel
+#!/usr/bin/python
+#-*- coding: utf-8 -*- 
+import sys, i18n
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
 from PyQt5 import uic
 from traceback import print_exc
 sys.path.append('..')
@@ -26,6 +28,11 @@ class AbtDlg(base, form):
     else:
      self.link_color = "#306981"
     self.loadLang()
+  
+  def setLogo(self, icon):
+    self.logo.setPixmap(
+      QPixmap(icon)
+    )
 
   def loadLang(self):
     color_tag = "{color}"
