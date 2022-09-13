@@ -1,18 +1,25 @@
+#!/usr/bin/python
+#-*- coding: utf-8 -*- 
+import sys
+sys.path.append("../libs")
 import i18n
 import os
-import sys
 import hashlib
 import re
 import shutil
 import yaml
 import sqlite3 as lite
-from libs.utils import Utils
+import utils
 
 conf_file = 'config.yaml'
-utils = Utils()
+utils = utils.Utils()
 utils.check_config_file(conf_file)
 
-stream = open(conf_file, 'r+')
+try:
+  stream = open(conf_file, 'r+')
+except Exception as e:
+  utils.print_traceback(e)
+
 item = yaml.safe_load(stream)
 
 dbname = item["config"]["scriptdb"]
@@ -23,11 +30,10 @@ scripts_path = item["config"]["scriptsPath"]
 current_checksum = item["config"]["checksum"]
 hist_len = item["config"]["histLen"]
 lang = item["config"]["lang"]
-i18n.load_path.append('i18n')  
+i18n.load_path.append('i18n')
+
 if lang == "es" or lang == "en":
-  i18n.set(
-    'locale', lang
-  )
+  i18n.set('locale', lang)
   i18n.set(
     'fallback',
     'en' if lang == "es" else 'es'
@@ -55,41 +61,55 @@ def init_setup():
   try:
     db, cursor = __dbconnect()    
     # Create Script Table    
-    cursor.execute('''
+    cursor.execute(
+      '''
       create table if not exists scripts(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         name TEXT NOT NULL,
         author TEXT NULL
-    )''')
+      );
+      '''
+    )
     utils.show_spinner(i18n.t("setup.create_script_table")) 
     # Create Categories Table
-    cursor.execute('''
+    cursor.execute(
+      '''
       create table if not exists categories(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         name TEXT NOT NULL
-    )''')
+      );
+      '''
+    )
     utils.show_spinner(i18n.t("setup.create_category_table")) 
     # Create Script/Category Table
-    cursor.execute('''
-      create table if not exists script_category(
-        id_category INTEGER NOT NULL,
+    cursor.execute(
+      '''
+      create table if not exists script_category( 
+        id_category INTEGER NOT NULL, 
         id_script INETGER NOT NULL
-    )''')
+      );
+      '''
+    )
     utils.show_spinner(i18n.t("setup.create_category_script_table"))
     utils.show_spinner(i18n.t("setup.upload_categories")) 
+    cats = []    
     for category in categories:
-      cursor.execute(
-        '''INSERT INTO categories (name) VALUES (?)'''
-        ,(category,)
-      )
+      cats.append((category,))      
+    cursor.executemany(
+      'INSERT INTO categories (name) VALUES (?);'
+      ,cats
+    )
     # Create Favorite Table
     utils.show_spinner(i18n.t("setup.create_favorites_table")) 
-    cursor.execute('''
+    cursor.execute(
+      '''
       create table if not exists favorites (
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         name TEXT NOT NULL UNIQUE,
         ranking INTEGER NOT NULL
-    )''')   
+      )
+      '''
+    )   
     db.commit()
     set_data()
     create_backup()
@@ -104,7 +124,7 @@ def init_setup():
 
 #create file backups
 def create_backup():
-  utils.show_spinner("\n"+i18n.t("setup.create_backup"))
+  utils.show_spinner(i18n.t("setup.create_backup"))
   shutil.copy2(file_path, file_backup)
   if os.path.isfile(file_backup):
     utils.show_spinner(i18n.t("setup.create_backup_ok"))
@@ -112,66 +132,46 @@ def create_backup():
     utils.show_spinner(i18n.t("setup.create_backup_error"))
 
 #insert data into the tables
-def set_data():  
-  script_file = open(file_path,'r')  
-  for line in script_file:
-    line = line.replace(
-      'Entry { filename = "',
-      ""
-    ).replace(
-        '", categories = { "',
-        ',"'
-    ).replace(
-        '", } }',
-        '"'
-    ).replace(
-        '", "',
-        '","'
-    )
-    for i, j in enumerate(categories):
-      line = line.replace('"'+j+'"',str(i+1))
-    newarray = line.split(",")
-    for key,value in enumerate(newarray):      
-      if value == newarray[0]:
-        author = None
-        lastrowid = None
-        current_script = open(scripts_path+value,'r')
-        author = get_author_from_file(current_script)                
-        lastrowid = insert_script(value,author)
-        current_script.close()
-      else:        
-        insert_script_category(lastrowid,value)  
-  script_file.close()
-
-# get author from file
-def get_author_from_file(current_script):
-  for line in current_script.readlines():
-    if line.startswith("author"):
-      return line.replace(
-          "author = ",
-          ""
+def set_data():
+  try:
+    script_file = open(file_path,'r')  
+    lastrowid = 0
+    scripts = []
+    scripts_cat = []
+    for line in script_file:
+      line = line.replace(
+        'Entry { filename = "',
+        ""
       ).replace(
-          "author     = ",
-          ""
-      ).replace(
-          '"',
+          '", categories = { "',
           ',"'
       ).replace(
-          '[[',
-          ""
+          '", } }',
+          '"'
       ).replace(
-          ',"',
-          ""
-      ).replace(
-          '{',
-          ""
-      ).replace(
-          '}',
-          ""
-      ).replace(
-          "author =",     
-          "Brandon Enright <bmenrigh@ucsd.edu>, Duane Wessels <wessels@dns-oarc.net>, "
-      ).strip()
+          '", "',
+          '","'
+      )     
+      for i, j in enumerate(categories):
+        line = line.replace('"'+j+'"',str(i+1))
+      newarray = line.split(",")    
+      for key,value in enumerate(newarray):      
+        del key
+        value = value.replace("\n","")
+        if value == newarray[0]:
+          author = None
+          lastrowid += 1        
+          current_script = open(scripts_path+value,'r', errors='ignore')
+          author = utils.get_author(current_script.read())
+          scripts.append((lastrowid, value, author,))
+          current_script.close()
+        else:        
+          scripts_cat.append((value,lastrowid))
+    insert_scripts(scripts)
+    insert_scripts_category(scripts_cat)
+    script_file.close()
+  except Exception as e:
+    utils.print_traceback(e)
 
 #update app if the db exists
 def update_app():  
@@ -211,16 +211,16 @@ def update_app():
       db.close()
 
 # Insert each Script and Author
-def insert_script(script,author):
+def insert_scripts(scripts):
   db = None
   try:    
-    utils.show_spinner(f'{i18n.t("setup.insert_script")} {script}')
-    db, cursor = __dbconnect()
-    cursor.execute('''
-    Insert into scripts (name,author) values (?,?)
-    ''',(script,author,))
+    utils.show_spinner(f'{i18n.t("setup.insert_script")}')
+    db, cursor = __dbconnect()        
+    cursor.executemany('''
+    insert into scripts (id,name,author) values (?,?,?);
+    ''', scripts)
     db.commit()
-    return cursor.lastrowid
+    return True
   except Exception as e:
     if db:
       db.rollback()
@@ -231,18 +231,17 @@ def insert_script(script,author):
       db.close()
 
 #Insert the scripts_id and categories_id
-def insert_script_category(scriptid, categoryid):
+def insert_scripts_category(script_cat):
   db = None
   try:    
     db, cursor = __dbconnect()
-    cursor.execute('''
+    cursor.executemany('''
       INSERT INTO script_category (id_category,id_script) VALUES (?,?)
       ''',
-      (categoryid,scriptid,)
+      script_cat
     )
     db.commit()
-    if cursor.rowcount == 1:
-      sys.stdout.flush()      
+    return True    
   except Exception as e:
      if db:
       db.rollback()
@@ -257,7 +256,7 @@ def search_all():
   try:
     db, cursor = __dbconnect()    
     cursor.execute(
-      "select id, name, author from scripts GROUP BY NAME ORDER BY NAME"
+      "select id, replace(name,'.nse',''), author from scripts GROUP BY NAME ORDER BY NAME"
     )
     return __fetch_script(cursor.fetchall())
   except Exception as e:
@@ -403,7 +402,7 @@ def search_by_criterial(**kwargs):
     elif "name" in kwargs.keys() and "author" in kwargs.keys():
       author = kwargs["author"]
       script = kwargs["name"]
-      sql = "select id, name, author from scripts "
+      sql = "select id, replace(name,'.nse',''), author from scripts "
       sql += "where name like '%"+script+"%' "
       sql += "and author like '%"+author+"%';"
     elif "name" in kwargs.keys() or len(kwargs.keys()) == 0:
@@ -416,7 +415,7 @@ def search_by_criterial(**kwargs):
       )      
     elif "author" in kwargs.keys():
       author = kwargs["author"]
-      sql = "select id, name, author from scripts where " 
+      sql = "select id, replace(name,'.nse',''), author from scripts where " 
       sql += "author like '%"+author+"%'"    
     cursor.execute(sql)
     result = __fetch_script(cursor.fetchall())
@@ -425,7 +424,7 @@ def search_by_criterial(**kwargs):
 
 # get script search statement
 def get_search_statement(script = None, category = None, author = None):
-  sql = "select scripts.id, scripts.name, scripts.author "
+  sql = "select scripts.id, replace(scripts.name,'.nse',''), scripts.author "
   sql += "from scripts, categories, script_category "
   sql += f"where categories.name like '%{category}%' and "
   if script != None:
@@ -438,11 +437,12 @@ def get_search_statement(script = None, category = None, author = None):
 
 # get default search statement
 def get_default_statement(script):
-  return "select id, name, author " +\
-          f"from scripts where name like '%{script}%'"
+  sql = "select id, replace(name,'.nse',''), author "
+  sql += f"from scripts where name like '%{script}%'"
+  return sql
 
 # get favs scripts filter
-def get_favorites(**kwargs):
+def get_favorites(**kwargs):  
   if kwargs is not None:    
     sql=None
     db, cursor = __dbconnect()
@@ -482,7 +482,7 @@ def get_categories():
 def get_script_by_id(script_id):
   try:
     db,cursor = __dbconnect()
-    cursor.execute('select name from scripts where id=?;',[script_id])
+    cursor.execute('select replace(name, ".nse", "") from scripts where id=?;',[script_id])
     return cursor.fetchone()[0]
   except Exception as e:
     utils.print("Error get_script_by_id %s:" % e.args[0])
@@ -497,7 +497,7 @@ def get_scripts_cat(**kwargs):
     category = ''
     if 'id' in kwargs.keys():      
       catid = kwargs['id']      
-      sql = 'select scripts.id, scripts.name as script, categories.name ' 
+      sql = 'select scripts.id, replace(scripts.name, ".nse", "") as script, categories.name ' 
       sql += 'from scripts INNER JOIN (script_category INNER JOIN categories ON ' 
       sql += 'script_category.id_category=categories.id) '
       sql += 'ON scripts.id=script_category.id_script '
@@ -507,7 +507,7 @@ def get_scripts_cat(**kwargs):
       )
     elif 'name' in kwargs.keys():
       name = kwargs['name']
-      sql = 'select scripts.id, scripts.name as script, categories.name '
+      sql = 'select scripts.id, replace(scripts.name, ".nse", "") as script, categories.name '
       sql += 'from scripts INNER JOIN (script_category INNER JOIN '
       sql += 'categories ON script_category.id_category=categories.id) '
       sql += 'ON scripts.id=script_category.id_script '
@@ -532,6 +532,20 @@ def get_total_scripts():
   cursor.execute("SELECT count(name) FROM scripts; ")
   data = cursor.fetchall()
   return data[0][0] if data != False else 0
+
+#get favorites formmated
+def get_fav_formmated():
+  result = []
+  for a in lastresults.keys():
+    val = lastresults[a]    
+    result.append( 
+      {
+        "name": val["name"],
+        "ranking": get_ranking_text(val["ranking"]),
+        "stars": utils.get_ranking(val["ranking"]) 
+      }
+    )
+  return result
 
 # get database rows for categories and sripts scheme
 def get_data():
@@ -559,6 +573,15 @@ def get_data():
   finally:
     if db != None:
       db.close()
+
+def get_scripts():
+  items = []
+  data = get_data()  
+  for a in data:
+    for b in data[a]:
+      if b not in items:
+        items.append(b)    
+  return items
 
 # get authors list
 def get_author_data():
