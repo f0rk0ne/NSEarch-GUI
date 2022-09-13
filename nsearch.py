@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*- 
-import os
-import re
 import sys
-import libs.console as console
-import libs.dbmodule as dbmodule
+sys.path.append("libs")
+import os
+import console
+import dbmodule
 
 # main action
 if __name__ == '__main__':
