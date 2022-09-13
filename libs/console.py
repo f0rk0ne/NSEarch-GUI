@@ -1,21 +1,25 @@
 ## console.py
+#!/usr/bin/python
+#-*- coding: utf-8 -*- 
+import sys
+sys.path.append("../libs")
 import cmd
-from libs.helper import Helper
 import os
 import readline
-import libs.utils as utils
+from helper import *
 
 class Console(cmd.Cmd):
 
-  utils = utils.Utils()
-  println = utils.print
+  utils = utils.Utils()  
   __helper = Helper
+  _history = ''  
   or_str = ""
+  favorites = []
+  scripts = []
   last_command = ''
-  last_args = ''
-  _history = ''
-  great = ''
-  command_help = None
+  last_args = ''  
+  great = ''  
+  command_help = None  
 
   commands = [ 
               'help', 'showfav', 'addfav',
@@ -32,9 +36,9 @@ class Console(cmd.Cmd):
   HELP_FAV_NAME =  "help.help_fav_name"
   HELP_FAV_RANKING = "help.help_fav_ranking"  
 
-  def __init__(self):
-    self.println(None, True)
+  def __init__(self):    
     cmd.Cmd.__init__(self)    
+    self.utils.print(None, True)
     self.prompt = "nsearch🐉️> "        
     self.doc_header = self.__helper.i18n.t("help.doc_header")
     self.misc_header = self.__helper.i18n.t("help.misc_header")
@@ -42,10 +46,25 @@ class Console(cmd.Cmd):
     self.or_str = self.__helper.i18n.t("help.help_or")
     self.great = self.__helper.i18n.t("help.great")
     self.ruler = '='    
-    self.command_help = {}
+    self.command_help = {}    
     self.loadHelp()
     self.__helper(parent=self)
     self.utils.get_history()
+    self.get_favorites()
+    self.get_scripts()
+
+  # get favorites script name
+  def get_favorites(self):
+    if len(self.favorites) == 0:
+      self.favorites = []
+      tmp = dbmodule.get_favorites()
+      for a in tmp:
+        self.favorites.append(tmp[a]["name"])
+
+  # get scripts name list
+  def get_scripts(self):
+    if len(self.scripts) == 0:
+      self.scripts = dbmodule.get_scripts()
 
   def loadHelp(self):
     self.getHelpText()
@@ -145,7 +164,10 @@ class Console(cmd.Cmd):
   def append_history(self, line):    
     for a in self.commands:
       if line.startswith(a):       
-        self.utils.append_history(line.strip())
+        self.utils.append_history(
+          line.strip(),
+          self.__helper.dbmodule.hist_len
+        )
         break
 
   def postcmd(self, stop, line):
@@ -163,7 +185,7 @@ class Console(cmd.Cmd):
     """ Clear the shell """
     os.system("clear")
     del args
-    self.println(None, True)
+    self.utils.print(None, True)
 
   def help_clear(self):
     self.command_help["clear"] = {
@@ -186,10 +208,7 @@ class Console(cmd.Cmd):
     if not text:
       commands = self.search_commands[:]
     else:
-      commands = [ f
-                      for f in self.search_commands
-                      if f.startswith(text)
-                  ]
+      commands = [f for f in self.search_commands if f.startswith(text)]
     return commands
 
   def help_search(self):    
@@ -229,11 +248,9 @@ class Console(cmd.Cmd):
 
   def complete_doc(self, text, line, begidx, endidx):
     """ Autocomplete over the last result """
-    del line, begidx, endidx
-    result_items = self.__helper(parent=self).resultitems()     
-    if len(result_items) == 0:
-      result_items = self.__helper(parent=self).get_all_items() 
-    return [i for i in result_items if i.startswith(text)]
+    del line, begidx, endidx        
+    self.get_scripts()
+    return [i for i in self.scripts if i.startswith(text)]
 
   def do_last(self,args):
     """ last help"""
@@ -266,6 +283,8 @@ class Console(cmd.Cmd):
       return False
     helper = self.__helper(args,"addfav", parent=self)
     helper.process()
+    self.favorites = []
+    self.get_favorites()
 
   def help_addfav(self):    
     usage = f'addfav name:http-ls ranking:{self.great}\n'    
@@ -279,10 +298,9 @@ class Console(cmd.Cmd):
 
   def complete_addfav(self, text, line, begidx, endidx):
     """ Autocomplete over the last result """
-    del line, begidx, endidx  
-    return [i for i 
-            in self.__helper( parent=self).get_all_items()
-            if i.startswith(text)]
+    del line, begidx, endidx
+    self.get_scripts()
+    return [i for i in self.scripts if i.startswith(text)]
 
   def do_delfav(self,args):
     if not args:
@@ -291,6 +309,8 @@ class Console(cmd.Cmd):
       return False
     search = self.__helper(args,"delfav", parent=self)
     search.process()
+    self.favorites = []
+    self.get_favorites()
 
   def help_delfav(self):
     usage = 'delfav name:http-ls '
@@ -303,11 +323,9 @@ class Console(cmd.Cmd):
 
   def complete_delfav(self, text, line, begidx, endidx):
     """ Autocomplete over the last result """
-    del line, begidx, endidx     
-    return [
-      i for i in self.__helper(parent=self).get_favorites()
-      if i.startswith(text)
-    ]
+    del line, begidx, endidx
+    self.get_favorites()
+    return [i for i in self.favorites if i.startswith(text)]
 
   def do_modfav(self,args):
     if not args:
@@ -316,6 +334,8 @@ class Console(cmd.Cmd):
       return False
     search = self.__helper(args,"modfav", parent=self)
     search.process()
+    self.favorites = []
+    self.get_favorites()
 
   def help_modfav(self):
     usage = f'modfav name:http newname:http-new-script newranking:{self.great}'    
@@ -330,8 +350,8 @@ class Console(cmd.Cmd):
   def complete_modfav(self, text, line, begidx, endidx):
     """ Autocomplete over the last result """
     del line, begidx, endidx
-    resultitems = self.__helper(parent=self).get_favorites()
-    return [i for i in resultitems if i.startswith(text)]
+    self.get_favorites()
+    return [i for i in self.favorites if i.startswith(text)]
 
   def do_showfav(self,args):
     search = self.__helper(args,"showfav", parent=self)
@@ -372,22 +392,22 @@ class Console(cmd.Cmd):
     self.last_args = args
 
   def complete_showcat(self, text, line, begidx, endidx):
-    del line, begidx, endidx
+    del line, begidx, endidx        
     if not text:
-      commands = self.show_cat_options[:]
+      commands = self.showcat_options[:]
     else:
       commands = [
-        f for f in self.show_cat_options
+        f for f in self.showcat_options
         if f.startswith(text)
       ]
-    return commands
+    return commands    
   
   def help_showcat(self):    
     usage = ''.join(
       [
         'showcat\n',
         f'showcat id:1 {self.or_str} showcat 1\n',
-        'showcat name:auth showcat auth'
+        f'showcat name:auth {self.or_str} showcat auth'
       ]
     )
     self.command_help['showcat'] = { 
@@ -406,4 +426,4 @@ class Console(cmd.Cmd):
         cmd.Cmd.do_help(self, "")
     except Exception as e:
       self.utils.print_traceback(e)
-      self.println(e.__class__, ":", e )
+      self.utils.print(e.__class__, ":", e )
