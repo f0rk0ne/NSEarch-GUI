@@ -76,7 +76,7 @@ function installpipDebian(){
 function installpipRedHat(){
   printf "[+] Installing pip ...\n"
   rpm -iUvh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm; yum -y update;
-  yum install python3-pip3 python36-qt5-webkit -y
+  yum install python3-pip3 -y
   installPipRequeriments
 }
 
@@ -102,7 +102,7 @@ if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
     echo "Installing python3 ..."
     apt-get install python3 -y
     installpipDebian
-  fi
+  fi  
   create_config_file
 elif [ -f /etc/redhat-release ]; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
@@ -127,6 +127,7 @@ elif [ -f /etc/redhat-release ]; then
     yum install python3 -y
     installpipRedHat
   fi
+  yum install python36-qt5-webkit -y
   create_config_file
 elif [[ $ismacox ]]; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
