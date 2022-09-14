@@ -158,7 +158,8 @@ class Console(cmd.Cmd):
         it has been interpreted. If you want to modifdy the input line
         before execution (for example, variable substitution) do it here.
     """
-    self.append_history(line)
+    if line != "":
+      self.append_history(line)
     return line
 
   def append_history(self, line):    
@@ -307,8 +308,8 @@ class Console(cmd.Cmd):
       self.help_delfav()
       self.do_help("delfav")
       return False
-    search = self.__helper(args,"delfav", parent=self)
-    search.process()
+    del_fav = self.__helper(args,"delfav", parent=self)
+    del_fav.process()    
     self.favorites = []
     self.get_favorites()
 
