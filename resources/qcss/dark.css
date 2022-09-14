@@ -39,9 +39,6 @@ QTabBar::tab{ font-family:ArchitectsDaughter, Arial, Helvetica, Verdana, Tahoma,
 QTabBar::tab:selected{ color:#5b5b5b;background-color:#ddd;margin-bottom:-1px;border-bottom:1px solid #ddd; }
 QTabBar::tab:hover{ background-color:#4a4a4a;color:#fbfbfb;margin-bottom:-1px; }
 QTabBar::tab:selected:hover{ background-color:#ddd;color:silver; }
-
-/*QTabBar::close-button{ image:url("{file}dark/closetab.png"); }
-QTabBar::close-button:hover{ image:url("{file}dark/closetabhover.png"); }*/
 QTabBar::tear{ image:none; }
 
 QToolButton{ background-color:#333;border-radius:3px;background-color:#454242;border:1px solid #505050; }
