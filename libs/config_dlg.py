@@ -1,7 +1,9 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*- 
 import i18n
-from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt
+from PyQt5.QtCore import pyqtSignal
 from PyQt5 import uic
 from traceback import print_exc
 
@@ -45,9 +47,10 @@ class ConfDlg(base, form):
     for a in range(0, self.theme_select.count()):
       self.theme_select.setItemText(a, self.themes[a] )
 
-  def initControls(self, data):    
+  def initControls(self, data, icon):    
     self.lang, self.search_on_key, self.search_opt,\
     self.theme, self.show_animation = data
+    self.setWindowIcon(QIcon(icon))
     self.active = i18n.t("gui.active")
     self.inactive = i18n.t("gui.inactive")
     self.show_txt = i18n.t("gui.show")
