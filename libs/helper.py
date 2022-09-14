@@ -90,7 +90,13 @@ class Helper:
   def exec_delfav(self):
     params = self.__delfavparams()
     if params != False:
-      self.dbmodule.delete_favorite(**params)
+      if params["name"] in self.__parent.favorites:
+        self.dbmodule.delete_favorite(**params)
+      else:
+        self.utils.print(
+          f"[-] script {self.i18n.t('setup.del_fav_error')}",
+          True
+        )
 
   # exec show categories command
   def exec_showcat(self):
@@ -147,8 +153,9 @@ class Helper:
     words = self.utils.history[index].split(' ')
     self.command = words[0]
     for a in range(1, len(words)):
-      self.args += f"{words[a]} "
-      self.args = self.args[:-1]
+      self.args += f"{words[a]} "      
+    self.args = self.args.replace("\n", "")
+    self.args = self.args[:-1]
     if self.command == 'doc':
       self.display_doc()
     elif self.command == 'help':
@@ -190,7 +197,7 @@ class Helper:
   # show doc from ask
   def show_doc_from_ask(self, args):
     self.command = 'doc'
-    self.args = args    
+    self.args = args
     cmd_str = f"doc {self.get_script_name()}\n"    
     self.utils.append_history(cmd_str, dbmodule.hist_len)
     self.display_doc()
