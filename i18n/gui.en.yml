@@ -1,7 +1,7 @@
 en:
   app_title: "Nmap Scripting Engine Search"
-  app_description: "Nsearch, is a tool that helps you to find scripts that are used by nmap ( nse ) , you can search the scripts using differents keyword as the name, category and author, even using all the keyword in a single query,it is also possible to see the documentation of the scripts founded."
-  app_version: "Version"
+  app_description: "NSEarch GUI, is a tool that helps you to find scripts that are used by nmap ( nse ) , you can search the scripts using differents keywords such as name, category or author, it is also possible to see the documentation of the scripts founded and manage favorite scripts."
+  app_version: "Version 1.0"
   gui_author: "Michael Baez"
   splash_conf_vars: "Loading configuration vars ..."
   splash_upd_conf_file: "Updating config file ..."
