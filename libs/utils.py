@@ -412,6 +412,7 @@ class Utils:
       return text
     return tmp
   
+  # print all categories
   def print_categories(self, categories, cat_title):    
     tree = Tree(
       f"🐉️ [{self.BOLD_COLOR_1}]{cat_title}[/{self.BOLD_COLOR_1}]"
@@ -505,17 +506,18 @@ class Utils:
     return True
 
   # create configuration file
-  def create_config_file(self, search_on_key = 1,
-                         search_opt = 1, theme = 1,
-                         splash_anim = 1):
+  def create_config_file(
+    self, search_on_key = 1, search_opt = 1, theme = 1,
+    splash_anim = 1, lang = None
+  ):
     try:
       scripts_path, file_path, file_backup,\
       dbname, current_checksum = self.get_scripts_path()
+      if lang == None:
+        lang = "es" if "es" in os.environ["LANG"] else "en"
       stream = open('config.yaml', 'w')
       stream.write("config:\n")
-      stream.write(
-        f'  lang: "{"es" if "es" in os.environ["LANG"] else "en"}"\n'
-      )
+      stream.write(f'  lang: "{lang}"\n')
       stream.write(f"  scriptsPath: {scripts_path}\n")
       stream.write(f"  filePath: {file_path}\n")
       stream.write(f"  fileBackup: {file_backup}\n")
