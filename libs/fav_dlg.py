@@ -27,12 +27,13 @@ class FavDlg(base, form):
     self.setWindowModality(Qt.WindowModal)
     self.accept_btn.setText(i18n.t("gui.accept"))    
 
-  def set_images(self, icon_path):
+  def set_images(self, icon_path, icon):
     for a, b in self.ranking:      
       self.ranking_cb.addItem(
         QIcon(f"{icon_path}{b}"),
         a
       )
+      self.setWindowIcon(QIcon(icon))
 
   def set_label_script(self, script, ranking):
     self.script = script
