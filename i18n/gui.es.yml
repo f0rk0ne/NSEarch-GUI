@@ -1,7 +1,7 @@
 es:
   app_title: "Búsqueda en el motor de scripts de Nmap"
-  app_description: "Nsearch, es una herramienta que le ayuda a encontrar scripts usados por nmap ( nse ) , puede buscar scripts usando diferentes palabras claves como por ejemplo nombre, categoría y autor, incluso utilizar todas la palabras claves en una sola consulta, También es posible ver la documentación de los scripts encontrados."
-  app_version: "Versión"
+  app_description: "Nsearch GUI, es una herramienta que le ayuda a encontrar scripts usados por nmap ( nse ) , puede buscar scripts usando diferentes palabras claves como por ejemplo nombre, categoría o autor, También es posible ver la documentación de los scripts encontrados y gestionar los scripts favoritos."
+  app_version: "Versión 1.0"
   gui_author: "Miguel Baez"
   splash_conf_vars: "Cargando variables de configuración..."
   splash_upd_conf_file: "Actualizando archivo de configuración..."
@@ -60,6 +60,7 @@ es:
   script_not_found: "Script nmap no encontrado !"
   scripts_found: "%{count} Script(s) encontrados !"
   search_results: "Resultados de búsqueda"
+  categories: "Categorías"
   dock_favorites: "Favoritos"
   st_search_favorite: "Presione para buscar favoritos"
   st_clear_fav_search: "Limpiar búsqueda de favoritos"
