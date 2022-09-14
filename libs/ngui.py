@@ -64,8 +64,9 @@ class NGui(base, form):
     splash, progressbar, script_validator = None, None, None
     search_text, search_btn, clear_btn = None, None, None
     fsearch_text, fsearch_btn = None, None
-    fclear_btn, style_path = None, f"{resources_path}qcss/"
+    fclear_btn, style_path = None, f"{resources_path}qcss/"    
     conf_vars_updated = False
+    window_icon = None
     author_txt = ""
     welcome = ""
     tooltip = None
@@ -252,22 +253,27 @@ class NGui(base, form):
 
     # set scripts dockwidget translations
     def load_scripts_text(self):
-        self.scriptdock.setWindowTitle(dbmodule.i18n.t("gui.dock_scripts"))
-        self.search_text.setPlaceholderText(
-            dbmodule.i18n.t(
-                "gui.search_placeholder"
-            )
+        self.scriptdock.setWindowTitle(
+            dbmodule.i18n.t("gui.dock_scripts")
         )
-        self.search_text.setStatusTip(dbmodule.i18n.t("gui.st_search"))
-        self.search_btn.setStatusTip(dbmodule.i18n.t("gui.st_search_scripts"))
+        self.search_text.setPlaceholderText(
+            dbmodule.i18n.t( "gui.search_placeholder" )
+        )
+        self.search_text.setStatusTip(
+            dbmodule.i18n.t("gui.st_search")
+        )
+        self.search_btn.setStatusTip(
+            dbmodule.i18n.t("gui.st_search_scripts")
+        )
         self.clear_btn.setStatusTip(
-            dbmodule.i18n.t("gui.st_clear_script_search"))
+            dbmodule.i18n.t("gui.st_clear_script_search")
+        )
         self.s_name.setText(dbmodule.i18n.t("gui.act_name"))
         self.s_name.setStatusTip(dbmodule.i18n.t("gui.st_name"))
         self.s_author.setText(self.author_txt)
         self.s_author.setStatusTip(dbmodule.i18n.t("gui.st_author"))
         self.s_category.setText(dbmodule.i18n.t("gui.act_category"))
-        self.s_category.setStatusTip(dbmodule.i18n.t("gui.st_category"))
+        self.s_category.setStatusTip(dbmodule.i18n.t("gui.st_category"))        
 
 # set favorites dockwidget translations
     def load_favorites_text(self):
@@ -289,7 +295,7 @@ class NGui(base, form):
             "gui.total_scripts",
             total=self.total_scripts
         )
-        print(self.welcome)
+        self.utils.print(self.welcome)
         self.total_fav_text = dbmodule.i18n.t(
             "gui.total_favorites",
             total=len(self.fav_list)
@@ -320,6 +326,12 @@ class NGui(base, form):
     # load window icons
     def load_icons(self):
         icon_path = f"{self.resources_path}{self.css_files[self.theme-1]}/"
+        self.window_icon = f"{self.resources_path}nmap-logo-small.png"
+        self.setWindowIcon(
+            QIcon(
+                self.window_icon
+            )
+        )
         self.m_configuration.setIcon(
             QIcon(f"{icon_path}config.png")
         )
@@ -393,29 +405,8 @@ class NGui(base, form):
     def update_yaml_file(self):
         self.utils.create_config_file(
             self.search_onkey, self.search_opt,
-            self.theme, self.show_anim
-        )
-        '''dbmodule.stream.seek(0)
-        dbmodule.stream.truncate()
-        newconfig = {'config': {
-            'scriptsPath': dbmodule.scripts_path,
-            'filePath': dbmodule.file_path,
-            'fileBackup': dbmodule.file_backup,
-            'scriptdb': dbmodule.dbname,
-            'categories': '[\
-                     "auth", "broadcast", "brute",\
-                     "default", "discovery", "dos",\
-                     "exploit", "external", "fuzzer",\
-                     "intrusive", "malware", "safe",\
-                     "version", "vuln"\
-                     ]',
-            'checksum': dbmodule.current_checksum,
-            'searchOpt': self.search_opt,
-            'searchOnKey': self.search_onkey,
-            'lang': self.lang,
-            'theme': self.theme,
-            'splashAnim': self.show_anim}}
-        dbmodule.yaml.dump(newconfig, dbmodule.stream)'''
+            self.theme, self.show_anim, self.lang
+        )        
 
     # init menubar items
     def init_menu(self, init_gui=False):
@@ -575,8 +566,11 @@ class NGui(base, form):
     def show_config(self):
         from libs.config_dlg import ConfDlg
         config = ConfDlg(self)
-        config.initControls((self.lang, self.search_onkey,
-                            self.search_opt, self.theme, self.show_anim))
+        config.initControls(
+            (self.lang, self.search_onkey,
+            self.search_opt, self.theme, self.show_anim),
+            self.window_icon
+        )
         config.saveResult.connect(self.conf_accept)
         config.exec_()
 
@@ -1184,7 +1178,7 @@ class NGui(base, form):
         if add_menu == click_btn:
             from libs.fav_dlg import FavDlg
             ranking_dlg = FavDlg(self)
-            ranking_dlg.set_images(self.resources_path)            
+            ranking_dlg.set_images(self.resources_path, self.window_icon)            
             ranking_dlg.set_label_script(script.text(), 0)
             ranking_dlg.saveRanking.connect(self.add_favorite)
             ranking_dlg.exec_()
@@ -1338,7 +1332,7 @@ class NGui(base, form):
     def create_fav_dlg(self, script, ranking):
         from libs.fav_dlg import FavDlg
         fav_dlg = FavDlg(self)
-        fav_dlg.set_images(self.resources_path)
+        fav_dlg.set_images(self.resources_path, self.window_icon)
         fav_dlg.set_label_script(script=script, ranking=ranking)
         fav_dlg.saveRanking.connect(self.update_favorite)
         fav_dlg.exec_()
@@ -1519,7 +1513,7 @@ class NGui(base, form):
     def init_author_window(self):
         from libs.about_dlg import AbtDlg
         abt = AbtDlg(self)
-        abt.setLogo(f"{self.resources_path}logo-small.png")
+        abt.setLogo(self.window_icon)
         abt.exec_()
 
     # show qt version
