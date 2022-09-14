@@ -3,6 +3,7 @@
 import sys, i18n
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QIcon
 from PyQt5 import uic
 from traceback import print_exc
 sys.path.append('..')
@@ -20,7 +21,7 @@ class AbtDlg(base, form):
     super(base, self).__init__(parent)
     self.setupUi(self)
     self.setWindowModality(Qt.WindowModal)
-    self.setWindowTitle(i18n.t("gui.st_developer"))
+    self.setWindowTitle(i18n.t("gui.st_developer"))    
     if parent.theme == 1:
       self.link_color = "blue"
     elif parent.theme == 2:
@@ -33,6 +34,7 @@ class AbtDlg(base, form):
     self.logo.setPixmap(
       QPixmap(icon)
     )
+    self.setWindowIcon(QIcon(icon))
 
   def loadLang(self):
     color_tag = "{color}"
