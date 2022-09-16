@@ -34,9 +34,9 @@ sh install.sh
 <h2>Configuración</h2>
     <p>Una vez instaladas las dependencias de la aplicación, se inicia la creación de la base de datos de los scripts de Nmap y el archivo de configuración</p>
     <h3>Archivo de configuración</h3>
+    <p>config.yaml</p>
     
 ```yaml
-config.yaml
 config:    
     lang: "es" ; Idíoma de la aplicación
     scriptsPath: /usr/share/nmap/scripts/ ; Ruta de los scripts de Nmap
@@ -78,13 +78,13 @@ config:
 <h4>Opciones</h4>
 <br>
 
-Opción | Valores
- :--- | :---
-Idioma | - Español<br>- Ingles
-Tema | - Oscuro<br>- Claro<br>- Predeterminado
-Buscar al teclear | - Activo<br>- Desactivo
-Activar animación | - Activo<br>- Desactivo
-Opciones de búsqueda | - Nombre<br>- Author<br>- categoría
+Opción | Tipo | Valores
+ :-------- | :---- | :--------
+Idioma | string | - "es" (Español)<br>- "en" (Ingles)
+Tema | int | - 1 (Predeterminado)<br>- 2 (Oscuro)<br>- 3 (Claro)
+Buscar al teclear | bool | - 1 (Activo)<br>- 0 (Desactivo)
+Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
+Opciones de búsqueda | int |- 1 (Nombre)<br>- 2 (Author)<br>- 3 (categoría)
 
 </details>
 <br>
