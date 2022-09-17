@@ -4,34 +4,53 @@
     <img title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/189185315-69480289-690b-438d-ad8c-671aed562d03.gif"/>
 </p>
 <br>
-<p>
-    Es un fork de la aplicación NSEarch de <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquirá</a> de la comunidad
-    <a href="https://www.dragonjar.org">DragonJAR</a>, el cuál integra una interfaz gráfica y agrega nuevos comandos.
+<p>Es un fork de la aplicación NSEarch de <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquirá</a> de la comunidad <a href="https://www.dragonjar.org">DragonJAR</a>, el cuál integra una interfaz gráfica y agrega nuevos comandos.
 </p>
 <p align="center">
     <img title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/189005578-f5e44412-dfa5-42e7-a0d0-dfeb49a6c318.png"/>
 </p>
 <br/>
 <h2>Requerimientos</h2>
+<br/>
 
-- [x] Python 3.9.2
+- [x] Python 3 ( Probado en 3.6, 3.9.2 y 3.10 )
 - [x] python3-pyqt5
-- [x] python3-pyqt5.qtwebkit
+- [x] python3-pyqt5.qtwebkit ( Debian )
+- [x] python36-pyqt5.qtwebkit ( Centos )
 - [x] python-i18n
 - [x] python3-yaml
 - [x] python3-rich
 
 <br/>
 <h2>Instalación</h2>
-    <p>
-        Ejecutar install.sh para verificar e instalar los requerimientos de la aplicación.
-    </p>
+<br/>
+<p>Descargar y ejecutar install.sh con permisos root para verificar e instalar los requerimientos de la aplicación.</p>   
 
 ```bash
-sh install.sh
+sudo git clone https://github.com/f0rk0ne/NSEarch-GUI.git 
 ```
 
+```bash
+sudo bash install.sh
+```
+
+<br>
+<p>Ejecutar la primera vez con permisos root para crear la BD con los scripts de Nmap.</p>
+
+```bash
+sudo python3 nsearch.py
+```
+
+<br>
+<p>Cambiar permisos de los archivos.</p>
+
+```bash
+sudo chown 1000:1000 -R * && sudo chmod 755 -R *
+```
+
+<br>
 <h2>Configuración</h2>
+<br/>
     <p>Una vez instaladas las dependencias de la aplicación, se inicia la creación de la base de datos de los scripts de Nmap y el archivo de configuración</p>
     <h3>Archivo de configuración</h3>
     <p>config.yaml</p>
@@ -52,8 +71,7 @@ config:
     histLen: 100 ; el máximo de registros en el archivo history
     splashAnim: 0 ; Activa/Desactiva la animación en la SplashScreen
 ```
-    
-
+<br>
 <h2>Novedades</h2>
 <h3>Consola</h3>
 
@@ -61,7 +79,7 @@ config:
 - Se agrego el comando showcat que muestra las Categorías y permite listar los scripts en una categoría y al finalizar ver la ayuda de estos.
 - Se agrego el comando history el cual permite visualizar el histórico de comandos ejecutados, muy similar al comando history de Linux.
 
-
+<br>
 <h2>GUI</h2>
 <br>
 <p>La GUI fue escrita en Python Qt5, y contiene dos QDockWidgets para gestionar los scripts y los favoritos.</p>
@@ -98,7 +116,7 @@ Opciones de búsqueda | int |- 1 (Nombre)<br>- 2 (Author)<br>- 3 (categoría)
 <p align="center">
     <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/189174323-2b75702e-e936-466c-a7af-aacbde47faae.png"/>
 </p>
-<p></p>
+<br>
 </details>
 <br>
 <details><summary><h3>Panel Favoritos</h3></summary>
