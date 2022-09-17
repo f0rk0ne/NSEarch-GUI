@@ -78,11 +78,7 @@ function installpipRedHat(){
   if [[ ! $(cat /etc/os-release|grep NAME=|grep fedora) ]]; then
     rpm -iUvh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm; yum -y update;
   fi
-  if [[ $(yum search python3-pip) ]]; then
-    yum install python3-pip -y
-  elif [[ $(yum search python3-pip3) ]]; then
-    yum install python3-pip3 -y
-  fi
+  yum install python3-pip -y  
   installPipRequeriments
 }
 
