@@ -130,15 +130,17 @@ elif [ -f /etc/redhat-release ]; then
     installpipRedHat
   fi
   if [[ $(yum search python36-qt5-webkit) ]]; then
+    echo "Installing python dependencies for Graphical Interface..."
     yum install python36-qt5-webkit -y
   elif [[ $(yum search python3-qt5-webkit) ]]; then
+    echo "Installing python dependencies for Graphical Interface..."
     yum install python3-qt5 python3-qt5-webkit -y
   fi
 
   create_config_file
 elif [[ $ismacox ]]; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  brew install -v sqlite3
+  brew install -v sqlite3 pyqt@5
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
