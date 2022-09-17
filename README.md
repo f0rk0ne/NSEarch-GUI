@@ -16,10 +16,10 @@
 <br>
 <p align="center">
   <a title="NSEarch en Español" href="README.es.md">
-    <img title="NSEarch español" src="https://user-images.githubusercontent.com/77067446/190870332-c91ef8f5-6ffd-4279-828b-8579a4ca8985.png"/>
+    <img title="NSEarch en Español" src="https://user-images.githubusercontent.com/77067446/190870332-c91ef8f5-6ffd-4279-828b-8579a4ca8985.png"/>
   </a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  <a href="README.md" title="NSEarch in English">
-   <img title="NSEarch english" src="https://user-images.githubusercontent.com/77067446/190870331-0f458a6a-519b-4513-9b85-9e2e3eab1f5f.png"/>
+   <img title="NSEarch in English" src="https://user-images.githubusercontent.com/77067446/190870331-0f458a6a-519b-4513-9b85-9e2e3eab1f5f.png"/>
   </a>
 </p>
