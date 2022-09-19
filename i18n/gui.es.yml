@@ -1,5 +1,5 @@
 es:
-  app_title: "Búsqueda en el motor de scripts de Nmap"
+  app_title: "Motor de búsqueda de scripts Nmap"
   app_description: "Nsearch GUI, es una herramienta que le ayuda a encontrar scripts usados por nmap ( nse ) , puede buscar scripts usando diferentes palabras claves como por ejemplo nombre, categoría o autor, También es posible ver la documentación de los scripts encontrados y gestionar los scripts favoritos."
   app_version: "Versión 1.0"
   gui_author: "Miguel Baez"
