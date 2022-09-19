@@ -57,20 +57,38 @@ sudo chown 1000:1000 -R * && sudo chmod 755 -R *
     
 ```yaml
 config:    
-    lang: "es" ; Idíoma de la aplicación
-    scriptsPath: /usr/share/nmap/scripts/ ; Ruta de los scripts de Nmap
-    filePath: /usr/share/nmap/scripts/script.db ; ruta del archivo de la BD de Nmap
-    fileBackup: scriptbk.db ; Backup de la BD de Nmap
-    scriptdb: nmap_scripts.sqlite3 ; Archivo de BD de la aplicación
-    ; Categorías de los scripts de Nmap
+    lang: "es"
+    scriptsPath: /usr/share/nmap/scripts/
+    filePath: /usr/share/nmap/scripts/script.db
+    fileBackup: scriptbk.db
+    scriptdb: nmap_scripts.sqlite3
     categories: ["auth","broadcast","brute","default","discovery","dos","exploit","external","fuzzer","intrusive","malware","safe","version","vuln"]
-    checksum: 7c773a63720928125492e2034b7dcc445afb24c1555626ab710bd15db7bf82a3 ; Hash del archivo de la BD
-    searchOnKey: 1 ; GUI activa la búsqueda al teclear en scripts y favoritos
-    searchOpt: 3 ; GUI activa por defecto buscar por nombre o autor o categoría  
-    theme: 1 ; GUI tema
-    histLen: 100 ; el máximo de registros en el archivo history
-    splashAnim: 0 ; Activa/Desactiva la animación en la SplashScreen
+    checksum: 7c773a63720928125492e2034b7dcc445afb24c1555626ab710bd15db7bf82a3
+    searchOnKey: 1
+    searchOpt: 3
+    theme: 1
+    histLen: 100
+    splashAnim: 0
 ```
+<br>
+<h4>Opciones</h4>
+<br>
+
+Variable | Descripición | Tipo | Valores
+ :----- | :---------- | :---- | :-------------
+lang | Idioma | string | - "es" (Español)<br>- "en" (Ingles)
+scriptsPath | Ruta scripts Nmap | string | Se agrega automáticamente
+filePath | BD scripts Nmap | string | Se agrega automáticamente
+fileBackup | Copia de seguridad Archivo BD | string | Se agrega automáticamente
+scriptdb | BD NSEarch | string | Se agrega automáticamente
+categories | Categorías de los scripts Nmap | list | ["auth","broadcast","brute","default","discovery",<br>"dos","exploit","external","fuzzer","intrusive",<br>"malware","safe","version","vuln"]
+checksum | Sumatoria binaria BD NSEarch | string | Se agrega automáticamente
+seachOnKey | Buscar al teclear | bool | - 1 (Activo)<br>- 0 (Desactivo)
+searchOpt | Opciones de búsqueda | int |- 1 (Nombre)<br>- 2 (Author)<br>- 3 (categoría)
+theme | Tema | int | - 1 (Predeterminado)<br>- 2 (Oscuro)<br>- 3 (Claro)
+histLen | Tamaño en líneas del archivo hisorico | int | 100
+splashAnim | Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
+
 <br>
 <h2>Novedades</h2>
 <h3>Consola</h3>
@@ -93,17 +111,7 @@ config:
 <p align="center">    
         <img src="https://user-images.githubusercontent.com/77067446/189161657-46ade1aa-723b-40e3-9c4c-70c14c362055.png"/>
 </p>
-<h4>Opciones</h4>
 <br>
-
-Opción | Tipo | Valores
- :-------- | :---- | :--------
-Idioma | string | - "es" (Español)<br>- "en" (Ingles)
-Tema | int | - 1 (Predeterminado)<br>- 2 (Oscuro)<br>- 3 (Claro)
-Buscar al teclear | bool | - 1 (Activo)<br>- 0 (Desactivo)
-Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
-Opciones de búsqueda | int |- 1 (Nombre)<br>- 2 (Author)<br>- 3 (categoría)
-
 </details>
 <br>
 <details><summary><h3>Panel Scripts</h3></summary>
