@@ -108,8 +108,9 @@ splashAnim | Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
 <br>
 <p>Permite establecer las opciones de la interfaz.</p>
 <br>
-<p align="center">    
-        <img src="https://user-images.githubusercontent.com/77067446/189161657-46ade1aa-723b-40e3-9c4c-70c14c362055.png"/>
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/77067446/191139252-62ca128e-ab78-4497-b3d0-868eacf197f8.png#gh-light-mode-only"/>
+    <img src="https://user-images.githubusercontent.com/77067446/191139255-0868c0ac-f8a2-4839-bfe3-84e82aaada8b.png#gh-dark-mode-only"/>
 </p>
 <br>
 </details>
