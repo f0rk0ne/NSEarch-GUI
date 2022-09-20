@@ -71,23 +71,15 @@ config:
     splashAnim: 0
 ```
 <br>
-<h4>Opciones</h4>
-<br>
 
 Variable | Descripición | Tipo | Valores
  :----- | :---------- | :---- | :-------------
-lang | Idioma | string | - "es" (Español)<br>- "en" (Ingles)
-scriptsPath | Ruta scripts Nmap | string | Se agrega automáticamente
-filePath | BD scripts Nmap | string | Se agrega automáticamente
-fileBackup | Copia de seguridad Archivo BD | string | Se agrega automáticamente
-scriptdb | BD NSEarch | string | Se agrega automáticamente
-categories | Categorías de los scripts Nmap | list | ["auth","broadcast","brute","default","discovery",<br>"dos","exploit","external","fuzzer","intrusive",<br>"malware","safe","version","vuln"]
-checksum | Sumatoria binaria BD NSEarch | string | Se agrega automáticamente
-seachOnKey | Buscar al teclear | bool | - 1 (Activo)<br>- 0 (Desactivo)
-searchOpt | Opciones de búsqueda | int |- 1 (Nombre)<br>- 2 (Author)<br>- 3 (categoría)
-theme | Tema | int | - 1 (Predeterminado)<br>- 2 (Oscuro)<br>- 3 (Claro)
+lang | Idioma | string | "es" (Español) <br> "en" (Ingles)
+seachOnKey | Buscar al teclear | bool | 1 (Activo)<br> 0 (Desactivo)
+searchOpt | Opciones de búsqueda | int | 1 (Nombre)<br> 2 (Author)<br> 3 (categoría)
+theme | Tema | int | 1 (Predeterminado)<br> 2 (Oscuro)<br> 3 (Claro)
 histLen | Tamaño en líneas del archivo hisorico | int | 100
-splashAnim | Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
+splashAnim | Activar animación | bool | 1 (Activo)<br> 0 (Desactivo)
 
 <br>
 <h2>Novedades</h2>
