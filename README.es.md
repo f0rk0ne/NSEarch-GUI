@@ -169,13 +169,9 @@ config:
 <details>
     <summary><h3>Panel Favoritos</h3></summary>
     <br>
-    <p>Permite gestionar los scripts favoritos.</p>
+    <p>Permite actualizar y eliminar los scripts favoritos.</p>
     <p align="center">    
-       <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/189177066-dc39edbe-cd3f-42e0-9d59-e9c4869fd501.png"/>   
-    </p>
-    <h4>Actualizar favoritos</h4>
-    <p>Permite actualizar el ranking de un script favorito.</p>
-    <p align="center">
-        <img title="NSEarch actualizar favorito" src="https://user-images.githubusercontent.com/77067446/189179248-5805f7c4-23e9-45e8-8b51-6c8062feaa9f.png"/>    
-    </p>
+       <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/191157139-401aa8fb-cf99-43e9-aab9-8e748f1a48e3.png#gh-light-mode-only"/>
+        <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/191157141-52df45d0-be96-4d36-a82d-cb57798e6301.png#gh-dark-mode-only"/>
+    </p>    
 </details>
