@@ -110,8 +110,8 @@ splashAnim | Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
     <p>Permite establecer las opciones de la interfaz.</p>
     <br>
     <p align="center">
-        <img title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139252-62ca128e-ab78-4497-b3d0-868eacf197f8.png#gh-light-mode-only"/>
-        <img title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139255-0868c0ac-f8a2-4839-bfe3-84e82aaada8b.png#gh-dark-mode-only"/>
+        <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139252-62ca128e-ab78-4497-b3d0-868eacf197f8.png#gh-light-mode-only"/>
+        <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139255-0868c0ac-f8a2-4839-bfe3-84e82aaada8b.png#gh-dark-mode-only"/>
     </p>    
 </details>
 
@@ -121,15 +121,15 @@ splashAnim | Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
     <p>Permite gestionar los scripts NSE.</p>
     <br>
     <p align="center">
-        <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142595-77ad4afe-960d-4ea9-b5de-c6927bc500f7.png#gh-light-mode-only"/>
-        <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142598-73e286d9-d56f-4842-9a68-f9c817f85a09.png#gh-dark-mode-only"/>
+        <img width="500" title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142595-77ad4afe-960d-4ea9-b5de-c6927bc500f7.png#gh-light-mode-only"/>
+        <img width="500" title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142598-73e286d9-d56f-4842-9a68-f9c817f85a09.png#gh-dark-mode-only"/>
     </p>
     <h4>Agregar script a favoritos</h4>
     <br>
     <p>Permite agregar un script a favoritos con un ranking.</p>
     <p align="center">         
-        <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191146139-a331c7a9-d4ac-40bd-95a4-dd3304d041e6.png#gh-light-mode-only"/>
-        <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145255-ce32737a-9a71-49b1-86de-d076ccf9c3b4.png#gh-dark-mode-only"/>
+        <img width="700" title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191146139-a331c7a9-d4ac-40bd-95a4-dd3304d041e6.png#gh-light-mode-only"/>
+        <img width="700" title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145255-ce32737a-9a71-49b1-86de-d076ccf9c3b4.png#gh-dark-mode-only"/>
     </p>
 </details>
 
