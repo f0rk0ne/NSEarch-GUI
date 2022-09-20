@@ -127,8 +127,8 @@ splashAnim | Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
     <h4>Agregar script a favoritos</h4>
     <br>
     <p>Permite agregar un script a favoritos con un ranking.</p>
-    <p align="center">        
-        <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145998-9ad9d69a-f691-4145-972a-0eff4a23a9b0.png#gh-light-mode-only"/>
+    <p align="center">         
+        <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191146139-a331c7a9-d4ac-40bd-95a4-dd3304d041e6.png#gh-light-mode-only"/>
         <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145255-ce32737a-9a71-49b1-86de-d076ccf9c3b4.png#gh-dark-mode-only"/>
     </p>
 </details>
