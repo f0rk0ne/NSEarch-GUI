@@ -70,17 +70,58 @@ config:
     histLen: 100
     splashAnim: 0
 ```
+
 <br>
-
-Variable | Descripición | Tipo | Valores
- :----- | :---------- | :---- | :-------------
-lang | Idioma | string | "es" (Español) <br> "en" (Ingles)
-seachOnKey | Buscar al teclear | bool | 1 (Activo)<br> 0 (Desactivo)
-searchOpt | Opciones de búsqueda | int | 1 (Nombre)<br> 2 (Author)<br> 3 (categoría)
-theme | Tema | int | 1 (Predeterminado)<br> 2 (Oscuro)<br> 3 (Claro)
-histLen | Tamaño en líneas del archivo hisorico | int | 100
-splashAnim | Activar animación | bool | 1 (Activo)<br> 0 (Desactivo)
-
+<table width="100%">
+    <tr>        
+        <th>Variable</th>
+        <th>Descripición</th>
+        <th>Tipo</th>
+        <th>Valores</th>        
+    </tr>
+    <tr>
+        <td>lang</td>
+        <td>Idioma</td>
+        <td>string</td>
+        <td>"es" (Español) <br> "en" (Ingles)</td>
+    </tr>
+    <tr>
+        <td>lang</td>
+        <td>Idioma</td>
+        <td>string</td>
+        <td>"es" (Español) <br> "en" (Ingles)</td>
+    </tr>
+    <tr>
+        <td>seachOnKey</td>
+        <td>Buscar al teclear</td>
+        <td>bool</td>
+        <td>1 (Activo)<br> 0 (Desactivo)</td>
+    </tr>
+    <tr>
+        <td>searchOpt</td>
+        <td>Opciones de búsqueda</td>
+        <td>int</td>
+        <td>1 (Nombre)<br> 2 (Author)<br> 3 (categoría)</td>
+    </tr>
+    <tr>
+        <td>theme</td>
+        <td>Tema</td>
+        <td>int</td>
+        <td>1 (Predeterminado)<br> 2 (Oscuro)<br> 3 (Claro)</td>
+    </tr>
+    <tr>
+        <td>histLen</td>
+        <td>Tamaño en líneas del archivo hisorico</td>
+        <td>int</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>splashAnim</td>
+        <td>Activar animación</td>
+        <td>bool</td>
+        <td>1 (Activo)<br> 0 (Desactivo)</td>
+    </tr>    
+</table>
 <br>
 <h2>Novedades</h2>
 <h3>Consola</h3>
