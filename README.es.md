@@ -1,5 +1,5 @@
 <p align="center">
-    <img title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/191133255-f501f351-5f7d-4da5-bf48-7f393456c6ad.gif#gh-light-mode-only"/>     <img title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/191135554-410efda7-5348-4d55-a53c-e28cd0d13d7f.gif#gh-dark-mode-only"/>
+<img title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/191133255-f501f351-5f7d-4da5-bf48-7f393456c6ad.gif#gh-light-mode-only"/>    <img title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/191135554-410efda7-5348-4d55-a53c-e28cd0d13d7f.gif#gh-dark-mode-only"/>
 </p>
 <h1 align="center">Motor de búsqueda de scripts Nmap</h1>
 <br/>
@@ -7,7 +7,7 @@
 <p>Es un fork de la aplicación NSEarch de <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquirá</a> de la comunidad <a href="https://www.dragonjar.org">DragonJAR</a>, el cuál integra una interfaz gráfica y agrega nuevos comandos.
 </p>
 <p align="center">
-    <img title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/191131576-cecee5ca-747a-4bc8-a101-947146268bb7.png"/>
+<img title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/191131576-cecee5ca-747a-4bc8-a101-947146268bb7.png"/>
 </p>
 <br/>
 <h2>Requerimientos</h2>
@@ -51,9 +51,9 @@ sudo chown 1000:1000 -R * && sudo chmod 755 -R *
 <br>
 <h2>Configuración</h2>
 <br/>
-    <p>Una vez instaladas las dependencias de la aplicación, se inicia la creación de la base de datos de los scripts de Nmap y el archivo de configuración</p>
-    <h3>Archivo de configuración</h3>
-    <p>config.yaml</p>
+<p>Una vez instaladas las dependencias de la aplicación, se inicia la creación de la base de datos de los scripts de Nmap y el archivo de configuración</p>
+<h3>Archivo de configuración</h3>
+<p>config.yaml</p>
     
 ```yaml
 config:    
@@ -73,54 +73,54 @@ config:
 
 <br>
 <table width="100%">
-    <tr>        
-        <th>Variable</th>
-        <th>Descripición</th>
-        <th>Tipo</th>
-        <th>Valores</th>        
-    </tr>
-    <tr>
-        <td>lang</td>
-        <td>Idioma</td>
-        <td>string</td>
-        <td>"es" (Español) <br> "en" (Ingles)</td>
-    </tr>
-    <tr>
-        <td>lang</td>
-        <td>Idioma</td>
-        <td>string</td>
-        <td>"es" (Español) <br> "en" (Ingles)</td>
-    </tr>
-    <tr>
-        <td>seachOnKey</td>
-        <td>Buscar al teclear</td>
-        <td>bool</td>
-        <td>1 (Activo)<br> 0 (Desactivo)</td>
-    </tr>
-    <tr>
-        <td>searchOpt</td>
-        <td>Opciones de búsqueda</td>
-        <td>int</td>
-        <td>1 (Nombre)<br> 2 (Author)<br> 3 (categoría)</td>
-    </tr>
-    <tr>
-        <td>theme</td>
-        <td>Tema</td>
-        <td>int</td>
-        <td>1 (Predeterminado)<br> 2 (Oscuro)<br> 3 (Claro)</td>
-    </tr>
-    <tr>
-        <td>histLen</td>
-        <td>Tamaño en líneas del archivo hisorico</td>
-        <td>int</td>
-        <td>100</td>
-    </tr>
-    <tr>
-        <td>splashAnim</td>
-        <td>Activar animación</td>
-        <td>bool</td>
-        <td>1 (Activo)<br> 0 (Desactivo)</td>
-    </tr>    
+<tr>        
+    <th>Variable</th>
+    <th>Descripición</th>
+    <th>Tipo</th>
+    <th>Valores</th>        
+</tr>
+<tr>
+    <td>lang</td>
+    <td>Idioma</td>
+    <td>string</td>
+    <td>"es" (Español) <br> "en" (Ingles)</td>
+</tr>
+<tr>
+    <td>lang</td>
+    <td>Idioma</td>
+    <td>string</td>
+    <td>"es" (Español) <br> "en" (Ingles)</td>
+</tr>
+<tr>
+    <td>seachOnKey</td>
+    <td>Buscar al teclear</td>
+    <td>bool</td>
+    <td>1 (Activo)<br> 0 (Desactivo)</td>
+</tr>
+<tr>
+    <td>searchOpt</td>
+    <td>Opciones de búsqueda</td>
+    <td>int</td>
+    <td>1 (Nombre)<br> 2 (Author)<br> 3 (categoría)</td>
+</tr>
+<tr>
+    <td>theme</td>
+    <td>Tema</td>
+    <td>int</td>
+    <td>1 (Predeterminado)<br> 2 (Oscuro)<br> 3 (Claro)</td>
+</tr>
+<tr>
+    <td>histLen</td>
+    <td>Tamaño en líneas del archivo hisorico</td>
+    <td>int</td>
+    <td>100</td>
+</tr>
+<tr>
+    <td>splashAnim</td>
+    <td>Activar animación</td>
+    <td>bool</td>
+    <td>1 (Activo)<br> 0 (Desactivo)</td>
+</tr>    
 </table>
 <br>
 <h2>Novedades</h2>
@@ -136,42 +136,33 @@ config:
 <p>La GUI fue escrita en Python Qt5, y contiene dos QDockWidgets para gestionar los scripts y los favoritos.</p>
 <p>Los contenidos de ayuda de los scripts se visualizan en formato HTML en pestañas.</p>
 <p>La selección del idioma aplica para la versión consola también.</p>
-
-<details>
-    <summary><h3>Configuración GUI</h3></summary>
-    <br>
-    <p>Permite establecer las opciones de la interfaz.</p>
-    <br>
-    <p align="center">
-        <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139252-62ca128e-ab78-4497-b3d0-868eacf197f8.png#gh-light-mode-only"/>
-        <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139255-0868c0ac-f8a2-4839-bfe3-84e82aaada8b.png#gh-dark-mode-only"/>
-    </p>    
-</details>
-
-<details>
-    <summary><h3>Panel Scripts</h3></summary>
-    <br>
-    <p>Permite gestionar los scripts NSE.</p>
-    <br>
-    <p align="center">
-        <img width="500" title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142595-77ad4afe-960d-4ea9-b5de-c6927bc500f7.png#gh-light-mode-only"/>
-        <img width="500" title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142598-73e286d9-d56f-4842-9a68-f9c817f85a09.png#gh-dark-mode-only"/>
-    </p>
-    <h4>Agregar script a favoritos</h4>
-    <br>
-    <p>Permite agregar un script a favoritos con un ranking.</p>
-    <p align="center">         
-        <img width="700" title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191146139-a331c7a9-d4ac-40bd-95a4-dd3304d041e6.png#gh-light-mode-only"/>
-        <img width="700" title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145255-ce32737a-9a71-49b1-86de-d076ccf9c3b4.png#gh-dark-mode-only"/>
-    </p>
-</details>
-
-<details>
-    <summary><h3>Panel Favoritos</h3></summary>
-    <br>
-    <p>Permite actualizar y eliminar los scripts favoritos.</p>
-    <p align="center">    
-       <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/191157139-401aa8fb-cf99-43e9-aab9-8e748f1a48e3.png#gh-light-mode-only"/>
-        <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/191157141-52df45d0-be96-4d36-a82d-cb57798e6301.png#gh-dark-mode-only"/>
-    </p>    
-</details>
+<h3>Configuración GUI</h3>
+<br>
+<p>Permite establecer las opciones de la interfaz.</p>
+<br>
+<p align="center">
+    <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139252-62ca128e-ab78-4497-b3d0-868eacf197f8.png#gh-light-mode-only"/>
+    <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139255-0868c0ac-f8a2-4839-bfe3-84e82aaada8b.png#gh-dark-mode-only"/>
+</p>    
+<h3>Panel Scripts</h3>
+<br>
+<p>Permite gestionar los scripts NSE.</p>
+<br>
+<p align="center">
+    <img width="500" title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142595-77ad4afe-960d-4ea9-b5de-c6927bc500f7.png#gh-light-mode-only"/>
+    <img width="500" title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142598-73e286d9-d56f-4842-9a68-f9c817f85a09.png#gh-dark-mode-only"/>
+</p>
+<h4>Agregar script a favoritos</h4>
+<br>
+<p>Permite agregar un script a favoritos con un ranking.</p>
+<p align="center">         
+    <img width="700" title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191146139-a331c7a9-d4ac-40bd-95a4-dd3304d041e6.png#gh-light-mode-only"/>
+    <img width="700" title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145255-ce32737a-9a71-49b1-86de-d076ccf9c3b4.png#gh-dark-mode-only"/>
+</p>
+<h3>Panel Favoritos</h3>
+<br>
+<p>Permite actualizar y eliminar los scripts favoritos.</p>
+<p align="center">    
+    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/191157139-401aa8fb-cf99-43e9-aab9-8e748f1a48e3.png#gh-light-mode-only"/>
+    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/191157141-52df45d0-be96-4d36-a82d-cb57798e6301.png#gh-dark-mode-only"/>
+</p>
