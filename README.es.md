@@ -109,16 +109,17 @@ splashAnim | Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
 <p>Permite establecer las opciones de la interfaz.</p>
 <br>
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/77067446/191139252-62ca128e-ab78-4497-b3d0-868eacf197f8.png#gh-light-mode-only"/>
-    <img src="https://user-images.githubusercontent.com/77067446/191139255-0868c0ac-f8a2-4839-bfe3-84e82aaada8b.png#gh-dark-mode-only"/>
+    <img title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139252-62ca128e-ab78-4497-b3d0-868eacf197f8.png#gh-light-mode-only"/>
+    <img title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139255-0868c0ac-f8a2-4839-bfe3-84e82aaada8b.png#gh-dark-mode-only"/>
 </p>
 <br>
 </details>
-<br>
 <details><summary><h3>Panel Scripts</h3></summary>
+<br>
 <p>Permite gestionar los scripts NSE.</p>
-<p align="center">   
-    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/189177845-864da081-50bc-42de-99e3-389cab3f9c68.png"/>
+<p align="center">
+    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142595-77ad4afe-960d-4ea9-b5de-c6927bc500f7.png#gh-light-mode-only"/>
+    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142598-73e286d9-d56f-4842-9a68-f9c817f85a09.png#gh-dark-mode-only"/>
 </p>
 <h4>Agregar script a favoritos</h4>
 <p>Permite agregar un script a favoritos con un ranking.</p>
