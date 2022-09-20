@@ -25,7 +25,7 @@
 <br/>
 <h2>Instalación</h2>
 <br/>
-<p>Descargar y ejecutar install.sh con permisos root para verificar e instalar los requerimientos de la aplicación.</p>   
+<p>Descargar y ejecutar install.sh con permisos root para verificar e instalar los requerimientos de la aplicación y el archivo de configuración.</p>   
 
 ```bash
 sudo git clone https://github.com/f0rk0ne/NSEarch-GUI.git 
@@ -52,7 +52,6 @@ sudo chown 1000:1000 -R * && sudo chmod 755 -R *
 <br>
 <h2>Configuración</h2>
 <br/>
-<p>Una vez instaladas las dependencias de la aplicación, se inicia la creación de la base de datos de los scripts de Nmap y el archivo de configuración</p>
 <h3>Archivo de configuración</h3>
 <p>config.yaml</p>
     
@@ -79,12 +78,6 @@ config:
     <th>Descripción</th>
     <th>Tipo</th>
     <th>Valores</th>        
-</tr>
-<tr>
-    <td>lang</td>
-    <td>Idioma</td>
-    <td>string</td>
-    <td>"es" (Español) <br> "en" (Ingles)</td>
 </tr>
 <tr>
     <td>lang</td>
@@ -137,6 +130,7 @@ config:
 <p>La GUI fue escrita en Python Qt5, y contiene dos QDockWidgets para gestionar los scripts y los favoritos.</p>
 <p>Los contenidos de ayuda de los scripts se visualizan en formato HTML en pestañas.</p>
 <p>La selección del idioma aplica para la versión consola también.</p>
+<br>
 <h3>Configuración GUI</h3>
 <br>
 <p>Permite establecer las opciones de la interfaz.</p>
