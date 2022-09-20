@@ -117,6 +117,7 @@ splashAnim | Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
 <details><summary><h3>Panel Scripts</h3></summary>
 <br>
 <p>Permite gestionar los scripts NSE.</p>
+<br>
 <p align="center">
     <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142595-77ad4afe-960d-4ea9-b5de-c6927bc500f7.png#gh-light-mode-only"/>
     <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142598-73e286d9-d56f-4842-9a68-f9c817f85a09.png#gh-dark-mode-only"/>
@@ -124,11 +125,11 @@ splashAnim | Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
 <h4>Agregar script a favoritos</h4>
 <p>Permite agregar un script a favoritos con un ranking.</p>
 <p align="center">
-    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/189174323-2b75702e-e936-466c-a7af-aacbde47faae.png"/>
+    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145253-61fd8907-1dc2-4a44-8d27-cc05dbc74f56.png#gh-light-mode-only"/>
+    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145255-ce32737a-9a71-49b1-86de-d076ccf9c3b4.png#gh-dark-mode-only"/>
 </p>
 <br>
 </details>
-<br>
 <details><summary><h3>Panel Favoritos</h3></summary>
 <p>Permite gestionar los scripts favoritos.</p>
 <p align="center">    
