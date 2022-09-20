@@ -104,39 +104,45 @@ splashAnim | Activar animación | bool | - 1 (Activo)<br>- 0 (Desactivo)
 <p>Los contenidos de ayuda de los scripts se visualizan en formato HTML en pestañas.</p>
 <p>La selección del idioma aplica para la versión consola también.</p>
 
-<details><summary><h3>Configuración GUI</h3></summary>
-<br>
-<p>Permite establecer las opciones de la interfaz.</p>
-<br>
-<p align="center">
-    <img title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139252-62ca128e-ab78-4497-b3d0-868eacf197f8.png#gh-light-mode-only"/>
-    <img title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139255-0868c0ac-f8a2-4839-bfe3-84e82aaada8b.png#gh-dark-mode-only"/>
-</p>
-<br>
+<details>
+    <summary><h3>Configuración GUI</h3></summary>
+    <br>
+    <p>Permite establecer las opciones de la interfaz.</p>
+    <br>
+    <p align="center">
+        <img title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139252-62ca128e-ab78-4497-b3d0-868eacf197f8.png#gh-light-mode-only"/>
+        <img title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139255-0868c0ac-f8a2-4839-bfe3-84e82aaada8b.png#gh-dark-mode-only"/>
+    </p>    
 </details>
-<details><summary><h3>Panel Scripts</h3></summary>
-<br>
-<p>Permite gestionar los scripts NSE.</p>
-<br>
-<p align="center">
-    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142595-77ad4afe-960d-4ea9-b5de-c6927bc500f7.png#gh-light-mode-only"/>
-    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142598-73e286d9-d56f-4842-9a68-f9c817f85a09.png#gh-dark-mode-only"/>
-</p>
-<h4>Agregar script a favoritos</h4>
-<p>Permite agregar un script a favoritos con un ranking.</p>
-<p align="center">
-    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145522-ac24bb20-7e29-496a-a865-c48c51c7c9ee.png#gh-light-mode-only"/>
-    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145255-ce32737a-9a71-49b1-86de-d076ccf9c3b4.png#gh-dark-mode-only"/>
-</p>
-<br>
+
+<details>
+    <summary><h3>Panel Scripts</h3></summary>
+    <br>
+    <p>Permite gestionar los scripts NSE.</p>
+    <br>
+    <p align="center">
+        <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142595-77ad4afe-960d-4ea9-b5de-c6927bc500f7.png#gh-light-mode-only"/>
+        <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142598-73e286d9-d56f-4842-9a68-f9c817f85a09.png#gh-dark-mode-only"/>
+    </p>
+    <h4>Agregar script a favoritos</h4>
+    <br>
+    <p>Permite agregar un script a favoritos con un ranking.</p>
+    <p align="center">        
+        <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145998-9ad9d69a-f691-4145-972a-0eff4a23a9b0.png#gh-light-mode-only"/>
+        <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145255-ce32737a-9a71-49b1-86de-d076ccf9c3b4.png#gh-dark-mode-only"/>
+    </p>
 </details>
-<details><summary><h3>Panel Favoritos</h3></summary>
-<p>Permite gestionar los scripts favoritos.</p>
-<p align="center">    
-    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/189177066-dc39edbe-cd3f-42e0-9d59-e9c4869fd501.png"/>   </p>
- <h4>Actualizar favoritos</h4>
- <p>Permite actualizar el ranking de un script favorito.</p>
- <p align="center">
-    <img title="NSEarch actualizar favorito" src="https://user-images.githubusercontent.com/77067446/189179248-5805f7c4-23e9-45e8-8b51-6c8062feaa9f.png"/>    
- </p>
+
+<details>
+    <summary><h3>Panel Favoritos</h3></summary>
+    <br>
+    <p>Permite gestionar los scripts favoritos.</p>
+    <p align="center">    
+       <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/189177066-dc39edbe-cd3f-42e0-9d59-e9c4869fd501.png"/>   
+    </p>
+    <h4>Actualizar favoritos</h4>
+    <p>Permite actualizar el ranking de un script favorito.</p>
+    <p align="center">
+        <img title="NSEarch actualizar favorito" src="https://user-images.githubusercontent.com/77067446/189179248-5805f7c4-23e9-45e8-8b51-6c8062feaa9f.png"/>    
+    </p>
 </details>
