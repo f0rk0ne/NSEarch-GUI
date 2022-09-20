@@ -5,7 +5,7 @@
 <h1 align="center">Motor de búsqueda de scripts Nmap</h1>
 <br/>
 <br>
-<p>Es un fork de la aplicación NSEarch de <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquirá</a> de la comunidad <a href="https://www.dragonjar.org">DragonJAR</a>, el cuál integra una interfaz gráfica y agrega nuevos comandos.
+<p>Es un fork de la aplicación NSEarch de <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquirá</a> de la comunidad <a href="https://www.dragonjar.org">DragonJAR</a>, el cual integra una interfaz gráfica y agrega nuevos comandos.
 </p>
 <p align="center">
 <img title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/191131576-cecee5ca-747a-4bc8-a101-947146268bb7.png"/>
@@ -76,7 +76,7 @@ config:
 <table width="100%">
 <tr>        
     <th>Variable</th>
-    <th>Descripición</th>
+    <th>Descripción</th>
     <th>Tipo</th>
     <th>Valores</th>        
 </tr>
@@ -102,7 +102,7 @@ config:
     <td>searchOpt</td>
     <td>Opciones de búsqueda</td>
     <td>int</td>
-    <td>1 (Nombre)<br> 2 (Author)<br> 3 (categoría)</td>
+    <td>1 (Nombre)<br> 2 (Autor)<br> 3 (categoría)</td>
 </tr>
 <tr>
     <td>theme</td>
@@ -112,7 +112,7 @@ config:
 </tr>
 <tr>
     <td>histLen</td>
-    <td>Tamaño en líneas del archivo hisorico</td>
+    <td>Tamaño en líneas del archivo histórico</td>
     <td>int</td>
     <td>100</td>
 </tr>
@@ -128,8 +128,8 @@ config:
 <h3>Consola</h3>
 
 - Al integrar el módulo Python rich, se incluyeron varias de las funcionalidades en la versión consola, por ejemplo resultados en columnas, animaciones al crear la BD entre otras.
-- Se agrego el comando showcat que muestra las Categorías y permite listar los scripts en una categoría y al finalizar ver la ayuda de estos.
-- Se agrego el comando history el cual permite visualizar el histórico de comandos ejecutados, muy similar al comando history de Linux.
+- Se agregó el comando showcat que muestra las Categorías y permite listar los scripts en una categoría y al finalizar ver la ayuda de estos.
+- Se agregó el comando history el cual permite visualizar el histórico de comandos ejecutados, muy similar al comando history de Linux.
 
 <br>
 <h2>GUI</h2>
