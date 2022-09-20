@@ -1,5 +1,6 @@
 <p align="center">
-<img title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/191133255-f501f351-5f7d-4da5-bf48-7f393456c6ad.gif#gh-light-mode-only"/>    <img title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/191135554-410efda7-5348-4d55-a53c-e28cd0d13d7f.gif#gh-dark-mode-only"/>
+    <img title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/191317706-98de49f1-fdef-467e-b9c2-943fb8be9a9b.gif#gh-dark-mode-only"/>
+    <img title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/191317849-1d7c3138-ea05-4631-9295-3a5530266259.gif#gh-light-mode-only"/>
 </p>
 <h1 align="center">Motor de búsqueda de scripts Nmap</h1>
 <br/>
