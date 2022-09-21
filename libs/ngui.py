@@ -250,6 +250,7 @@ class NGui(base, form):
         self.m_favoritedock.setStatusTip(dbmodule.i18n.t("gui.st_favorite"))
         self.m_about.setStatusTip(dbmodule.i18n.t("gui.st_developer"))
         self.m_about_qt.setStatusTip(dbmodule.i18n.t("gui.st_about_qt"))
+        self.m_splash.setStatusTip(dbmodule.i18n.t("gui.st_anim"))
         self.main_container.setStatusTip(self.welcome)
 
     # set scripts dockwidget translations
