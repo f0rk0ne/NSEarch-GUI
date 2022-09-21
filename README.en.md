@@ -163,5 +163,5 @@ config:
 <p>Allows update script ranking and delete favorites.</p>
 <p align="center">
     <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/191387136-13826ebc-c53e-4620-824e-80f22d19d83c.png#gh-light-mode-only"/>
-    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/191387308-a168b95f-2da5-4f0e-a6f6-38cf622f0f94.png#gh-dark-mode-only"/>
+    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/191387480-d118347f-e974-4880-a4d8-60c00ee866d9.png#gh-dark-mode-only"/>
 </p>
