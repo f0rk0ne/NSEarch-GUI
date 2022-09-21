@@ -83,9 +83,7 @@ class NGui(base, form):
     def init_UI(self):
         try:
             self.load_language()
-            settings = QSettings()
-            self.welcome = dbmodule.i18n.t(
-                "gui.welcome", user=os.getenv("USER"))
+            settings = QSettings()            
             if "windowstate" in settings.childKeys():
                 self.restoreState(settings.value("windowstate"))
             if "geometry" in settings.childKeys():
@@ -203,6 +201,9 @@ class NGui(base, form):
         self.load_menu_translastions()
         self.load_scripts_text()
         self.load_favorites_text()
+        self.welcome = dbmodule.i18n.t(
+            "gui.welcome", user=os.getenv("USER")
+        )
 
     # load menu text
     def load_menu_translastions(self):
