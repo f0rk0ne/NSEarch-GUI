@@ -93,6 +93,6 @@ es:
   ranking_normal: "normal"
   ranking_great: "genial"
   ranking_super_great: "super-genial"
-  show_anim: "Mostrar Animación al iniciar"
+  st_anim: "Mostrar Animación al iniciar"
   show: "Mostrar"
   hide: "Ocultar"
