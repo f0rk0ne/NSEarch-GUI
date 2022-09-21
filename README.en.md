@@ -8,7 +8,8 @@
 <p>Is a fork for NSEarch app written by <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquira</a> of <a href="https://www.dragonjar.org">DragonJAR</a> community, now includes a Graphical Interface and new commands.
 </p>
 <p align="center">
-<img title="NSEarch GUI themes" src=""/>
+    <br>
+    <img title="NSEarch GUI themes" src="https://user-images.githubusercontent.com/77067446/191378175-9fca005b-3c7e-4d4a-b089-e51828940945.png"/>
 </p>
 <br/>
 <h2>Requirements</h2>
@@ -139,28 +140,28 @@ config:
 <p>Allows establish Graphical Interface options.</p>
 <br>
 <p align="center">
-    <img width="400" title="NSEarch GUI - Configuration" src="#gh-light-mode-only"/>
-    <img width="400" title="NSEarch GUI - Configuration" src="#gh-dark-mode-only"/>
+    <img width="400" title="NSEarch GUI - Configuration" src="https://user-images.githubusercontent.com/77067446/191378776-6b56a103-c352-4cbb-8609-12b1e67bd5ef.png#gh-light-mode-only"/>
+    <img width="400" title="NSEarch GUI - Configuration" src="https://user-images.githubusercontent.com/77067446/191378778-86fa2f5b-8cb6-4201-bee9-ca6889897d92.png#gh-dark-mode-only"/>
 </p>
 <h3>Scripts Panel</h3>
 <br>
 <p>Allows manage NSE scripts.</p>
 <br>
 <p align="center">
-    <img width="500" title="NSEarch scripts panel" src="#gh-light-mode-only"/>
-    <img width="500" title="NSEarch scripts panel" src="#gh-dark-mode-only"/>
+    <img width="500" title="NSEarch scripts panel" src="https://user-images.githubusercontent.com/77067446/191381243-9813e2dd-b904-4856-8b8a-b42bb930c22a.png#gh-light-mode-only"/>
+    <img width="500" title="NSEarch scripts panel" src="https://user-images.githubusercontent.com/77067446/191381245-9d49f89e-e593-4bc1-b10a-c547efc25f49.png#gh-dark-mode-only"/>
 </p>
 <h4>Add script to favorites</h4>
 <br>
 <p>Allows add a script to favorites with ranking.</p>
-<p align="center">         
-    <img width="700" title="NSEarch add script to favorites" src="#gh-light-mode-only"/>
-    <img width="700" title="NSEarch add script to favorites" src="#gh-dark-mode-only"/>
+<p align="center">
+    <img width="700" title="NSEarch add script to favorites" src="https://user-images.githubusercontent.com/77067446/191383691-a9061a4c-484d-46c8-a7e5-fbf913cce79c.png#gh-light-mode-only"/>
+    <img width="700" title="NSEarch add script to favorites" src="https://user-images.githubusercontent.com/77067446/191383695-09d4386c-68cd-4a2e-8e3a-bb5464b77c3c.png#gh-dark-mode-only"/>
 </p>
 <h3>Favorites Panel</h3>
 <br>
 <p>Allows update script ranking and delete favorites.</p>
-<p align="center">    
-    <img title="NSEarch favorites panel" src="#gh-light-mode-only"/>
-    <img title="NSEarch favorites panel" src="#gh-dark-mode-only"/>
+<p align="center">
+    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/191387136-13826ebc-c53e-4620-824e-80f22d19d83c.png#gh-light-mode-only"/>
+    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/191387308-a168b95f-2da5-4f0e-a6f6-38cf622f0f94.png#gh-dark-mode-only"/>
 </p>
