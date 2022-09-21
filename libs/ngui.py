@@ -198,12 +198,12 @@ class NGui(base, form):
 
     # load gui translations
     def load_translations(self):
-        self.load_menu_translastions()
-        self.load_scripts_text()
-        self.load_favorites_text()
         self.welcome = dbmodule.i18n.t(
             "gui.welcome", user=os.getenv("USER")
         )
+        self.load_menu_translastions()
+        self.load_scripts_text()
+        self.load_favorites_text()        
 
     # load menu text
     def load_menu_translastions(self):
