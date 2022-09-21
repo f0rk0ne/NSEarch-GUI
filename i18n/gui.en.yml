@@ -93,6 +93,6 @@ en:
   ranking_normal: "normal"
   ranking_great: "great"
   ranking_super_great: "super-great"
-  show_anim: "Show Splash Animation"
+  st_anim: "Show Splash Animation at start up"
   show: "Show"
   hide: "Hide"
