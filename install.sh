@@ -108,7 +108,7 @@ if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
   create_config_file
 elif [ -f /etc/redhat-release ]; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel tk-devel gdbm-devel xz-devel google-noto-emoji-color-fonts -y
+  yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite sqlite-devel tk-devel gdbm-devel xz-devel google-noto-emoji-color-fonts -y
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
