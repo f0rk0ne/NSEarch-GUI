@@ -8,18 +8,20 @@
 <meta name="author" content="Miguel Baez">
 <h1 align="center">NSEarch GUI</h1>
 <h3 align="center">Version 1.0</h3>
-<br>
-<p align="center">  
-  <img title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/190870563-e1ea3b65-f579-49de-9dc5-80fdf534341a.gif"/>
+<p align="center">
+  <img width="300" title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/192333044-27970302-9a6c-4700-b7aa-a19a25e3a388.gif#gh-light-mode-only"/>
+</p>
+<p align="center">
+  <img width="300" title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/192333048-c9abdc54-2325-4e78-902f-b7ae54d98310.gif#gh-dark-mode-only"/>
 </p>
 <br>
 <br>
 <p align="center">
   <a title="NSEarch en Español" href="README.es.md">
-    <img title="NSEarch en Español" src="https://user-images.githubusercontent.com/77067446/190870332-c91ef8f5-6ffd-4279-828b-8579a4ca8985.png"/>
+    <img title="NSEarch en Español" src="https://user-images.githubusercontent.com/77067446/192334699-d188257f-79b5-4b3c-8a52-7e8197194aed.png"/>
   </a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  <a href="README.en.md" title="NSEarch in English">
-   <img title="NSEarch in English" src="https://user-images.githubusercontent.com/77067446/190870331-0f458a6a-519b-4513-9b85-9e2e3eab1f5f.png"/>
+   <img title="NSEarch in English" src="https://user-images.githubusercontent.com/77067446/192334829-843cca05-a8cc-4f41-a3ee-72e376961c67.png"/>
   </a>
 </p>
