@@ -9,10 +9,10 @@
 <h1 align="center">NSEarch GUI</h1>
 <h3 align="center">Version 1.0</h3>
 <p align="center">
-  <img width="300" title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/192333044-27970302-9a6c-4700-b7aa-a19a25e3a388.gif#gh-light-mode-only"/>
+      <img width="300" title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/192333044-27970302-9a6c-4700-b7aa-a19a25e3a388.gif#gh-light-mode-only"/>  
 </p>
-<p align="center">
-  <img width="300" title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/192333048-c9abdc54-2325-4e78-902f-b7ae54d98310.gif#gh-dark-mode-only"/>
+<p align="center">        
+    <img width="300" title="NSEarch GUI" src="https://user-images.githubusercontent.com/77067446/192333048-c9abdc54-2325-4e78-902f-b7ae54d98310.gif#gh-dark-mode-only"/>  
 </p>
 <br>
 <br>
