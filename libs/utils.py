@@ -533,6 +533,9 @@ class Utils:
       stream.write(f"  splashAnim: {splash_anim}")
       stream.close()
     except Exception as e:
+      if "Permission denied" in e.args[1]:
+        print("Executed with root privileges or change folder owner")
+        exit(0)
       self.print_traceback(e)
 
   # get script usage html
