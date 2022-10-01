@@ -47,7 +47,7 @@ sudo python3 nsearch.py
 
 ```bash
 sudo chown 1000:1000 -R * && sudo chmod 755 -R *
-or
+o
 sudo chown 1000:1000 -R NSEarch-GUI && sudo chmod 755 -R NSEarch-GUI
 ```
 
