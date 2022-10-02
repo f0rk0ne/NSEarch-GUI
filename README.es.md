@@ -133,6 +133,16 @@ config:
 <p>La GUI fue escrita en Python Qt5, y contiene dos QDockWidgets para gestionar los scripts y los favoritos.</p>
 <p>Los contenidos de ayuda de los scripts se visualizan en formato HTML en pestañas.</p>
 <p>La selección del idioma aplica para la versión consola también.</p>
+<br>
+<h3>Iniciar NSEarch GUI</h3>
+<br>
+
+```bash
+python3 nsearch.py -g
+
+```
+
+<br>
 <h3>Configuración GUI</h3>
 <br>
 <p>Permite establecer las opciones de la interfaz.</p>
