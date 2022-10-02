@@ -138,7 +138,7 @@ config:
 <p>Language selection apply to console version too.</p>
 
 <br>
-<h3>Start GUI</h3>
+<h3>Start NSEarch GUI</h3>
 
 ```bash
 python3 nsearch.py -g
