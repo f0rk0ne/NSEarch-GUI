@@ -137,6 +137,14 @@ config:
 <p>Scripts help contents are shown in HTML format in tabs.</p>
 <p>Language selection apply to console version too.</p>
 
+<br>
+<h3>Start GUI</h3>
+
+```bash
+python3 nsearch.py -g
+```
+
+<br>
 <h3>GUI Configuration</h3>
 <br>
 <p>Allows establish Graphical Interface options.</p>
