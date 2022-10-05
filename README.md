@@ -27,6 +27,6 @@
 </p>
 <br>
 <br>
-<p align="center">Dragon logo belongs to <a href="https://www.dragonjar.org">DragonJAR SAS</a></p>
-<p align="center">Eye logo belongs to <a href="https://www.nmap.org">Nmap Org</a></p>
+<p align="center">Dragon logo belongs to <a href="https://www.dragonjar.org" title="Dragon Logo belongs to DragonJAR SAS">DragonJAR SAS</a></p>
+<p align="center">Eye logo belongs to <a href="https://www.nmap.org" title="Eye logo belongs to Nmap ORG">Nmap Org</a></p>
 
