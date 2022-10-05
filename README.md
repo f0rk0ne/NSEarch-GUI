@@ -25,3 +25,8 @@
    <img title="NSEarch in English" src="https://user-images.githubusercontent.com/77067446/192334829-843cca05-a8cc-4f41-a3ee-72e376961c67.png"/>
   </a>
 </p>
+<br>
+<br>
+<p align="center">Dragon logo bellow to <a href="https://www.dragonjar.org" target="_blank">DragonJAR SAS</a></p>
+<p align="center">Eye logo bellow to <a href="https://www.nmap.org" target="_blank">Nmap Org</a></p>
+
