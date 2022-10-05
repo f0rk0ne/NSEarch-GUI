@@ -29,6 +29,7 @@ sha256=$(which sha256 2>/dev/null)
 kernel=$(uname -r)
 os="$(uname -s) $kernel"
 arch=$(uname -m)
+nsearchenv="NSEarchEnv"
 
 function create_config_file(){
   checksum=
@@ -59,10 +60,26 @@ function create_config_file(){
     printf "  splashAnim: 1\n" >> config.yaml    
     chmod 777 config.yaml
   fi
-  printf "[+] NSEarch is ready for be launched uses python3 nsearch.py\n"
+  createLauncher
+  deactivate
+  printf "[+] NSEarch is ready for be launched uses python3 ./nsearch\n"
+}
+
+function createLauncher(){
+  printf "#!/bin/bash\n" >> nsearch
+  printf "source $nsearchenv/bin/activate\n" >> nsearch
+  printf "python3 nsearch.py \$1\n" >> nsearch
+	printf "deactivate" >> nsearch
+	chown 1000:1000 -R *
+	chmod 755 nsearch
 }
 
 function installPipRequeriments(){
+  printf "[+] Installing virtualenv and creating environment ...\n"
+  pip3 install virtualenv
+  python3 -m venv $nsearchenv --prompt NSEarch
+  source $nsearchenv/bin/activate
+	pip3 install --upgrade pip
   printf "[+] Checking pip libs ...\n"
   pip3 install -r requirements.txt
 }
@@ -75,16 +92,13 @@ function installpipDebian(){
 
 function installpipRedHat(){
   printf "[+] Installing pip ...\n"
-  if [[ ! $(cat /etc/os-release|grep NAME=|grep fedora) ]]; then
-    rpm -iUvh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-14.noarch.rpm; yum -y update;
-  fi
   yum install python3-pip -y  
   installPipRequeriments
 }
 
 if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  apt-get install unzip build-essential checkinstall sqlite3 libsqlite3-dev python3-pyqt5 python3-pyqt5.qtwebkit fonts-noto-color-emoji -y  
+  apt-get install openssl-devel sqlite3 libsqlite3-dev fonts-noto-color-emoji -y  
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
@@ -108,7 +122,7 @@ if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
   create_config_file
 elif [ -f /etc/redhat-release ]; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite sqlite-devel tk-devel gdbm-devel xz-devel google-noto-emoji-color-fonts -y
+  yum install openssl-devel sqlite sqlite-devel google-noto-emoji-color-fonts epel-release -y;	yum update;
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
@@ -129,18 +143,10 @@ elif [ -f /etc/redhat-release ]; then
     yum install python3 -y
     installpipRedHat
   fi
-  if [[ $(yum search python36-qt5-webkit) ]]; then
-    echo "Installing python dependencies for Graphical Interface..."
-    yum install python36-qt5-webkit -y
-  elif [[ $(yum search python3-qt5-webkit) ]]; then
-    echo "Installing python dependencies for Graphical Interface..."
-    yum install python3-qt5 python3-qt5-webkit -y
-  fi
-
   create_config_file
 elif [[ $ismacox ]]; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  brew install -v sqlite3 pyqt@5
+  brew install -v sqlite3
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
