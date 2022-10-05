@@ -1,3 +1,5 @@
-PyYAML==6.0
-rich==12.5.1
-python-i18n==0.3.9
+PyYAML
+rich
+python-i18n
+PyQtWebKit
+PyQt5
