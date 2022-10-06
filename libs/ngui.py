@@ -1552,7 +1552,7 @@ class NGui(base, form):
             if cursor.rowcount == 1:
                 return (True, dbmodule.i18n.t("gui.fav_add"))
         except Exception as e:
-            if "UNIQUE" in e.args[0]:
+            if "unique" in e.args[0].lower():
                 return (False, dbmodule.i18n.t("gui.fav_already_added"))
             else:
                 self.utils.print_traceback(e)
