@@ -69,9 +69,9 @@ function createLauncher(){
   printf "#!/bin/bash\n" >> nsearch
   printf "source $nsearchenv/bin/activate\n" >> nsearch
   printf "python3 nsearch.py \$1\n" >> nsearch
-	printf "deactivate" >> nsearch
-	chown 1000:1000 -R *
-	chmod 755 nsearch
+  printf "deactivate" >> nsearch
+  chown 1000:1000 -R *
+  chmod 755 nsearch
 }
 
 function installPipRequeriments(){
@@ -79,7 +79,7 @@ function installPipRequeriments(){
   pip3 install virtualenv
   python3 -m venv $nsearchenv --prompt NSEarch
   source $nsearchenv/bin/activate
-	pip3 install --upgrade pip
+  pip3 install --upgrade pip
   printf "[+] Checking pip libs ...\n"
   pip3 install -r requirements.txt
   if [[ $ismacox ]] ;  then    
