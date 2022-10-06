@@ -1,5 +1,4 @@
 PyYAML
 rich
 python-i18n
-PyQtWebKit
 PyQt5
