@@ -82,6 +82,14 @@ function installPipRequeriments(){
 	pip3 install --upgrade pip
   printf "[+] Checking pip libs ...\n"
   pip3 install -r requirements.txt
+  if [[ $ismacox ]] ;  then
+    printf "installing for macox"
+    pip3 install https://files.pythonhosted.org/packages/9c/62/f9336529043ec7fa2df6266ae8b8bdfbf7edc5692384280fb543cbef750f/PyQtWebKit-5.15.2-cp36.cp37.cp38.cp39-none-macosx_10_13_intel.whl    
+  else
+    printf "installing for Linux"
+    pip3 install https://files.pythonhosted.org/packages/af/1e/bb7c25bd7ba7151d583abf162c16424bae2bd7383d26f2b9286e9913b818/PyQtWebKit-5.15.2-5.15.2-cp35.cp36.cp37.cp38.cp39-none-manylinux1_x86_64.whl
+  fi  
+  pip3 install --upgrade PyQtWebKit
 }
 
 function installpipDebian(){
