@@ -1,4 +1,4 @@
 PyYAML
 rich
 python-i18n
-PyQt5
+PyQt5==5.15.2
