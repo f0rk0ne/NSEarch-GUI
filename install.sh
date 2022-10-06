@@ -83,13 +83,11 @@ function installPipRequeriments(){
   printf "[+] Checking pip libs ...\n"
   pip3 install -r requirements.txt
   if [[ $ismacox ]] ;  then    
-    pip3 install https://files.pythonhosted.org/packages/9c/62/f9336529043ec7fa2df6266ae8b8bdfbf7edc5692384280fb543cbef750f/PyQtWebKit-5.15.2-cp36.cp37.cp38.cp39-none-macosx_10_13_intel.whl    
-    pip3 install https://files.pythonhosted.org/packages/14/75/596d5e9ed7a135918bb157ed315004ac008e09b9b4c9328f94568c88f003/PyQt5-5.15.7-cp37-abi3-macosx_10_13_x86_64.whl
+    pip3 install https://files.pythonhosted.org/packages/9c/62/f9336529043ec7fa2df6266ae8b8bdfbf7edc5692384280fb543cbef750f/PyQtWebKit-5.15.2-cp36.cp37.cp38.cp39-none-macosx_10_13_intel.whl        
   else    
-    pip3 install https://files.pythonhosted.org/packages/af/1e/bb7c25bd7ba7151d583abf162c16424bae2bd7383d26f2b9286e9913b818/PyQtWebKit-5.15.2-5.15.2-cp35.cp36.cp37.cp38.cp39-none-manylinux1_x86_64.whl
-    pip3 install https://files.pythonhosted.org/packages/22/0d/4ea05714826a5f6478dc2845cd94ad76dce3c4c0ead0842b06cacd4e3492/PyQt5-5.15.7-cp37-abi3-manylinux1_x86_64.whl
+    pip3 install https://files.pythonhosted.org/packages/af/1e/bb7c25bd7ba7151d583abf162c16424bae2bd7383d26f2b9286e9913b818/PyQtWebKit-5.15.2-5.15.2-cp35.cp36.cp37.cp38.cp39-none-manylinux1_x86_64.whl    
   fi  
-  pip3 install --upgrade PyQtWebKit PyQt5
+  pip3 install --upgrade PyQtWebKit
 }
 
 function installpipDebian(){
