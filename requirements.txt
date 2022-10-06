@@ -1,4 +1,3 @@
 PyYAML
 rich
 python-i18n
-PyQt5
