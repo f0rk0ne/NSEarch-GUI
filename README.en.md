@@ -15,11 +15,11 @@
 <h2>Requirements</h2>
 <br/>
 
-- [x] Python 3 ( Tested in 3.6, 3.9.2 and 3.10 )
+- [x] Python 3 ( Tested in 3.6, 3.9.2 )
 - [x] python-virtualenv
 - [x] python3-pyqt5
 - [x] python3-pyqt5.qtwebkit ( Debian )
-- [x] python36-pyqt5.qtwebkit ( Centos )
+- [x] python36-pyqt5.qtwebkit ( RHEL/centos )
 - [x] python-i18n
 - [x] python3-yaml
 - [x] python3-rich
