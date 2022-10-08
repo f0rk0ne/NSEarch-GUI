@@ -16,6 +16,7 @@
 <br/>
 
 - [x] Python 3 ( Tested in 3.6, 3.9.2 and 3.10 )
+- [x] python-virtualenv
 - [x] python3-pyqt5
 - [x] python3-pyqt5.qtwebkit ( Debian )
 - [x] python36-pyqt5.qtwebkit ( Centos )
@@ -42,7 +43,7 @@ sudo bash install.sh
 <p>Run first time with root privileges to create the Database with Nmap scripts.</p>
 
 ```bash
-sudo python3 nsearch.py
+sudo ./nsearch
 ```
 
 <br>
@@ -141,7 +142,7 @@ config:
 <h3>Start NSEarch GUI</h3>
 
 ```bash
-python3 nsearch.py -g
+./nsearch -g
 ```
 
 <br>
