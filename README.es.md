@@ -139,7 +139,7 @@ config:
 <br>
 
 ```bash
-./nsearch.py
+./nsearch.py -g
 
 ```
 
