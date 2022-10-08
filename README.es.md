@@ -15,6 +15,7 @@
 <br/>
 
 - [x] Python 3 ( Probado en 3.6, 3.9.2 y 3.10 )
+- [x] python-virtualenv 
 - [x] python3-pyqt5
 - [x] python3-pyqt5.qtwebkit ( Debian )
 - [x] python36-pyqt5.qtwebkit ( Centos )
@@ -39,7 +40,7 @@ sudo bash install.sh
 <p>Ejecutar la primera vez con permisos root para crear la BD con los scripts de Nmap.</p>
 
 ```bash
-sudo python3 nsearch.py
+sudo ./nsearch
 ```
 
 <br>
@@ -138,7 +139,7 @@ config:
 <br>
 
 ```bash
-python3 nsearch.py -g
+./nsearch.py
 
 ```
 
