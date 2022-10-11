@@ -14,7 +14,7 @@
 <h2>Requerimientos</h2>
 <br/>
 
-- [x] Python 3 ( Probado en 3.6, 3.9.2 )
+- [x] Python 3 ( Probado en 3.6, 3.7, 3.8, 3.9 )
 - [x] python-virtualenv 
 - [x] python3-pyqt5
 - [x] python3-pyqt5.qtwebkit ( Debian )
