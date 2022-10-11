@@ -27,8 +27,7 @@
 <br/>
 <h2>Installation</h2>
 <br/>
-<p>
-Download app from github repository and execute install.sh with root privileges to check and install requirements and to create the configuration file.
+<p>Download app from github repository and execute install.sh with root privileges to check and install requirements and to create the configuration file.
 </p>   
 
 ```bash
@@ -47,11 +46,7 @@ sudo ./nsearch
 ```
 
 <br>
-
-
-<br>
 <h3>Manual Install</h3>
-<br>
 <br>
 <p>Denpending Linux distribution it's neccesary to install a python3 compatible version for GUI modules, this example uses python3.9, but exists other alternatives (python3.6, python3.7, python3.8, python3.9).</p>
 
