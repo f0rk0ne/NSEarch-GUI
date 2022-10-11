@@ -61,9 +61,9 @@ yum update -y && yum upgrade -y
 ```
 
 ```bash
-python3.(6, 7, 8, 9) -m venv NSEarchEnv --prompt NSEarch
+python3.9 -m venv NSEarchEnv --prompt NSEarch
 source NSEarchEnv/bin/activate
-python3.(6, 7, 8, 9) -m pip install --upgrade pip
+python3.9 -m pip install --upgrade pip
 python3 -m pip install --user -r requirements.txt
 deactivate
 ```
