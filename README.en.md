@@ -52,6 +52,8 @@ sudo ./nsearch
 <br>
 <h3>Manual Install</h3>
 <br>
+<br>
+<p>Denpending Linux distribution it's neccesary to install a python3 compatible version for GUI modules, this example uses python3.9, but exists other alternatives (python3.6, python3.7, python3.8, python3.9).</p>
 
 ```bash
 apt-get install -y openssl sqlite3 libsqlite3-dev fonts-noto-color-emoji python3-virtualenv
