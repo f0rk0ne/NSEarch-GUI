@@ -44,12 +44,32 @@ sudo ./nsearch
 ```
 
 <br>
-<p>Cambiar permisos de los archivos.</p>
+<h3>Instalación manual</h3>
+<br>
 
 ```bash
-sudo chown 1000:1000 -R * && sudo chmod 755 -R *
-o
-sudo chown 1000:1000 -R NSEarch-GUI && sudo chmod 755 -R NSEarch-GUI
+apt-get install -y openssl sqlite3 libsqlite3-dev fonts-noto-color-emoji python3-virtualenv
+```
+
+```bash
+yum install -y openssl-devel sqlite sqlite-devel google-noto-emoji-color-fonts epel-release python3-virtualenv
+```
+
+```bash
+python3.9 -m venv NSEarchEnv --prompt NSEarch
+source NSEarchEnv/bin/activate
+python3.(6, 7, 8, 9) -m pip install --upgrade pip
+python3 -m pip install --user -r requirements.txt
+deactivate
+```
+
+<br>
+<h4>Ejecución</h4>
+<br>
+
+```bash
+source NSEarchEnv/bin/activate
+python3 nsearch.py
 ```
 
 <br>
