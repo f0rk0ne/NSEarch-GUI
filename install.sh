@@ -22,13 +22,15 @@ if ! [ $(id -u) = 0 ] && ! [[ $ismacox ]] ; then
 fi
 
 nmapversion=$(which nmap 2>/dev/null)
-paythonversion=$(which python3 2>/dev/null)
+ispython=$(which python3 2>/dev/null)
+python3version=$(python3 -V 2>/dev/null)
 pipversion=$(which pip3 2>/dev/null)
 sha256sum=$(which sha256sum 2>/dev/null)
 sha256=$(which sha256 2>/dev/null)
 kernel=$(uname -r)
 os="$(uname -s) $kernel"
 arch=$(uname -m)
+vers=("9" "8" "7" "6")
 nsearchenv="NSEarchEnv"
 
 function create_config_file(){
@@ -61,33 +63,30 @@ function create_config_file(){
     chmod 777 config.yaml
   fi
   createLauncher
-  deactivate
   printf "[+] NSEarch is ready for be launched uses python3 ./nsearch\n"
 }
 
 function createLauncher(){
+  if [[ -f nsearch ]]; then
+    rm nsearch
+  fi
   printf "#!/bin/bash\n" >> nsearch
   printf "source $nsearchenv/bin/activate\n" >> nsearch
   printf "python3 nsearch.py \$1\n" >> nsearch
   printf "deactivate" >> nsearch
   chown 1000:1000 -R *
-  chmod 755 nsearch
+  chmod 777 -R *
 }
 
 function installPipRequeriments(){
   printf "[+] Installing virtualenv and creating environment ...\n"
-  pip3 install virtualenv
-  python3 -m venv $nsearchenv --prompt NSEarch
+  pythonbin=$(checkPythonVersion)
+  "$pythonbin" -m venv $nsearchenv --prompt NSEarch
+  "$pythonbin" -m pip install --upgrade pip
   source $nsearchenv/bin/activate
-  pip3 install --upgrade pip
   printf "[+] Checking pip libs ...\n"
-  pip3 install -r requirements.txt
-  if [[ $ismacox ]] ;  then    
-    pip3 install https://files.pythonhosted.org/packages/9c/62/f9336529043ec7fa2df6266ae8b8bdfbf7edc5692384280fb543cbef750f/PyQtWebKit-5.15.2-cp36.cp37.cp38.cp39-none-macosx_10_13_intel.whl        
-  else    
-    pip3 install https://files.pythonhosted.org/packages/af/1e/bb7c25bd7ba7151d583abf162c16424bae2bd7383d26f2b9286e9913b818/PyQtWebKit-5.15.2-5.15.2-cp35.cp36.cp37.cp38.cp39-none-manylinux1_x86_64.whl    
-  fi  
-  pip3 install --upgrade PyQtWebKit
+  "$pythonbin" -m pip install -r requirements.txt
+  deactivate
 }
 
 function installpipDebian(){
@@ -102,17 +101,65 @@ function installpipRedHat(){
   installPipRequeriments
 }
 
+function checkPythonVersion(){  
+  for a in "${vers[@]}"; do
+    if [ -f "/usr/bin/python3.$a" ]; then
+      printf "python3.$a"
+      break
+    fi
+  done
+}
+
+function installPythonDebian(){  
+  for b in "${vers[@]}"; do
+    if [[ $(apt-get search python3"$b") ]] ; then
+      echo "Installing python3.$b ..."
+      apt-get install -y python3"$b"
+      printf "ok"   
+      break
+    fi
+  done
+}
+
+function installPythonRedHat(){    
+  for b in "${vers[@]}"; do
+    if [[ $(yum search python3"$b" 2>/dev/null) ]]; then
+      yum install -y python3"$b" 
+      printf "ok"
+      break
+    elif [[ $(yum search python3.$b 2>/dev/null) ]]; then
+      yum install -y python3.$b       
+      printf "ok"
+      break
+    fi   
+  done
+}
+
+function installPythonMacos(){
+  for a in "${vers[@]}"; do
+    if [[ $(brew search python3."$a") ]]; then
+      brew install python3."$a"
+      printf "ok"
+      break
+    fi
+    if [[ $(brew search python3"$a") ]]; then
+      brew install python3"$a"
+      printf "ok"
+      break
+    fi
+  done
+}
+
 if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  apt-get install openssl sqlite3 libsqlite3-dev fonts-noto-color-emoji python3-venv -y  
+  apt-get install openssl sqlite3 libsqlite3-dev fonts-noto-color-emoji python3-virtualenv -y
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
     echo "[+] Installing nmap .... "
     apt-get install nmap -y
   fi
-
-  if [[ $paythonversion ]]; then
+  if [[ $ispython ]] && [[ $(checkPythonVersion) ]]; then
     printf "[+] Python is already installed :D\n"
     if [[ $pipversion ]]; then
       printf "[+] Pip3 is already installed :D\n"
@@ -121,33 +168,39 @@ if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
       installpipDebian
     fi
   else
-    echo "Installing python3 ..."
-    apt-get install python3 -y
-    installpipDebian
+    echo "Installing python3.x ..."
+    if [[ $(installPythonDebian) ]] ; then
+      installpipDebian
+    else
+      printf "Couldn't find a Python3 version compatible"
+    fi
   fi  
   create_config_file
 elif [ -f /etc/redhat-release ]; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  yum install openssl-devel sqlite sqlite-devel google-noto-emoji-color-fonts epel-release -y;	yum update;
+  yum install openssl-devel sqlite sqlite-devel google-noto-emoji-color-fonts epel-release python3-virtualenv -y; yum update -y;
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
     echo "[+] Installing nmap .... "
     yum install nmap -y
   fi
-
-  if [[ $paythonversion ]]; then
+  if [[ $ispython ]] && [[ $(checkPythonVersion) ]]; then
     printf "[+] Python is already installed :D\n"
     if [[ $pipversion ]]; then
       printf "[+] Pip3 is already installed :D\n"
-      installPipRequeriments
+      installPipRequeriments 
     else
       installpipRedHat
     fi
   else
-    echo "Installing python ..."
-    yum install python3 -y
-    installpipRedHat
+    echo "Installing python3.x ..."
+    if [[ $(installPythonRedHat) ]]; then
+      installpipRedHat     
+    else
+      printf "Couldn't find a Python3 version compatible"
+      exit
+    fi    
   fi
   create_config_file
 elif [[ $ismacox ]]; then
@@ -159,19 +212,22 @@ elif [[ $ismacox ]]; then
     echo "[+] Installing nmap .... "
     brew install -v nmap
   fi
-  if [[ $paythonversion ]]; then
+  if [[ $ispython ]] && [[ $(checkPythonVersion) ]]; then
     printf "[+] Python is already installed :D\n"
     printf "[+] Pip is already installed :D\n"
     installPipRequeriments
   else
-    echo "Installing python ..."
-    brew install python -v
-    printf "[+] Pip is already installed :D\n"
-    installPipRequeriments
+    printf "Installing python 3.x ..."
+    if [[ $(installPythonMacos) ]]; then
+      printf "[+] Pip is already installed :D\n"
+      installPipRequeriments
+    else
+      printf "Couldn't find a Python3 version compatible"
+    fi 
   fi
   create_config_file
 else
-  if [[ $nmapversion ]] && [[ $paythonversion ]] && [[ $pipversion ]]; then
+  if [[ $nmapversion ]] && [[ $ispython ]] && [[ $pipversion ]]; then
     printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
     installPipRequeriments
     printf "[+] Requirement already satisfied ... \n"
