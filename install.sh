@@ -152,7 +152,7 @@ function installPythonMacos(){
 
 if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  apt-get install openssl sqlite3 libsqlite3-dev fonts-noto-color-emoji python3-virtualenv -y
+  apt-get install openssl sqlite3 libsqlite3-dev fonts-noto-color-emoji python3-virtualenv qtwayland5 -y
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
