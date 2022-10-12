@@ -49,7 +49,7 @@ sudo ./nsearch
 <p>Dependiendo de la distribución de Linux es necesario instalar una versión de Python3 compatible con los módulos para la GUI, en el ejemplo se utiliza python3.9, pero también existen otras alternativas (python3.6, python3.7, python3.8)</p>
 
 ```bash
-apt-get install -y openssl sqlite3 libsqlite3-dev fonts-noto-color-emoji python3-virtualenv python3.9
+apt-get install -y openssl sqlite3 libsqlite3-dev fonts-noto-color-emoji python3-virtualenv python3.9 qtwayland5
 apt-get update -y && apt-get upgrade -y
 ```
 
