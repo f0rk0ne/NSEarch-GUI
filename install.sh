@@ -112,9 +112,9 @@ function checkPythonVersion(){
 
 function installPythonDebian(){  
   for b in "${vers[@]}"; do
-    if [[ $(apt-get search python3"$b") ]] ; then
+    if [[ $(apt-get search python3."$b") ]] ; then
       echo "Installing python3.$b ..."
-      apt-get install -y python3"$b"
+      apt-get install -y python3."$b"
       printf "ok"   
       break
     fi
