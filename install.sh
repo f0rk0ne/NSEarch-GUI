@@ -153,6 +153,7 @@ function installPythonMacos(){
 if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
   apt-get install openssl sqlite3 libsqlite3-dev fonts-noto-color-emoji python3-virtualenv qtwayland5 -y
+  checkpip=0
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
@@ -161,24 +162,28 @@ if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
   fi
   if [[ $ispython ]] && [[ $(checkPythonVersion) ]]; then
     printf "[+] Python is already installed :D\n"
+    checkpip=1
+  else
+    echo "Installing python3.x ..."
+    if [[ $(installPythonDebian) ]] ; then
+      checkpip=1     
+    else
+      printf "Couldn't find a Python3 version compatible"
+    fi
+  fi
+  if [ $checkpip -eq 1 ]; then
     if [[ $pipversion ]]; then
       printf "[+] Pip3 is already installed :D\n"
       installPipRequeriments
     else
       installpipDebian
     fi
-  else
-    echo "Installing python3.x ..."
-    if [[ $(installPythonDebian) ]] ; then
-      installpipDebian
-    else
-      printf "Couldn't find a Python3 version compatible"
-    fi
-  fi  
+  fi
   create_config_file
 elif [ -f /etc/redhat-release ]; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
   yum install openssl-devel sqlite sqlite-devel google-noto-emoji-color-fonts epel-release python3-virtualenv -y; yum update -y;
+  checkpip=0
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
@@ -187,20 +192,23 @@ elif [ -f /etc/redhat-release ]; then
   fi
   if [[ $ispython ]] && [[ $(checkPythonVersion) ]]; then
     printf "[+] Python is already installed :D\n"
+    checkpip=1
+  else
+    echo "Installing python3.x ..."   
+    if [[ $(installPythonRedHat) ]]; then
+      checkpip=1      
+    else
+      printf "Couldn't find a Python3 version compatible"
+      exit
+    fi    
+  fi
+  if [ $checkpip -eq 1 ]; then
     if [[ $pipversion ]]; then
       printf "[+] Pip3 is already installed :D\n"
       installPipRequeriments 
     else
       installpipRedHat
     fi
-  else
-    echo "Installing python3.x ..."
-    if [[ $(installPythonRedHat) ]]; then
-      installpipRedHat     
-    else
-      printf "Couldn't find a Python3 version compatible"
-      exit
-    fi    
   fi
   create_config_file
 elif [[ $ismacox ]]; then
