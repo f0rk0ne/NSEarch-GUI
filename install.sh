@@ -48,7 +48,7 @@ function create_config_file(){
     lang=$(echo $LANG|cut -d_ -f1)
     printf "[+] Creating config.yaml file ...\n"
     printf "config: \n" > config.yaml
-    printf "  scripts_path: '$dbpath'\n" >> config.yaml
+    printf "  scriptsPath: '$dbpath'\n" >> config.yaml
     printf "  filePath: '$filePath'\n" >> config.yaml
     printf "  fileBackup: 'scriptbk.db'\n" >> config.yaml
     printf "  scriptdb: 'nmap_scripts.sqlite3'\n" >> config.yaml
