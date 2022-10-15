@@ -15,8 +15,8 @@
 <h2>Requirements</h2>
 <br/>
 
-- [x] Python 3 ( Tested in 3.6, 3.9.2 )
-- [x] python-virtualenv
+- [x] Python 3 ( Tested in 3.6, 3.7, 3.8, 3.9 )
+- [x] python3-venv
 - [x] python3-pyqt5
 - [x] python3-pyqt5.qtwebkit ( Debian )
 - [x] python36-pyqt5.qtwebkit ( RHEL/centos )
@@ -77,6 +77,9 @@ source NSEarchEnv/bin/activate
 python3 nsearch.py
 ```
 
+<br>
+If console doesn't show colorized emojis, in this link you could to find the solution <a href="https://www.reddit.com/r/linux/comments/ao0mp3/how_to_better_enable_color_emojis/#t1_efxvrmq">https://www.reddit.com/r/linux/comments/ao0mp3/how_to_better_enable_color_emojis/#t1_efxvrmq</a>
+<br>
 <br>
 <h2>Configuration</h2>
 <br/>
