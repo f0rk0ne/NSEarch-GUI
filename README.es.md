@@ -15,7 +15,7 @@
 <br/>
 
 - [x] Python 3 ( Probado en 3.6, 3.7, 3.8, 3.9 )
-- [x] python-virtualenv 
+- [x] python-venv or python3-virtualenv
 - [x] python3-pyqt5
 - [x] python3-pyqt5.qtwebkit ( Debian )
 - [x] python36-pyqt5.qtwebkit ( RHEL/Centos )
@@ -73,8 +73,12 @@ deactivate
 ```bash
 source NSEarchEnv/bin/activate
 python3 nsearch.py
+deactivate
 ```
 
+<br>
+Si la consola no muestra los emojis, en el siguiente enlace se encuentra una solución <a href="https://www.reddit.com/r/linux/comments/ao0mp3/how_to_better_enable_color_emojis/#t1_efxvrmq">https://www.reddit.com/r/linux/comments/ao0mp3/how_to_better_enable_color_emojis/#t1_efxvrmq</a>
+<br>
 <br>
 <h2>Configuración</h2>
 <br/>
