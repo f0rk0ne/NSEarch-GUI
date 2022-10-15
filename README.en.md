@@ -16,7 +16,7 @@
 <br/>
 
 - [x] Python 3 ( Tested in 3.6, 3.7, 3.8, 3.9 )
-- [x] python3-venv
+- [x] python3-venv or python3-virtualenv
 - [x] python3-pyqt5
 - [x] python3-pyqt5.qtwebkit ( Debian )
 - [x] python36-pyqt5.qtwebkit ( RHEL/centos )
@@ -75,6 +75,11 @@ deactivate
 ```bash
 source NSEarchEnv/bin/activate
 python3 nsearch.py
+```
+<p>And after quit application</p>
+
+```
+deactivate
 ```
 
 <br>
