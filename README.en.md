@@ -75,10 +75,6 @@ deactivate
 ```bash
 source NSEarchEnv/bin/activate
 python3 nsearch.py
-```
-<p>And after quit application</p>
-
-```
 deactivate
 ```
 
