@@ -457,9 +457,18 @@ class Utils:
 
   # get scripts path
   def get_scripts_path(self):
+    scripts_path = None
+    for a,b,c in os.walk("/usr"):
+      if "nmap" in a:
+        for d in c:        
+          if d == "script.db":
+            return f"{a}/"
+  
+  # get configuration vars
+  def get_yam_vars(self):
     try:
       current_checksum = ''
-      scripts_path = '/usr/share/nmap/scripts/'
+      scripts_path = self.get_scripts_path()
       if not os.path.exists(scripts_path):
         scripts_path = ''
       file_path = scripts_path + 'script.db'
@@ -512,7 +521,7 @@ class Utils:
   ):
     try:
       scripts_path, file_path, file_backup,\
-      dbname, current_checksum = self.get_scripts_path()
+      dbname, current_checksum = self.get_yam_vars()
       if lang == None:
         lang = "es" if "es" in os.environ["LANG"] else "en"
       stream = open('config.yaml', 'w')
