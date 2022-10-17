@@ -517,7 +517,7 @@ class Utils:
   # create configuration file
   def create_config_file(
     self, search_on_key = 1, search_opt = 1, theme = 1,
-    splash_anim = 1, lang = None
+    splash_anim = 1, lang = 'en_US.UTF-8'
   ):
     try:
       scripts_path, file_path, file_backup,\
