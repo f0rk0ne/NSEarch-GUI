@@ -14,13 +14,6 @@ echo "=================================================";
 printf "\n"
 
 ismacox=$(sw_vers 2>/dev/null)
-
-#Check if is it root
-#if ! [ $(id -u) = 0 ] && ! [[ $ismacox ]] ; then
-# echo "[-] You must be a root user" 2>&1
-# exit 1
-#fi
-
 nmapversion=$(which nmap 2>/dev/null)
 ispython=$(which python3 2>/dev/null)
 python3version=$(python3 -V 2>/dev/null)
