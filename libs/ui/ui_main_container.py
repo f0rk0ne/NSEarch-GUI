@@ -175,56 +175,6 @@ class MainContainer(QWidget):
             )
         return is_open
 
-    
-    '''def get_script_info(self, script):
-        script_path = f"{self.win.dbm.scripts_path}{script}.nse"
-        if not self.win.utils.script_exists(script_path):
-            QMessageBox.information(
-                self,
-                "Error",
-                self.i18n.t(self.gui_script_not),
-                QMessageBox.Ok
-            )
-            return False 
-        description, usage, author, script_license,\
-        categories = self.win.utils.get_script_data(
-            script_path
-        )
-        script_license = script_license.replace(
-            "https://nmap.org/book/man-legal.html",
-            "<a href='https://nmap.org/book/man-legal.html'\
-            title='Nmap License'>\
-            https://nmap.org/book/man-legal.html\
-            </a>"
-        )
-        description = "".join([
-            f"<p>{a}</p>"
-            for a in description.splitlines()
-        ])
-        usage = "".join([
-            f"<p>{b}</p>"
-            for b in usage.splitlines()
-            if b != "" and (
-                b.startswith("--")
-                or b.startswith("---")
-            )
-        ])
-        if usage != "":
-            usage = self.win.utils.get_script_usage(
-                usage
-            )
-        return {
-            "script": script,
-            "description": description,
-            "usage": usage,
-            "author": author,
-            "license": script_license,
-            "categories": categories,
-            "theme": self.win.utils.get_theme_name(
-                self.win.yaml_vars["theme"]
-            )
-        }'''
-
     @Slot()
     def select_item(self, index):
         if index != 0 and index != -1:
@@ -235,7 +185,7 @@ class MainContainer(QWidget):
     @Slot(int)
     def show_close(self, pos):
         if self.tab_view.count() > 1:
-            close_menu = QMenu()
+            close_menu = QMenu(self.win)
             close_tab = QAction(
                 QIcon(
                     f"{self.win.resources_path}close.png"
