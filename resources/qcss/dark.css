@@ -2,7 +2,8 @@ QMainWindow, QDialog{background-color:#2e3436;color:#ddd;}
 QMainWindow::separator{ color:#ddd; }
 QDockWidget{color:#ddd;background-color:#3b3e3e;}
 QGroupBox, QDialog>QLabel, QDialog>QPushButton{color:#ddd;}
-QDialog>QLabel{font-family:ArchitectsDaughter, Arial, Helvetica, Verdana, Tahoma, sans-serif;font-size:13px;}
+QDialog>QGroupBox{font-family:ArchitectsDaughter, Arial, Helvetica, Verdana, Tahoma, sans-serif;}
+QDialog>QLabel{font-family:ArchitectsDaughter, Arial, Helvetica, Verdana, Tahoma, sans-serif;font-size:14px;}
 
 QDockWidget::title{text-align:center;font-family:ArchitectsDaughter, Arial, Helvetica, Verdana, Tahoma, sans-serif;font-size:13px;color:#ddd;padding-top:5px;padding-bottom:0px;}
 QDockWidget::close-button,QDockWidget::float-button{color:#ddd;margin-right:2px;}
@@ -22,7 +23,7 @@ QMenu::indicator:non-exclusive:unchecked{ image:url("{file}dark/checkbox_uncheck
 QMenu::indicator:non-exclusive:checked{ image:url("{file}dark/checkbox_checked.png"); }
 QMenu::separator{background-color:#434141;height:1px;}
 
-QHeaderView::section{ background-color:#454242;color:#ddd; }
+QHeaderView::section ,QHeaderView::section:checked, QHeaderView::section:first, QHeaderView::section:last{ background-color:rgb(109, 101, 101);color:#ddd; }
 QTreeView::item{ background-color:#ddd;color:#5b5b5b;padding-top:1px; }
 QTreeView::item:selected:active, QTreeView::item:selected{ background-color:#c3c3c3;color:#727272; }
 
@@ -56,7 +57,7 @@ QPushButton:hover, QPushButton:pressed{ border-color:#5b5b5b;background-color:#3
 QLineEdit:hover, QLineEdit:focus{ background-color:#cbc9c9;border-color:#454545; }
 
 QRadioButton::focus{border-color:transparent;background-color:transparent;}
-QRadioButton::text, QRadioButton, QCheckBox{border:none;color:#ddd;font-size:12px;}
+QDialog>QRadioButton, QRadioButton::text, QRadioButton, QCheckBox{border:none;color:#ddd;font-size:14px;}
 
 QRadioButton::indicator:checked{ image:url("{file}dark/checkbox_checked.png"); }
 QRadioButton::indicator:unchecked{ image:url("{file}dark/checkbox_unchecked.png"); }

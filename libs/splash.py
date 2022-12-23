@@ -1,20 +1,27 @@
 #!/usr/bin/python
-#-*- coding: utf-8 -*- 
-from PyQt5.QtWidgets import QSplashScreen
-from PyQt5.QtGui import QPixmap, QMovie
-from PyQt5.QtCore import pyqtSignal
+# -*- coding: utf-8 -*-
+from PySide6.QtWidgets import QSplashScreen
+from PySide6.QtGui import QPixmap, QMovie, QScreen
+from PySide6.QtCore import Signal
 
 class NSplash(QSplashScreen):
 
     counter = 0
-    processFrame = pyqtSignal( int, name='processFrame')
+    processFrame = Signal(int, name='processFrame')
 
     def __init__(self, anim, flags):
-        QSplashScreen.__init__(self, QPixmap(), flags )
-        self.setContentsMargins( 5,5,15,5 )
+        QSplashScreen.__init__(self, QPixmap(), flags)
+        self.setContentsMargins(5, 5, 15, 5)
+        screen = QScreen(self).availableSize()        
+        self.setGeometry(
+            ((screen.width()-self.geometry().width())/2),
+            ((screen.height()-self.geometry().height())/2),
+            self.geometry().width(),
+            self.geometry().height()
+        )
         self.movie = QMovie(anim)
         self.movie.frameChanged.connect(self.nextFrame)
-        self.movie.start()  
+        self.movie.start()
 
     def nextFrame(self):
         self.counter += 1

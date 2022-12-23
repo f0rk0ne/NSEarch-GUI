@@ -1,18 +1,13 @@
 en:
-  create_db: Creating the Database
+  database: Database
+  create_favdb: Creating favorites database !  
   update_db: Updating the Database
-  db_is_update: The DB is updated
-  checking_db: Cheking DB
-  create_backup: Creating backup for file script.db
-  create_backup_ok: The Backup was created successfully
-  create_backup_error: The Backup was not created
-  create_script_table: Creating Table For Script
-  create_category_table: Creating Table for Categories  
-  create_category_script_table: Creating Table for Scripts per Category  
-  upload_categories: Upload Categories
-  create_favorites_table: Create Favorites Table
+  db_is_update: The DB is updated !
+  checking_db_checksum: Checking Database checksum
+  checking_db: Checking DataBase integrity
+  checking_favdb: Checking favorites DataBase integrity
   add_fav_ok: The Script was added successfully
-  add_fav_error: The script already exists
+  add_fav_error: The script %{script} already exists
   update_fav_ok: The Script was updated successfully
   update_fav_error: The Script was not updated
   del_fav_ok: The Script was removed successfully
@@ -26,7 +21,7 @@ en:
   ranking_super_great: super-great
   updateapp_error: "Error update_app %{error}"
   ask_category_script: "Do you want to display some category (0 exit/catid)"
-  ask_history: "Do you want to execute some command ?(0 exit/histid)"  
+  ask_history: "Do you want to execute some command ?(0 exit/histid)"
   script_help: "Do you want to display some script (0 exit/scriptid )"
   result_for: "Results for "
   name: "Name"
@@ -35,3 +30,18 @@ en:
   hist_clear: "History cleared !"
   exit: "Closing NSEarch"
   not_hist: "No history yet !"
+  downloading: "Downloading Database !"
+  downloading_sc: "Downloading script "
+  downloaded: "Database downloaded successfully !"
+  no_script_upd: "There isn't scripts to download !"
+  scripts_updated: "%{count} NSE script(s) downloaded !"
+  script_upd_error: "%{ok} NSE script(s) downloaded and %{error} with errors !"
+  bad_template: "Template error !"
+  root_user: "root privileges required, Try\n[bold bright_red]./nsearch_root[/bold bright_red]"
+  file: "File"
+  arguments: "Arguments"
+  template: "Template"
+  status: "Status"
+  wrong_template: "Wrong template !"
+  total_files: "Total file(s)"
+  internet_error: "There isn't internet connectivity !"

@@ -1,5 +1,6 @@
 PyYAML
 rich
 python-i18n
-PyQt5==5.15.2
-pyqtwebkit
+python3-nmap
+pyside6-addons
+requests

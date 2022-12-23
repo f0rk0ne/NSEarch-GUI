@@ -16,10 +16,10 @@ printf "\n"
 ismacox=$(sw_vers 2>/dev/null)
 
 #Check if is it root
-if ! [ $(id -u) = 0 ] && ! [[ $ismacox ]] ; then
- echo "[-] You must be a root user" 2>&1
- exit 1
-fi
+#if ! [ $(id -u) = 0 ] && ! [[ $ismacox ]] ; then
+# echo "[-] You must be a root user" 2>&1
+# exit 1
+#fi
 
 nmapversion=$(which nmap 2>/dev/null)
 ispython=$(which python3 2>/dev/null)
@@ -30,7 +30,7 @@ sha256=$(which sha256 2>/dev/null)
 kernel=$(uname -r)
 os="$(uname -s) $kernel"
 arch=$(uname -m)
-vers=("9" "8" "7" "6")
+vers=("11" "10" "9" "8" "7")
 nsearchenv="NSEarchEnv"
 
 function create_config_file(){
@@ -40,7 +40,7 @@ function create_config_file(){
     filePath=$dbpath'script.db'
     if [[ $ismacox ]]; then
       printf "[+] CheckSum MacSOX....\n"
-      checksum=$(sha256 $filePath | awk '{print $4}')
+      checksum=$(sha256sum $filePath | awk '{print $4}')
     else
       printf "[+] CheckSum not MacSOX....\n"
       checksum=$(sha256sum $filePath | awk '{print $1}')
@@ -49,8 +49,7 @@ function create_config_file(){
     printf "[+] Creating config.yaml file ...\n"
     printf "config: \n" > config.yaml
     printf "  scriptsPath: '$dbpath'\n" >> config.yaml
-    printf "  filePath: '$filePath'\n" >> config.yaml
-    printf "  fileBackup: 'scriptbk.db'\n" >> config.yaml
+    printf "  filePath: '$filePath'\n" >> config.yaml    
     printf "  scriptdb: 'nmap_scripts.sqlite3'\n" >> config.yaml
     printf '  categories: ["auth","broadcast","brute","default","discovery","dos","exploit","external","fuzzer","intrusive","malware","safe","version","vuln"]\n' >> config.yaml
     printf "  checksum: '$checksum'\n" >> config.yaml
@@ -59,7 +58,9 @@ function create_config_file(){
     printf "  searchOpt: 1\n" >> config.yaml
     printf "  searchOnKey: 1\n" >> config.yaml
     printf "  theme: 1\n" >> config.yaml
-    printf "  splashAnim: 1\n" >> config.yaml    
+    printf "  splashAnim: 1\n" >> config.yaml
+    printf "  singleTab: 1\n" >> config.yaml
+    printf "  tabCount: 5" >> config.yaml
     chmod 777 config.yaml
   fi
   createLauncher
@@ -70,20 +71,25 @@ function createLauncher(){
   if [[ -f nsearch ]]; then
     rm nsearch
   fi
+  if [[ -f nsearch_root ]]; then
+    rm nsearch_root
+  fi
   printf "#!/bin/bash\n" >> nsearch
   printf "source $nsearchenv/bin/activate\n" >> nsearch
   printf "python3 nsearch.py \$1\n" >> nsearch
-  printf "deactivate" >> nsearch
-  chown 1000:1000 -R *
-  chmod 777 -R *
+  printf "deactivate\n" >> nsearch
+  printf "#!/bin/bash\n" >> nsearch_root
+  printf "sudo -E env PATH=\$PATH ./nsearch" >> nsearch_root
+  chmod 777 nsearch*
 }
 
 function installPipRequeriments(){
-  printf "[+] Installing virtualenv and creating environment ...\n"
+  printf "[+] Creating environment for NSEarch ...\n"
   pythonbin=$(checkPythonVersion)
   "$pythonbin" -m venv $nsearchenv --prompt NSEarch
   "$pythonbin" -m pip install --upgrade pip
   source $nsearchenv/bin/activate
+  "$pythonbin" -m pip install --upgrade pip
   printf "[+] Checking pip libs ...\n"
   "$pythonbin" -m pip install -r requirements.txt
   deactivate
@@ -91,19 +97,19 @@ function installPipRequeriments(){
 
 function installpipDebian(){
   printf "[+] Installing pip ...\n"
-  apt-get install python3-pip -y
+  sudo apt-get install python3-pip -y
   installPipRequeriments
 }
 
 function installpipRedHat(){
   printf "[+] Installing pip ...\n"
-  yum install python3-pip -y  
+  sudo yum install python3-pip -y  
   installPipRequeriments
 }
 
 function checkPythonVersion(){  
   for a in "${vers[@]}"; do
-    if [ -f "/usr/bin/python3.$a" ]; then
+    if [ -f "/usr/bin/python3.$a" ] || [ -f "/usr/local/bin/python3.$a" ]; then
       printf "python3.$a"
       break
     fi
@@ -112,9 +118,8 @@ function checkPythonVersion(){
 
 function installPythonDebian(){  
   for b in "${vers[@]}"; do
-    if [[ $(apt-get search python3."$b") ]] ; then
-      echo "Installing python3.$b ..."
-      apt-get install -y python3."$b"
+    if [[ $(sudo apt-get search python3."$b") ]] ; then      
+      sudo apt-get install -y python3."$b"
       printf "ok"   
       break
     fi
@@ -123,12 +128,12 @@ function installPythonDebian(){
 
 function installPythonRedHat(){    
   for b in "${vers[@]}"; do
-    if [[ $(yum search python3"$b" 2>/dev/null) ]]; then
-      yum install -y python3"$b" 
+    if [[ $(sudo yum search python3"$b" 2>/dev/null) ]]; then
+      sudo yum install -y python3"$b" 
       printf "ok"
       break
-    elif [[ $(yum search python3.$b 2>/dev/null) ]]; then
-      yum install -y python3.$b       
+    elif [[ $(sudo yum search python3.$b 2>/dev/null) ]]; then
+      sudo yum install -y python3.$b       
       printf "ok"
       break
     fi   
@@ -138,27 +143,22 @@ function installPythonRedHat(){
 function installPythonMacos(){
   for a in "${vers[@]}"; do
     if [[ $(brew search python3."$a") ]]; then
-      brew install python3."$a"
+      brew install python@3."$a"
       printf "ok"
       break
-    fi
-    if [[ $(brew search python3"$a") ]]; then
-      brew install python3"$a"
-      printf "ok"
-      break
-    fi
+    fi    
   done
 }
 
 if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  apt-get install openssl sqlite3 libsqlite3-dev fonts-noto-color-emoji python3-virtualenv qtwayland5 -y
+  sudo apt-get install sqlite3 fonts-noto-color-emoji python3-virtualenv qtwayland5 -y
   checkpip=0
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
     echo "[+] Installing nmap .... "
-    apt-get install nmap -y
+    sudo apt-get install nmap -y
   fi
   if [[ $ispython ]] && [[ $(checkPythonVersion) ]]; then
     printf "[+] Python is already installed :D\n"
@@ -182,13 +182,13 @@ if [ -f /etc/lsb-release ] || [ -f /etc/debian_version ] ; then
   create_config_file
 elif [ -f /etc/redhat-release ]; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  yum install openssl-devel sqlite sqlite-devel google-noto-emoji-color-fonts epel-release python3-virtualenv -y; yum update -y;
+  sudo yum install google-noto-emoji-color-fonts epel-release python3-virtualenv sqlite-devel -y; sudo yum update -y;
   checkpip=0
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
     echo "[+] Installing nmap .... "
-    yum install nmap -y
+    sudo yum install nmap -y
   fi
   if [[ $ispython ]] && [[ $(checkPythonVersion) ]]; then
     printf "[+] Python is already installed :D\n"
@@ -212,8 +212,7 @@ elif [ -f /etc/redhat-release ]; then
   fi
   create_config_file
 elif [[ $ismacox ]]; then
-  printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"
-  brew install -v sqlite3
+  printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"  
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
