@@ -234,7 +234,7 @@ class FavoriteDock(QDockWidget):
                         0
                     )
                 if script.text() in self.win.fav_list.keys():
-                    show_menu = QMenu()
+                    show_menu = QMenu(self.win)
                     del_fav_act = QAction(
                         QIcon(
                             f"{self.win.resources_path}minus.png"

@@ -110,6 +110,8 @@ class NMenuBar(QMenuBar):
 
         self.menu_options.addAction(self.m_searchkey)
         self.menu_options.addSeparator()
+
+        self.create_menu_searchopts()
         self.menu_options.addAction(self.menu_search_opts.menuAction())        
         self.menu_options.addSeparator()
         self.menu_options.addAction(self.m_splash)
@@ -175,9 +177,6 @@ class NMenuBar(QMenuBar):
         self.m_searchkey.triggered["bool"].connect(
             self.select_key_on
         )
-
-        self.create_menu_searchopts()
-
         self.m_splash = QAction(u"Splash Animation", self.win)
         self.m_splash.setObjectName(u"m_splash")
         self.m_splash.setCheckable(True)
@@ -195,7 +194,7 @@ class NMenuBar(QMenuBar):
             self.set_vertical_title
         )
 
-    def create_menu_searchopts(self):
+    def create_menu_searchopts(self):        
         self.menu_search_opts = QMenu(
             "Search Options",
             self.menu_options

@@ -66,10 +66,11 @@ function createLauncher(){
   fi
   if [[ -f nsearch_root ]]; then
     rm nsearch_root
-  fi
+  fi  
+  pyversion=$(checkPythonVersion)  
   printf "#!/bin/bash\n" >> nsearch
   printf "source $nsearchenv/bin/activate\n" >> nsearch
-  printf "python3 nsearch.py \$1\n" >> nsearch
+  printf "$pyversion nsearch.py \$1\n" >> nsearch
   printf "deactivate\n" >> nsearch
   printf "#!/bin/bash\n" >> nsearch_root
   printf "sudo -E env PATH=\$PATH ./nsearch" >> nsearch_root

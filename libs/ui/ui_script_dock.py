@@ -311,7 +311,7 @@ class scriptDock(QDockWidget):
             self.win.show_exception(e)
 
     def exec_add_fav(self, script, pos):
-        add_fav = QMenu()
+        add_fav = QMenu(self.win)
         add_menu = QAction(
             QIcon(
                 f"{self.win.resources_path}plus.png"
@@ -394,7 +394,7 @@ class scriptDock(QDockWidget):
                 return (False, self.win.i18n.t("gui.fav_already_added"))       
 
     def exec_category_opts(self, pos):
-        tree_menu = QMenu()
+        tree_menu = QMenu(self.win)
         collapse_menu = QAction(
             QIcon(f"{self.win.resources_path}minus.png"),
             self.win.i18n.t("gui.collapse_all"
