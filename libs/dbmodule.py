@@ -139,7 +139,7 @@ def create_favdb():
 
 def download_db():
     utils.print(
-        f"[{COLOR_2}]{i18n.t('setup.downloading')}[/{COLOR_2}]",
+        i18n.t('setup.downloading'),
         True
     )
     if utils.is_con():
@@ -148,7 +148,7 @@ def download_db():
             i18n.t("setup.internet_error"),
         ):
             utils.print(
-                f"[{BOLD_COLOR_2}]{i18n.t('setup.downloaded')}[/{BOLD_COLOR_2}]"
+                i18n.t('setup.downloaded')
             )
     else:
         utils.print(
@@ -494,7 +494,7 @@ def get_fav_formmated():
 
 # get database rows for categories and sripts scheme
 def get_data():
-        db = None
+    db = None
     try:
         db, cursor = __dbconnect()
         sql = "select categories.name, replace(scripts.name,'.nse','') "
