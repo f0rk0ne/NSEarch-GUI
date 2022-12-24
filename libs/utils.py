@@ -1380,7 +1380,7 @@ class Utils:
                             stream.write(chunk)  
                             progress.update(task, advance=1)
                     stream.close()
-                    os.chmod(script_file, stat.S_IRWXU)
+                    os.chmod(script_file, 0o644)
                     return True
                 else:
                     return False
