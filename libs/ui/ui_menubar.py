@@ -36,6 +36,7 @@ class NMenuBar(QMenuBar):
     menu_about = None
     m_about, m_about_qt, m_updatedb = None, None, None
     db_title = "setup.database"    
+    thread = None
 
     def __init__(self, parent, sdock, fdock):
         super(NMenuBar, self).__init__(parent)
@@ -721,22 +722,23 @@ class NMenuBar(QMenuBar):
     def check_database(self):
         try:
             if os.path.exists(self.win.dbm.dbname):                
-                thread = QThread()
+                self.thread = QThread()
                 iscon = IsCon()
                 iscon.setUtils(self.win.utils)                
-                iscon.moveToThread(thread)
+                iscon.moveToThread(self.thread)
                 
-                thread.started.connect(iscon.doWork)
-                thread.finished.connect(thread.quit)
-                iscon.resultReady.connect(self.result_con)
-                thread.start()
-                thread.exec_()
+                self.thread.started.connect(iscon.doWork)
+                self.thread.finished.connect(self.thread.quit)
+                iscon.resultReady.connect(self.result_con)                
+                self.thread.start()
+                self.thread.exec_()
             else:
                 self.init_download_dlg()
         except Exception as e:
             self.win.show_exception(e)
 
     def result_con(self, result):
+        self.thread.quit()
         if result:
             if self.win.utils.check_db_update(
                 self.win.utils.get_checksum()
