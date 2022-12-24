@@ -3,14 +3,14 @@
 import sys
 sys.path.append("../libs")
 sys.path.append("libs/")
-from utils import *
+import utils
 import sqlite3 as lite
 import re
 import os
 import i18n
 import time
 
-utils = Utils()
+utils = utils.Utils()
 utils.check_config_file()
 yaml_vars = utils.get_yaml_vars()
 
@@ -198,8 +198,8 @@ def create_favorite(**kwargs):
         except Exception as e:
             if "unique" in str(e).lower():
                 utils.print("[-] " + i18n.t("setup.add_fav_error", script=script))
-            else:
-                utils.print_traceback(e)
+                return False
+            utils.print_traceback(e)
         finally:
             if db:
                 db.close()

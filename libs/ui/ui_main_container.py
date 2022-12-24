@@ -32,8 +32,8 @@ class MainContainer(QWidget):
     def setupUi(self):
         self.setObjectName("main_container")
         self.setMinimumSize(QSize(300, 300))
-        main_gridLayout = QGridLayout(self)
-        main_gridLayout.setObjectName("main_gridlayout")
+        main_gridlayout = QGridLayout(self)
+        main_gridlayout.setObjectName("main_gridlayout")
         self.tab_view = QTabWidget(self)
         self.tab_view.setObjectName("tab_view")
         self.tab_view.setContextMenuPolicy(Qt.CustomContextMenu)
@@ -47,7 +47,7 @@ class MainContainer(QWidget):
         self.tab_view.tabCloseRequested.connect(
             self.close_script_tab
         )
-        main_gridLayout.addWidget(self.tab_view, 0, 0, 1, 1)
+        main_gridlayout.addWidget(self.tab_view, 0, 0, 1, 1)
 
     def remove_script_tabs(self):
         for tab in range(0, self.tab_view.count()):            
@@ -85,11 +85,11 @@ class MainContainer(QWidget):
         web_view = QWebEngineView(self)
         web_view.setContextMenuPolicy(Qt.NoContextMenu)
         web_view.adjustSize()
-        sizePolicy = QSizePolicy(
+        size_policy = QSizePolicy(
             QSizePolicy.Expanding,
             QSizePolicy.Expanding
         )
-        web_view.setSizePolicy(sizePolicy)
+        web_view.setSizePolicy(size_policy)
         web_page = WebPage(self)
         web_page.setSettings()
         web_view.setPage(web_page)
@@ -168,7 +168,7 @@ class MainContainer(QWidget):
             if script == self.tab_view.tabText(t_index):
                 is_open = True
                 tab_index = t_index
-                pass
+                break
         if is_open:
             self.tab_view.setCurrentIndex(
                 tab_index if tab_index != None else 1

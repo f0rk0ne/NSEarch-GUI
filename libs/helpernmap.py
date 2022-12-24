@@ -23,19 +23,17 @@ class HelperNmap:
       if self.args == "templates":
         self.show_templates()
       else:
-        if self.__validateParams():
+        if self.__validate_params():
           self.utils.show_spinner(f"{self.i18n.t('help.running_scan')} {self.net}")
           self.utils.run_nmap(
             self.net,
             self.arguments,
             self.i18n.t("setup.root_user")          
-          )
-        else:
-          pass
+          )        
     except Exception as e:
       self.utils.print_traceback(e)
   
-  def __validateParams(self):
+  def __validate_params(self):
     argsdic = {}
     if self.args.find('net:') != -1 and self.args.find('template:') != -1:
       if len(self.args.split(":")) == 3:
@@ -46,12 +44,10 @@ class HelperNmap:
       elif len(self.args.split(":")) == 2:
         argsdic.update({
           self.args.split(":")[0]:self.args.split(":")[1].split(" ")[0]
-        })
-      else:
-        pass
+        })      
     else:
       self.__parent.do_help("run")
-    return self.__setParams(**argsdic)
+    return self.__set_params(**argsdic)
 
   #evaluate and list templates
   def show_templates(self):    
@@ -67,7 +63,7 @@ class HelperNmap:
     )
 
   #private function to set params
-  def __setParams(self,**kwargs):
+  def __set_params(self,**kwargs):
     try:
       if kwargs is not None:
         if "net" in kwargs.keys() and "template" in kwargs.keys():

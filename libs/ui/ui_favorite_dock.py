@@ -44,20 +44,19 @@ class FavoriteDock(QDockWidget):
 
     def setupUi(self):
         self.setObjectName("favoritedock")
-        sizePolicy = QSizePolicy(
+        size_policy = QSizePolicy(
             QSizePolicy.Expanding,
             QSizePolicy.Expanding
         )
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(
+        size_policy.setHorizontalStretch(0)
+        size_policy.setVerticalStretch(0)
+        size_policy.setHeightForWidth(
             self.sizePolicy().hasHeightForWidth()
         )
-        self.setSizePolicy(sizePolicy)
+        self.setSizePolicy(size_policy)
         self.setMinimumSize(QSize(258, 200))
         self.setMaximumSize(QSize(400, 524287))
-        #self.setMouseTracking(True)
-        #self.setAcceptDrops(True)
+        
         self.setFloating(False)
         self.setFeatures(
             QDockWidget.DockWidgetFeature.DockWidgetClosable|
@@ -73,13 +72,13 @@ class FavoriteDock(QDockWidget):
     def init_layout(self):
         self.fav_layout = QWidget()
         self.fav_layout.setObjectName("fav_layout")
-        fav_gridLayout = QGridLayout(self.fav_layout)
-        fav_gridLayout.setObjectName("fav_gridlayout")
+        fav_gridlayout = QGridLayout(self.fav_layout)
+        fav_gridlayout.setObjectName("fav_gridlayout")
 
         self.init_search_controls()
-        fav_gridLayout.addWidget(self.fsearch_text, 0, 0, 1, 1)  
-        fav_gridLayout.addWidget(self.fsearch_btn, 0, 1, 1, 1)
-        fav_gridLayout.addWidget(self.fclear_btn, 0, 2, 1, 1)
+        fav_gridlayout.addWidget(self.fsearch_text, 0, 0, 1, 1)  
+        fav_gridlayout.addWidget(self.fsearch_btn, 0, 1, 1, 1)
+        fav_gridlayout.addWidget(self.fclear_btn, 0, 2, 1, 1)
 
         self.fav_treeview = QTreeView(self.fav_layout)
         self.fav_treeview.setObjectName("fav_treeview")
@@ -95,7 +94,7 @@ class FavoriteDock(QDockWidget):
             self.show_fav_opts
         )
 
-        fav_gridLayout.addWidget(self.fav_treeview, 1, 0, 1, 3)        
+        fav_gridlayout.addWidget(self.fav_treeview, 1, 0, 1, 3)        
         self.setWidget(self.fav_layout)
         self.init_reg_exp()
 

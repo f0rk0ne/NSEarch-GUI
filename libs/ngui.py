@@ -29,7 +29,7 @@ from PySide6.QtNetwork import QNetworkInformation
 from ui.ui_menubar import NMenuBar
 from ui.ui_main_container import MainContainer
 from ui.ui_favorite_dock import FavoriteDock
-from ui.ui_script_dock import scriptDock
+from ui.ui_script_dock import ScriptDock
 
 projectpath = f"/{os.path.abspath(sys.argv[0])[1:-len('nsearch.py')]}"
 fontpath = f"{projectpath}resources/ArchitectsDaughter-Regular.ttf"
@@ -203,7 +203,7 @@ class NGui(QMainWindow):
             self.i18n.t("gui.app_name")
         )
         self.author_txt = self.i18n.t("gui.act_author")
-        self.sc_dock = scriptDock(self)
+        self.sc_dock = ScriptDock(self)
         self.addDockWidget(
             Qt.LeftDockWidgetArea,
             self.sc_dock
@@ -288,9 +288,7 @@ class NGui(QMainWindow):
             self.load_icons()
             self.style().unpolish(self)
             self.style().polish(self)
-            self.update()
-            #self.sc_dock.update()
-            #self.fav_dock.update()
+            self.update()            
         except Exception as e:
             self.utils.print_traceback(e)
 

@@ -8,7 +8,8 @@ import time
 import yaml
 import re
 import requests
-from nmap3 import *
+import nmap3
+import stat
 from rich import box
 from rich.console import Console
 from rich.console import Group
@@ -37,6 +38,7 @@ SCRIPT_URL = f"{NSE_URL}scripts/"
 DOWNLOAD_URL = "https://svn.nmap.org/nmap/scripts/"
 DB_URL = "https://raw.githubusercontent.com/f0rk0ne/NSEarch-GUI/main/nmap_scripts.sqlite3"
 CHECKSUM_URL = "https://raw.githubusercontent.com/f0rk0ne/NSEarch-GUI/main/db/checksum"
+YAML_EXT = ".yaml"
 CATEGORIES = [
     "auth", "broadcast", "brute", "default",
     "discovery", "dos", "exploit", "external",
@@ -58,7 +60,7 @@ class Utils:
     footer += "Email:🙎jko@dragonjar.org | 🙎www.dragonjar.org"
     lastcommand, lastargs = '', ''
     history, __hist_file = [], 'history'
-    spinner_text, __debug, db_url = '', True, DB_URL
+    spinner_text, __debug, db_url = '', False, DB_URL
     db_name = DB_NAME
     path_reg = "^(\/)+[\w\d\.\/]+(\/)$"
     bool_reg = "^[0|1]$"
@@ -450,14 +452,10 @@ class Utils:
 
     # get yaml items
     def get_yaml(self):
-        item = None
+        stream = None
         try:
             stream = open(CONFIG_FILE, 'r+')
             item = yaml.safe_load(stream)
-            stream.close()
-        except Exception as e:
-            self.print_traceback(e)
-        finally:
             if isinstance(item, dict):
                 if "config" in item.keys():
                     return item["config"]
@@ -466,7 +464,12 @@ class Utils:
                     return dict()
             else:
                 self.create_config_file()
-                return dict()
+                return dict()            
+        except Exception as e:
+            self.print_traceback(e)
+        finally:
+            if stream:
+                stream.close()
 
     # check configuration file
     def check_config_file(self):
@@ -475,25 +478,31 @@ class Utils:
                 item = self.get_yaml()
                 for key in self.conf_vars.keys():
                     if key in item.keys():
-                        if isinstance(item[key], list):
-                            if set(item[key]) == set(CATEGORIES):
-                                self.conf_vars[key]["value"] = item[key]
-                            else:
-                                self.create_config_file()
-                                return False
-                        elif re.match(
-                            self.conf_vars[key]["regexp"],
-                            str(item[key])
-                        ):
-                            self.conf_vars[key]["value"] = item[key]
-                        else:
-                            self.create_config_file()
-                            return False
+                        if not self.load_conf_var(item, key):
+                            return False                        
                     else:
                         self.create_config_file()
                         return False
         except Exception as e:
             self.print_traceback(e)
+
+    # load config var
+    def load_conf_var(self, item, key):
+        if isinstance(item[key], list):
+            if set(item[key]) == set(CATEGORIES):
+                self.conf_vars[key]["value"] = item[key]
+            else:
+                self.create_config_file()
+                return False
+        elif re.match(
+            self.conf_vars[key]["regexp"],
+            str(item[key])
+        ):
+            self.conf_vars[key]["value"] = item[key]
+        else:
+            self.create_config_file()
+            return False
+        return True
 
     # get yam files vars
     def get_db_vars(self):
@@ -910,9 +919,9 @@ class Utils:
     def clear_history(self, hist_text):
         try:
             if os.path.exists(self.__hist_file):
-                file = open(self.__hist_file, "w")
-                file.write("")
-                file.close()
+                h_file = open(self.__hist_file, "w")
+                h_file.write("")
+                h_file.close()
                 self.print(
                     f"[{COLOR_2}]{hist_text}[/{COLOR_2}]",
                     True
@@ -1037,8 +1046,6 @@ class Utils:
                             progress.update(task, advance=1)
                     stream.close()
                     return True
-                else:
-                    raise Exception(f"Error {req.status_code}")
             return False
         except requests.ConnectionError as e:
             self.print(f"[{BOLD_COLOR_2}]{conn_error}[/{BOLD_COLOR_2}]")
@@ -1062,12 +1069,11 @@ class Utils:
     def run_nmap(self, net, arguments, root_text):
         try:
             nm = nmap3.NmapAsync()
-            result = asyncio.run(
-                nm.scan_command(
-                    net,
-                    arguments
-                )
+            result = nm.scan_command(
+                net,
+                arguments
             )
+            
             self.print_nmap_results(
                 net,
                 nm.parser.filter_top_ports(result)
@@ -1084,15 +1090,7 @@ class Utils:
     # print nmap results
     def print_nmap_results(self, net, result):
         try:
-            if isinstance(result, dict):
-                '''print("print_nmap_results")
-                for a in result.keys():
-                    print("___________________________")
-                    print(f"Key -> {a}")          
-                    if a != "task_results":
-                        for b in result[a]:            
-                            print(f"{b} -> {result[a][b]}")
-                    print("___________________________")'''
+            if isinstance(result, dict):                
                 table = Table.grid(expand=True)
                 table.add_column()            
 
@@ -1190,11 +1188,7 @@ class Utils:
             table = self.get_ports_table()
             for b in ports:
                 if isinstance(b, dict):
-                    cpe, product = "", ""
-                    if len(b["cpe"]) > 0:
-                        cpe = b["cpe"][0]["cpe"].replace("cpe:/", "")
-                    if "product" in b["service"].keys():
-                        product = b["service"]["product"]
+                    cpe, product = "", ""                    
                     table.add_row(
                         b["protocol"],
                         b["portid"],
@@ -1210,6 +1204,15 @@ class Utils:
             return table
         else:
             return None
+
+    def get_port_strs(self, b):
+        cpe = ""
+        product = ""
+        if len(b["cpe"]) > 0:
+            cpe = b["cpe"][0]["cpe"].replace("cpe:/", "")
+        if "product" in b["service"].keys():
+            product = b["service"]["product"]
+        return (cpe, product)
 
     def add_script_results(self, scripts, port):
         port_scripts = []
@@ -1254,18 +1257,15 @@ class Utils:
                 title = f"[{BOLD_COLOR_2}]Script(s) result(s) for port[/{BOLD_COLOR_2}] ({key})"
                 table = Table.grid(expand=True, padding=(1,0))
                 table.add_column()
-                table.add_row(Align.center(title))                
+                table.add_row(Align.center(title))
                 for result in self.scripts_result[key]:
                     raw = self.format_port_raw(result['raw'])
                     if raw:
                         raw = f"\n{raw}"
                     table.add_row(
-                        f"[green3]{result['name']}[/green3]:"+
+                        f"[green3]{result['name']}[/green3]:" +
                         raw
-                    )               
-                    #if len(result["data"]) > 0:
-                     #   for data in result["data"]:
-                      #      print(data)
+                    )
             self.scripts_result = {}            
         return table
 
@@ -1378,12 +1378,12 @@ class Utils:
                             stream.write(chunk)  
                             progress.update(task, advance=1)
                     stream.close()
-                    os.chmod(script_file, 655)
+                    os.chmod(script_file, stat.S_IRWXU)
                     return True
                 else:
                     return False
         except Exception as e:
-            pass            
+            del e            
         return False
 
     def print_templates(self, text):
@@ -1401,7 +1401,7 @@ class Utils:
         for a, b, c in os.walk("templates"):
             del b            
             for d in c:
-                if d.endswith(".yaml"):
+                if d.endswith(YAML_EXT):
                     args = self.check_template(d)
                     state = "👍"
                     if not args:
@@ -1409,7 +1409,7 @@ class Utils:
                         state = "👎"
                     table.add_row(
                         f"templates/{d}",
-                        d.strip(".yaml"),
+                        d.strip(YAML_EXT),
                         state,
                         args
                     )
@@ -1423,7 +1423,7 @@ class Utils:
 
     def check_template(self, template):
         try:            
-            template_name = template.replace(".yaml", "")
+            template_name = template.replace(YAML_EXT, "")
             stream = open(
                 f"templates/{template}",
                 "+r"
@@ -1437,5 +1437,5 @@ class Utils:
 
     # print exception traceback
     def print_traceback(self, e):
-        if self.__debug:
+        if self.__debug and e:
             self.console.print_exception()

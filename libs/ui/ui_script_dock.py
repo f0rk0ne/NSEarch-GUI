@@ -20,7 +20,7 @@ from PySide6.QtWidgets import QMenu
 from PySide6.QtWidgets import QMessageBox
 from sqlite3 import IntegrityError
 
-class scriptDock(QDockWidget):
+class ScriptDock(QDockWidget):
 
     MainWindow = None
     sc_layout = None
@@ -58,16 +58,16 @@ class scriptDock(QDockWidget):
 
     def setupUi(self):
         self.setObjectName("scriptdock")
-        sizePolicy = QSizePolicy(
+        size_policy = QSizePolicy(
             QSizePolicy.Expanding,
             QSizePolicy.Expanding
         )
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(
+        size_policy.setHorizontalStretch(0)
+        size_policy.setVerticalStretch(0)
+        size_policy.setHeightForWidth(
             self.sizePolicy().hasHeightForWidth()
         )
-        self.setSizePolicy(sizePolicy)
+        self.setSizePolicy(size_policy)
         self.setMinimumSize(QSize(273, 320))
         self.setMaximumSize(QSize(330, 524287))        
         self.setFloating(False)
@@ -358,21 +358,18 @@ class scriptDock(QDockWidget):
                 if script not in self.win.fav_list.keys():
                     self.win.fav_list[script] = ranking
                 self.win.fav_dock.clear_fav_search()
-                QMessageBox.information(
-                    self,
-                    self.win.i18n.t("gui.dock_favorites"),
-                    msg,
-                    QMessageBox.Ok,
-                    QMessageBox.Ok
-                )
-            else:
-                raise Exception(msg)
+            QMessageBox.information(
+                self,
+                self.win.i18n.t("gui.dock_favorites"),
+                msg,
+                QMessageBox.Ok,
+                QMessageBox.Ok
+            )            
         except Exception as e:
             self.win.show_exception(e)
 
     def create_gui_fav(self, **kwargs):
-        db = None
-        already = False
+        db = None        
         try:
             db, cursor = self.win.dbm.get_connect(True)
             cursor.execute(
@@ -382,16 +379,13 @@ class scriptDock(QDockWidget):
             db.commit()
             if cursor.rowcount == 1:
                 return (True, self.win.i18n.t("gui.fav_add"))
-        except IntegrityError as e:
-            already = True
-            pass
+        except IntegrityError as e:            
+            return (False, self.win.i18n.t("gui.fav_already_added"))
         except Exception as e:
             return (False, "Error : " + e.args[0])
         finally:
             if db:
-                db.close()
-            if already:
-                return (False, self.win.i18n.t("gui.fav_already_added"))       
+                db.close()        
 
     def exec_category_opts(self, pos):
         tree_menu = QMenu(self.win)
@@ -433,8 +427,8 @@ class scriptDock(QDockWidget):
         del previous
         script = self.scr_treeview.model().itemFromIndex(
             current
-        )
-        if script is not None:
+        )        
+        if script != None:
             if script.parent() != None:
                 self.win.main_widget.create_script_tab(
                     script.text()

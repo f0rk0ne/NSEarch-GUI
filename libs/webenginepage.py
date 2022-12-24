@@ -44,6 +44,7 @@ class WebPage(QWebEnginePage):
         )
     
     def acceptNavigationRequest(self, url=QUrl, type=QWebEnginePage.NavigationType, isMainFrame=bool):
+        del isMainFrame
         if type == QWebEnginePage.NavigationType.NavigationTypeLinkClicked:
             if not url.isEmpty() and url.url().startswith("https"):                
                 QDesktopServices.openUrl(url)

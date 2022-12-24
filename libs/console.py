@@ -3,11 +3,13 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path.append("../libs")
-from helper import *
+import helper
 import helpernmap
 import readline
 import os
 import cmd
+import utils
+import dbmodule
 
 HELP_USAGE = "help.help_usage"
 HELP_FAV_NAME = "help.help_fav_name"
@@ -15,7 +17,7 @@ HELP_FAV_RANKING = "help.help_fav_ranking"
 
 class Console(cmd.Cmd):
 
-    __helper = Helper
+    __helper = helper.Helper
     _history = ''
     __hist_length = None
     utils = utils.Utils()
@@ -70,6 +72,10 @@ class Console(cmd.Cmd):
     def get_scripts(self):
         if len(self.scripts) == 0:
             self.scripts = dbmodule.get_scripts()
+
+    def get_scripts_complete(self, text):        
+        self.get_scripts()
+        return [i for i in self.scripts if i.startswith(text)]
 
     def loadHelp(self):
         self.getHelpText()
@@ -257,8 +263,7 @@ class Console(cmd.Cmd):
     def complete_doc(self, text, line, begidx, endidx):
         """ Autocomplete over the last result """
         del line, begidx, endidx
-        self.get_scripts()
-        return [i for i in self.scripts if i.startswith(text)]
+        return self.get_scripts_complete(text)
 
     def do_last(self, args):
         """ last help"""
@@ -307,8 +312,7 @@ class Console(cmd.Cmd):
     def complete_addfav(self, text, line, begidx, endidx):
         """ Autocomplete over the last result """
         del line, begidx, endidx
-        self.get_scripts()
-        return [i for i in self.scripts if i.startswith(text)]
+        return self.get_scripts_complete(text)
 
     def do_delfav(self, args):
         if not args:

@@ -35,6 +35,7 @@ class NMenuBar(QMenuBar):
     m_scriptdock, m_favoritedock = None, None
     menu_about = None
     m_about, m_about_qt, m_updatedb = None, None, None
+    db_title = "setup.database"
     '''menus = [
         {"control": self.menu_app,"tr_key": "gui.menu_app"}
         {}
@@ -726,7 +727,7 @@ class NMenuBar(QMenuBar):
         try:
             if os.path.exists(self.win.dbm.dbname):                
                 thread = QThread()
-                iscon = isCon()
+                iscon = IsCon()
                 iscon.setUtils(self.win.utils)                
                 iscon.moveToThread(thread)
                 
@@ -749,14 +750,14 @@ class NMenuBar(QMenuBar):
             else:
                 QMessageBox.information(
                     self,
-                    self.win.i18n.t("setup.database"),
+                    self.win.i18n.t(self.db_title),
                     self.win.i18n.t("setup.db_is_update"),
                     QMessageBox.StandardButton.Ok
                 )
         else:
             QMessageBox.information(
                 self,
-                self.win.i18n.t("setup.database"),
+                self.win.i18n.t(self.db_title),
                 self.win.i18n.t("setup.internet_error"),
                 QMessageBox.StandardButton.Ok
             )
@@ -772,7 +773,7 @@ class NMenuBar(QMenuBar):
         if is_updated:
             QMessageBox.information(
                 self,
-                self.win.i18n.t("setup.database"),
+                self.win.i18n.t(self.db_title),
                 self.win.i18n.t("setup.downloaded"),
                 QMessageBox.StandardButton.Ok
             )
@@ -785,7 +786,7 @@ class NMenuBar(QMenuBar):
                 QMessageBox.StandardButton.Ok
             )
 
-class isCon(QObject):
+class IsCon(QObject):
     utils = None
     resultReady = Signal(int, name="resultReady")
 

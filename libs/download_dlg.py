@@ -58,8 +58,8 @@ class DownloadDlg(QProgressDialog):
         self.write_data()
 
     @Slot(int, int)
-    def download_dbprogress(self, bytesRecieved, bytesTotal):
-        value = bytesRecieved*100/bytesTotal
+    def download_dbprogress(self, bytes_recieved, bytes_total):
+        value = bytes_recieved*100/bytes_total
         self.setValue(value)
         self.write_data()
         

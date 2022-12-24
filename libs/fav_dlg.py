@@ -44,13 +44,13 @@ class FavDlg(QDialog):
 
     def init_layout(self):
         self.init_controls()
-        gridLayout = QGridLayout(self)
-        gridLayout.setSpacing(5)
-        gridLayout.setObjectName(u"gridLayout")
-        gridLayout.setContentsMargins(20, 0, 20, 20)
-        gridLayout.addWidget(self.fav_label, 0, 0, 1, 1)
-        gridLayout.addWidget(self.ranking_cb, 1, 0, 1, 1)
-        gridLayout.addWidget(self.accept_btn, 2, 0, 1, 1)
+        grid_layout = QGridLayout(self)
+        grid_layout.setSpacing(5)
+        grid_layout.setObjectName(u"gridLayout")
+        grid_layout.setContentsMargins(20, 0, 20, 20)
+        grid_layout.addWidget(self.fav_label, 0, 0, 1, 1)
+        grid_layout.addWidget(self.ranking_cb, 1, 0, 1, 1)
+        grid_layout.addWidget(self.accept_btn, 2, 0, 1, 1)
 
     def init_controls(self):
         self.fav_label = QLabel(self)

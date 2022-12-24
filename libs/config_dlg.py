@@ -68,26 +68,26 @@ class ConfDlg(QDialog):
     def init_layout(self):
         self.init_lang_groupbox()
         self.load_lang()
-        gridLayout = QGridLayout(self)
-        gridLayout.setObjectName(u"gridLayout")
-        gridLayout.setHorizontalSpacing(30)
-        gridLayout.setVerticalSpacing(20)
-        gridLayout.setContentsMargins(20, 30, 20, 30)
+        grid_layout = QGridLayout(self)
+        grid_layout.setObjectName(u"gridLayout")
+        grid_layout.setHorizontalSpacing(30)
+        grid_layout.setVerticalSpacing(20)
+        grid_layout.setContentsMargins(20, 30, 20, 30)
 
-        gridLayout.addWidget(self.lang_group, 0, 0, 1, 1)
-        gridLayout.addWidget(self.theme_group, 0, 1, 1, 1)
+        grid_layout.addWidget(self.lang_group, 0, 0, 1, 1)
+        grid_layout.addWidget(self.theme_group, 0, 1, 1, 1)
 
-        gridLayout.addWidget(self.search_on_group, 1, 0, 1, 1)
-        gridLayout.addWidget(self.search_by_group, 1, 1, 1, 1)
+        grid_layout.addWidget(self.search_on_group, 1, 0, 1, 1)
+        grid_layout.addWidget(self.search_by_group, 1, 1, 1, 1)
 
-        gridLayout.addWidget(self.splash_group, 2, 0, 1, 1)
-        gridLayout.addWidget(self.vertical_title_group, 2, 1, 1, 1)
+        grid_layout.addWidget(self.splash_group, 2, 0, 1, 1)
+        grid_layout.addWidget(self.vertical_title_group, 2, 1, 1, 1)
 
-        gridLayout.addWidget(self.singletab_group, 3, 0, 1, 1)
-        gridLayout.addWidget(self.tabcount_group, 3, 1, 1, 1)
+        grid_layout.addWidget(self.singletab_group, 3, 0, 1, 1)
+        grid_layout.addWidget(self.tabcount_group, 3, 1, 1, 1)
 
-        gridLayout.addWidget(self.btn_accept, 4, 0, 1, 1)
-        gridLayout.addWidget(self.btn_cancel, 4, 1, 1, 1)
+        grid_layout.addWidget(self.btn_accept, 4, 0, 1, 1)
+        grid_layout.addWidget(self.btn_cancel, 4, 1, 1, 1)
 
 
     def init_lang_groupbox(self):
