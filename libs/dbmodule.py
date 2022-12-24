@@ -3,14 +3,14 @@
 import sys
 sys.path.append("../libs")
 sys.path.append("libs/")
-import utils
+from utils import Utils
 import sqlite3 as lite
 import re
 import os
 import i18n
 import time
 
-utils = utils.Utils()
+utils = Utils()
 utils.check_config_file()
 yaml_vars = utils.get_yaml_vars()
 
@@ -494,6 +494,7 @@ def get_fav_formmated():
 
 # get database rows for categories and sripts scheme
 def get_data():
+        db = None
     try:
         db, cursor = __dbconnect()
         sql = "select categories.name, replace(scripts.name,'.nse','') "
