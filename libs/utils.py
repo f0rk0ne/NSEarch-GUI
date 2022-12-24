@@ -10,6 +10,7 @@ import re
 import requests
 import nmap3
 import stat
+import asyncio
 from rich import box
 from rich.console import Console
 from rich.console import Group
@@ -1069,11 +1070,12 @@ class Utils:
     def run_nmap(self, net, arguments, root_text):
         try:
             nm = nmap3.NmapAsync()
-            result = nm.scan_command(
-                net,
-                arguments
+            result = asyncio.run(
+                nm.scan_command(
+                    net,
+                    arguments
+                )
             )
-            
             self.print_nmap_results(
                 net,
                 nm.parser.filter_top_ports(result)
