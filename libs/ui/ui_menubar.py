@@ -35,11 +35,7 @@ class NMenuBar(QMenuBar):
     m_scriptdock, m_favoritedock = None, None
     menu_about = None
     m_about, m_about_qt, m_updatedb = None, None, None
-    db_title = "setup.database"
-    '''menus = [
-        {"control": self.menu_app,"tr_key": "gui.menu_app"}
-        {}
-    ]'''
+    db_title = "setup.database"    
 
     def __init__(self, parent, sdock, fdock):
         super(NMenuBar, self).__init__(parent)
@@ -663,8 +659,7 @@ class NMenuBar(QMenuBar):
     def toggle_splash_anim(self, checked):
         self.win.yaml_vars["splashAnim"] = int(checked)
         self.win.update_yaml_file()
-
-    @Slot()
+    
     def select_searchby(self):
         search_opt = None        
         if self.sender() == self.m_name:
@@ -681,7 +676,7 @@ class NMenuBar(QMenuBar):
             if self.m_category.isChecked():
                 search_opt = 3
             else:
-                self.m_category.setChecked(True)
+                self.m_category.setChecked(True)        
         if self.win.yaml_vars["searchOpt"] != search_opt:
             self.win.yaml_vars["searchOpt"] = search_opt
             self.win.update_yaml_file()
