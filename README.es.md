@@ -177,10 +177,7 @@ config:
 <br>
 <h2>Novedades</h2>
 <h3>Consola</h3>
-<picture    
-    <srcset source="https://user-images.githubusercontent.com/77067446/209736031-3845f3e4-f71a-427e-98a1-4d1b0c5ca02c.png" media=(max-width:480px)></srcset>
-    <img title="NSEarch modo consola" src="https://user-images.githubusercontent.com/77067446/209735845-577dac54-b9e2-429e-8019-103ec67e81b3.png"></img>
-</picture>
+<img title="NSEarch modo consola" src="https://user-images.githubusercontent.com/77067446/209735845-577dac54-b9e2-429e-8019-103ec67e81b3.png">
 
 - Al integrar el módulo Python rich, se incluyeron varias de las funcionalidades en la versión consola, por ejemplo resultados en columnas, animaciones al crear la BD entre otras.
 - Se agregó el comando showcat que muestra las Categorías y permite listar los scripts en una categoría y al finalizar ver la ayuda de estos.
