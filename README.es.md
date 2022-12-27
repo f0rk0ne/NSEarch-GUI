@@ -8,7 +8,7 @@
 <p>Es un fork de la aplicación NSEarch de <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquirá</a> de la comunidad <a href="https://www.dragonjar.org">DragonJAR</a>, el cual integra una interfaz gráfica y agrega nuevos comandos.
 </p>
 <p align="center">
-<img title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/191131576-cecee5ca-747a-4bc8-a101-947146268bb7.png"/>
+    <img title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/209729693-a69a9032-f004-43c8-9cc8-37d0fb2d5ad4.png"/>    
 </p>
 <br/>
 <h2>Requerimientos</h2>
@@ -40,7 +40,15 @@ bash install.sh
 <br>
 
 ```bash
-sudo ./nsearch
+./nsearch
+```
+
+Cuando se requieran operaciones con privilegios root, por ejemplo descargar los scripts NSE faltantes o ejecutar ciertos escaneos nmap.
+
+```bash
+./nsearch_root
+o
+sudo -E env PATH=$PATH ./nsearch
 ```
 
 <br>
@@ -175,6 +183,7 @@ config:
 - Se agregó el comando history el cual permite visualizar el histórico de comandos ejecutados, muy similar al comando history de Linux.
 - Se agregó el comando update el cual permite actualizar la BD y descargar los scripts NSE faltantes desde la página de <a href="https://www.nmap.org">nmap</a>
 - Ahora incluye emojis.
+- Se reintegró el comando run, en esta nueva versión del fork.
 
 <br>
 <h2>GUI</h2>
@@ -197,8 +206,8 @@ config:
 <p>Permite establecer las opciones de la interfaz.</p>
 <br>
 <p align="center">
-    <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139252-62ca128e-ab78-4497-b3d0-868eacf197f8.png#gh-light-mode-only"/>
-    <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/191139255-0868c0ac-f8a2-4839-bfe3-84e82aaada8b.png#gh-dark-mode-only"/>
+    <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/209732405-26109d10-4381-4621-ad87-2a33380d79bd.png#gh-dark-mode-only"/>
+    <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/209732401-998a2bbd-e1e5-4bd7-9bc4-ea03b699ebd0.png#gh-light-mode-only"/>
 </p>    
 <h3>Panel Scripts</h3>
 <br>
