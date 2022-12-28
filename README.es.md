@@ -179,6 +179,7 @@ config:
 <h3>Consola</h3>
 <img title="NSEarch modo consola" src="https://user-images.githubusercontent.com/77067446/209735845-577dac54-b9e2-429e-8019-103ec67e81b3.png">
 
+- La Base de datos esta incluida en el repositorio, ya que contiene todos los scripts de la web de nmap.
 - Al integrar el módulo Python rich, se incluyeron varias de las funcionalidades en la versión consola, por ejemplo resultados en columnas, animaciones al crear la BD entre otras.
 - Se agregó el comando showcat que muestra las Categorías y permite listar los scripts en una categoría y al finalizar ver la ayuda de estos.
 - Se agregó el comando history el cual permite visualizar el histórico de comandos ejecutados, muy similar al comando history de Linux.
