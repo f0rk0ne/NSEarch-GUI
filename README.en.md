@@ -15,48 +15,57 @@
 <h2>Requirements</h2>
 <br/>
 
-- [x] Python 3 ( Tested in 3.6, 3.7, 3.8, 3.9 )
+- [x] Python 3 ( Tested in 3.7, 3.8, 3.9, 3.10 )
 - [x] python3-venv or python3-virtualenv
-- [x] python3-pyqt5
-- [x] python3-pyqt5.qtwebkit ( Debian )
-- [x] python36-pyqt5.qtwebkit ( RHEL/centos )
+- [x] pyside >= 6.4.1
+- [x] python3-nmap
 - [x] python-i18n
-- [x] python3-yaml
-- [x] python3-rich
+- [x] PyYAML
+- [x] rich
+- [x] requests 
 
 <br/>
 <h2>Installation</h2>
 <br/>
-<p>Download app from github repository and execute install.sh with root privileges to check and install requirements and to create the configuration file.
+<p>Download app from github repository and execute install.sh to check and install requirements and to create the configuration file.
 </p>   
 
 ```bash
-sudo git clone https://github.com/f0rk0ne/NSEarch-GUI.git 
+git clone https://github.com/f0rk0ne/NSEarch-GUI.git 
 ```
 
 ```bash
-sudo bash install.sh
+bash install.sh
 ```
 
 <br>
-<p>Run first time with root privileges to create the Database with Nmap scripts.</p>
+<h3>Run</h3>
+<br>
 
 ```bash
-sudo ./nsearch
+./nsearch
+```
+
+<p>When root operations are required, such as download missing NSE scripts or run some nmap scans.</p>
+
+```bash
+./nsearch_root
+or
+sudo -E env PATH=$PATH ./nsearch
 ```
 
 <br>
 <h3>Manual Install</h3>
 <br>
-<p>Denpending Linux distribution it's neccesary to install a python3 compatible version for GUI modules, this example uses python3.9, but exists other alternatives (python3.6, python3.7, python3.8, python3.9).</p>
+<p>Denpending Linux distribution it's neccesary to install a python3 compatible version for GUI modules, this example uses python3.9, but exists other alternatives (python3.7, python3.8, python3.9, python3.10).</p>
 
 ```bash
-apt-get install -y openssl sqlite3 libsqlite3-dev fonts-noto-color-emoji python3-virtualenv qtwayland5
-apt-get update -y && apt-get upgrade -y
+apt-get install sqlite3 fonts-noto-color-emoji python3-virtualenv python3-pip qtwayland5 -y
+apt-get update -y && apt-get upgrade -y 
 ```
 
 ```bash
-yum install -y openssl-devel sqlite sqlite-devel google-noto-emoji-color-fonts epel-release python3-virtualenv
+yum install -y google-noto-emoji-color-fonts epel-release python3-virtualenv python3-pip sqlite-devel -y; sudo yum update -y
 yum update -y && yum upgrade -y
 ```
 
@@ -64,7 +73,7 @@ yum update -y && yum upgrade -y
 python3.9 -m venv NSEarchEnv --prompt NSEarch
 source NSEarchEnv/bin/activate
 python3.9 -m pip install --upgrade pip
-python3 -m pip install --user -r requirements.txt
+python3.9 -m pip install --user -r requirements.txt
 deactivate
 ```
 
@@ -88,19 +97,21 @@ If console doesn't show colorized emojis, in this link you could to find the sol
 <p>config.yaml</p>
     
 ```yaml
-config:    
-    lang: "es"
-    scriptsPath: /usr/share/nmap/scripts/
-    filePath: /usr/share/nmap/scripts/script.db
-    fileBackup: scriptbk.db
-    scriptdb: nmap_scripts.sqlite3
-    categories: ["auth","broadcast","brute","default","discovery","dos","exploit","external","fuzzer","intrusive","malware","safe","version","vuln"]
-    checksum: 7c773a63720928125492e2034b7dcc445afb24c1555626ab710bd15db7bf82a3
-    searchOnKey: 1
-    searchOpt: 3
-    theme: 1
-    histLen: 100
-    splashAnim: 0
+config:
+  lang: es
+  scriptsPath: /usr/share/nmap/scripts/
+  filePath: /usr/share/nmap/scripts/script.db
+  scriptdb: nmap_scripts.sqlite3
+  categories: ['auth', 'broadcast', 'brute', 'default', 'discovery', 'dos', 'exploit', 'external', 'fuzzer', 'intrusive', 'malware', 'safe', 'version', 'vuln']
+  checksum: bfa9e3c863ddd7ccd15620ac1d1c7f94d3652e2353388e7790c711fc444926d8
+  searchOnKey: 1
+  searchOpt: 1
+  theme: 1
+  histLen: 100
+  splashAnim: 1
+  verticalTitle: 1
+  singleTab: 1
+  tabCount: 5
 ```
 
 <br>
@@ -146,21 +157,42 @@ config:
     <td>Active Animation</td>
     <td>bool</td>
     <td>1 (Active)<br> 0 (Inactive)</td>
-</tr>    
+</tr>
+<tr>
+    <td>verticalTitle</td>
+    <td>Shows vertical title in GUI mode</td>
+    <td>bool</td>
+    <td>1 (Active)<br> 0 (Inactive)</td>
+</tr>
+<tr>
+    <td>singleTab</td>
+    <td>Shows NSE scripts help in one or more tabs</td>
+    <td>bool</td>
+    <td>1 (Active)<br> 0 (Inactive)</td>
+</tr>
+<tr>
+    <td>tabCount</td>
+    <td>When singleTab is disabled, determines how many tabs are shown to load NSE scripts help</td>
+    <td></td>
+    <td>1 (Active)<br> 0 (Inactive)</td>
+</tr>
 </table>
 <br>
 <h2>Changelog</h2>
 <h3>Console</h3>
 
+- Database is included in the repository, thus contains all NSE scripts from nmap web.
 - Console version includes some rich python module features, such as results in columns, animations at startup between others.
 - New command showcat shows categories and list all scripts in a category and shows scripts help too.
 - New command history to see executed commands, like Linux history command.
-- Now includes with emojis. 
+- New command update to download database or missing NSE scripts from <a href="https://www.nmap.org">nmap</a>
+- Now includes emojis. 
+- The run command has been reinstated in this new NSEarch fork version.
 
 <br>
 <h2>GUI</h2>
 <br>
-<p>GUI was written in Python Qt5, and have two QDockWidgets to manage scripts and favorites.</p>
+<p>GUI was written in Python Qt, and have two QDockWidgets to manage scripts and favorites.</p>
 <p>Scripts help contents are shown in HTML format in tabs.</p>
 <p>Language selection apply to console version too.</p>
 
