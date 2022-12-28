@@ -174,15 +174,14 @@ config:
     <td>tabCount</td>
     <td>When singleTab is disabled, determines how many tabs are shown to load NSE scripts help</td>
     <td></td>
-    <td>1 (Active)<br> 0 (Inactive)</td>
+    <td>5<br>10<br>20<br>30</td>
 </tr>
 </table>
 <br>
 <h2>Changelog</h2>
 <h3>Console</h3>
 
-<img title="NSEarch Console mode" src="https://user-images.githubusercontent.com/77067446/209881950-d2fb7df1-d5e7-4f33-ad70-f6c01299659f.png"/>
-
+<img title="NSEarch Console mode" src="https://user-images.githubusercontent.com/77067446/209884384-64129a2c-2aa2-4541-94a9-36c0a4b86506.png"/>
 
 - Database is included in the repository, thus contains all NSE scripts from nmap web.
 - Console version includes some rich python module features, such as results in columns, animations at startup between others.
