@@ -9,7 +9,7 @@
 </p>
 <p align="center">
     <br>
-    <img title="NSEarch GUI themes" src="https://user-images.githubusercontent.com/77067446/191378175-9fca005b-3c7e-4d4a-b089-e51828940945.png"/>
+    <img title="NSEarch GUI themes" src="https://user-images.githubusercontent.com/77067446/209880434-fb6553d0-e4ec-49f9-9174-38d25524e34e.png"/>
 </p>
 <br/>
 <h2>Requirements</h2>
@@ -181,6 +181,9 @@ config:
 <h2>Changelog</h2>
 <h3>Console</h3>
 
+<img title="NSEarch Console mode" src="https://user-images.githubusercontent.com/77067446/209881950-d2fb7df1-d5e7-4f33-ad70-f6c01299659f.png"/>
+
+
 - Database is included in the repository, thus contains all NSE scripts from nmap web.
 - Console version includes some rich python module features, such as results in columns, animations at startup between others.
 - New command showcat shows categories and list all scripts in a category and shows scripts help too.
@@ -209,8 +212,8 @@ config:
 <p>Allows establish Graphical Interface options.</p>
 <br>
 <p align="center">
-    <img width="400" title="NSEarch GUI - Configuration" src="https://user-images.githubusercontent.com/77067446/191378776-6b56a103-c352-4cbb-8609-12b1e67bd5ef.png#gh-light-mode-only"/>
-    <img width="400" title="NSEarch GUI - Configuration" src="https://user-images.githubusercontent.com/77067446/191378778-86fa2f5b-8cb6-4201-bee9-ca6889897d92.png#gh-dark-mode-only"/>
+    <img width="400" title="NSEarch GUI - Configuration" src="https://user-images.githubusercontent.com/77067446/209881076-220a92a8-77dc-4821-bc3d-6b5c5146a3f5.png#gh-light-mode-only"/>
+    <img width="400" title="NSEarch GUI - Configuration" src="https://user-images.githubusercontent.com/77067446/209881075-16c1062b-e3b7-4896-a321-d0184118e1da.png#gh-dark-mode-only"/>
 </p>
 <h3>Scripts Panel</h3>
 <br>
