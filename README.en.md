@@ -15,7 +15,7 @@
 <h2>Requirements</h2>
 <br/>
 
-- [x] Python 3 ( Tested in 3.7, 3.8, 3.9, 3.10 )
+- [x] Python 3 (Tested in 3.7, 3.8, 3.9, 3.10)
 - [x] python3-venv or python3-virtualenv
 - [x] pyside >= 6.4.1
 - [x] python3-nmap
@@ -183,7 +183,7 @@ config:
 
 <img title="NSEarch Console mode" src="https://user-images.githubusercontent.com/77067446/209884384-64129a2c-2aa2-4541-94a9-36c0a4b86506.png"/>
 
-- Database is included in the repository, thus contains all NSE scripts from nmap web.
+- Database now is included in the repository, thus contains all NSE scripts from nmap web.
 - Console version includes some rich python module features, such as results in columns, animations at startup between others.
 - New command showcat shows categories and list all scripts in a category and shows scripts help too.
 - New command history to see executed commands, like Linux history command.
