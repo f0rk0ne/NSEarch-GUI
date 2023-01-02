@@ -207,6 +207,7 @@ elif [ -f /etc/redhat-release ]; then
   create_config_file
 elif [[ $ismacox ]]; then
   printf "[+] Checking Dependencies for $os ($arch $kernel)....\n"  
+  brew install -v sqlite3
   if [[ $nmapversion ]]; then
     printf "\n[+] Nmap already installed :D \n"
   else
