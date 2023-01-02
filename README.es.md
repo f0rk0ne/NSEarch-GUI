@@ -14,7 +14,7 @@
 <h2>Requerimientos</h2>
 <br/>
 
-- [x] Python 3 ( Probado en 3.7, 3.8, 3.9, 3.10 )
+- [x] Python 3 (Probado en 3.7, 3.8, 3.9, 3.10)
 - [x] python-venv o python3-virtualenv
 - [x] pyside >= 6.4.1
 - [x] python3-nmap
@@ -43,7 +43,7 @@ bash install.sh
 ./nsearch
 ```
 
-Cuando se requieran operaciones con privilegios root, por ejemplo descargar los scripts NSE faltantes o ejecutar ciertos escaneos nmap.
+Cuando se requieran operaciones con privilegios root, por ejemplo, descargar los scripts NSE faltantes o ejecutar ciertos escaneos nmap.
 
 ```bash
 ./nsearch_root
@@ -179,8 +179,8 @@ config:
 <h3>Consola</h3>
 <img title="NSEarch modo consola" src="https://user-images.githubusercontent.com/77067446/209735845-577dac54-b9e2-429e-8019-103ec67e81b3.png">
 
-- La Base de datos esta incluida en el repositorio, ya que contiene todos los scripts de la web de nmap.
-- Al integrar el módulo Python rich, se incluyeron varias de las funcionalidades en la versión consola, por ejemplo resultados en columnas, animaciones al crear la BD entre otras.
+- La Base de datos ahora está incluida en el repositorio, ya que contiene todos los scripts de la web de nmap.
+- Al integrar el módulo Python rich, se incluyeron varias de las funcionalidades en la versión consola, por ejemplo, resultados en columnas, animaciones al crear la BD entre otras.
 - Se agregó el comando showcat que muestra las Categorías y permite listar los scripts en una categoría y al finalizar ver la ayuda de estos.
 - Se agregó el comando history el cual permite visualizar el histórico de comandos ejecutados, muy similar al comando history de Linux.
 - Se agregó el comando update el cual permite actualizar la BD y descargar los scripts NSE faltantes desde la página de <a href="https://www.nmap.org">nmap</a>
