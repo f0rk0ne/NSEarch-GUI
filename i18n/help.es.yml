@@ -28,7 +28,7 @@ es:
   help_run_template: Nombre de la plantilla
   help_run_net: Red o Host Objetivo
   help_run_error: El comando no es valido por favor use 'help run'
-  help_run_templates: Verifica y enlista los archivos de plantillas
+  help_run_templates: Verifica y muestra los archivos de plantillas
   help_update: Actualiza la base de datos o descarga nuevos scripts NSE
   help_updatedb: Busca actualizaciones de la Base de datos
   help_update_scripts: Descarga los scripts NSE faltantes de la web nmap.org  
