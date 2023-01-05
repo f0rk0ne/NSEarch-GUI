@@ -233,3 +233,6 @@ config:
     <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/210815358-6592b0f0-1da6-4734-8d6a-b8da46cafae6.png#gh-light-mode-only"/>
     <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/210825679-1a676de2-8cac-4d06-8a60-4e205635bd46.png#gh-dark-mode-only"/>
 </p>
+
+<br>
+<p>Para obtener información más detallada sobre la herramienta, visitar <a href="https://github.com/f0rk0ne/NSEarch-GUI/wiki/Documentacion-NSEarch">Wiki NSEarch GUI</a></p>
