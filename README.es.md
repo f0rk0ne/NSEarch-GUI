@@ -223,13 +223,13 @@ config:
 <br>
 <p>Permite agregar un script a favoritos con un ranking.</p>
 <p align="center">         
-    <img width="700" title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191146139-a331c7a9-d4ac-40bd-95a4-dd3304d041e6.png#gh-light-mode-only"/>
-    <img width="700" title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/191145255-ce32737a-9a71-49b1-86de-d076ccf9c3b4.png#gh-dark-mode-only"/>
+    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/210811473-e8ec8b94-422f-4467-ac86-83771c6dc0e4.png#gh-light-mode-only"/>   
+    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/210824678-6de51a59-69cd-4098-918b-0126991fecfc.png#gh-dark-mode-only"/>
 </p>
 <h3>Panel Favoritos</h3>
 <br>
 <p>Permite actualizar y eliminar los scripts favoritos.</p>
 <p align="center">    
-    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/191157139-401aa8fb-cf99-43e9-aab9-8e748f1a48e3.png#gh-light-mode-only"/>
-    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/191157141-52df45d0-be96-4d36-a82d-cb57798e6301.png#gh-dark-mode-only"/>
+    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/210815358-6592b0f0-1da6-4734-8d6a-b8da46cafae6.png#gh-light-mode-only"/>
+    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/210825679-1a676de2-8cac-4d06-8a60-4e205635bd46.png#gh-dark-mode-only"/>
 </p>
