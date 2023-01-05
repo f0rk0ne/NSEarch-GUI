@@ -208,16 +208,16 @@ config:
 <p>Permite establecer las opciones de la interfaz.</p>
 <br>
 <p align="center">
-    <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/209732405-26109d10-4381-4621-ad87-2a33380d79bd.png#gh-dark-mode-only"/>
-    <img width="400" title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/209732401-998a2bbd-e1e5-4bd7-9bc4-ea03b699ebd0.png#gh-light-mode-only"/>
+    <img title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/209732405-26109d10-4381-4621-ad87-2a33380d79bd.png#gh-dark-mode-only"/>
+    <img title="NSEarch GUI - Configuración" src="https://user-images.githubusercontent.com/77067446/209732401-998a2bbd-e1e5-4bd7-9bc4-ea03b699ebd0.png#gh-light-mode-only"/>
 </p>    
 <h3>Panel Scripts</h3>
 <br>
 <p>Permite gestionar los scripts NSE.</p>
 <br>
-<p align="center">
-    <img width="500" title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142595-77ad4afe-960d-4ea9-b5de-c6927bc500f7.png#gh-light-mode-only"/>
-    <img width="500" title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/191142598-73e286d9-d56f-4842-9a68-f9c817f85a09.png#gh-dark-mode-only"/>
+<p align="center">    
+    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/210820228-2d16c4ae-441e-42fa-94ec-18166fe65fb6.png#gh-dark-mode-only"/>
+    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/210813328-3a5ec8f3-fa3e-4aa2-8024-05a0675e3e6e.png#gh-light-mode-only"/>
 </p>
 <h4>Agregar script a favoritos</h4>
 <br>
