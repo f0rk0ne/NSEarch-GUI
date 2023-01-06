@@ -489,6 +489,9 @@ class NMenuBar(QMenuBar):
         self.m_about_qt.setIcon(
             QIcon(f"{theme}qt.png")
         )
+        self.m_updatedb.setIcon(
+            QIcon(f"{theme}updatedb.png")
+        )
         self.menu_language.setIcon(
             QIcon(f"{theme}lang.png")
         )
