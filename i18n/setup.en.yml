@@ -6,11 +6,11 @@ en:
   checking_db_checksum: Checking Database checksum
   checking_db: Checking DataBase integrity
   checking_favdb: Checking favorites DataBase integrity
-  add_fav_ok: The Script was added successfully
+  add_fav_ok: The Script {%script} was added successfully
   add_fav_error: The script %{script} already exists
-  update_fav_ok: The Script was updated successfully
-  update_fav_error: The Script was not updated
-  del_fav_ok: The Script was removed successfully
+  update_fav_ok: The Script %{script} was updated successfully
+  update_fav_error: The Script %{script} was not updated
+  del_fav_ok: The Script %{script} was removed successfully
   del_fav_error: The Script dont exists
   bad_params: The params are not allowed
   search_not_found: Script not found !
