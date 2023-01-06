@@ -194,10 +194,10 @@ def create_favorite(**kwargs):
             ''', (script, ranking,))
             db.commit()
             if cursor.rowcount == 1:
-                utils.print("[+] "+script+" "+i18n.t("setup.add_fav_ok"))
+                utils.print(f"[+] {i18n.t('setup.add_fav_ok', script=script)}")
         except Exception as e:
             if "unique" in str(e).lower():
-                utils.print("[-] " + i18n.t("setup.add_fav_error", script=script))
+                utils.print(f"[-] {i18n.t('setup.add_fav_error', script=script)}")
                 return False
             utils.print_traceback(e)
         finally:
@@ -256,10 +256,10 @@ def update_favorite(**kwargs):
                 utils.print(i18n.t("setup.bad_params"))
             db.commit()
             if cursor.rowcount == 1:
-                utils.print("[+] "+script+" "+i18n.t("setup.update_fav_ok"))
+                utils.print(f"[+] {i18n.t('setup.update_fav_ok', script=script)}")
         except Exception as e:
             utils.print("Error update_favorite %s:" % e.args[0])
-            utils.print("[-] "+script+" "+i18n.t("setup.update_fav_error"))
+            utils.print(f"[-] {i18n.t('setup.update_fav_error', script=script)}")
             utils.print_traceback(e)
         finally:
             if db:
@@ -280,9 +280,9 @@ def delete_favorite(**kwargs):
                 )
                 db.commit()
             if cursor.rowcount == 1:
-                utils.print("[+] "+script+" "+i18n.t("setup.del_fav_ok"))
+                utils.print(f"[+] {i18n.t('setup.del_fav_ok', script=script)}")
         except Exception as e:
-            utils.print("[-] "+script+" "+i18n.t("setup.del_fav_error"))
+            utils.print(f"[-] {i18n.t('setup.del_fav_error')}")
             utils.print_traceback(e)
         finally:
             if db:
