@@ -6,11 +6,11 @@ es:
   checking_db_checksum : Verificando la sumatoría binaria de la BD
   checking_db: Verificando la integridad de la Base de datos  
   checking_favdb: Verificando la integridad de la Base de datos de favoritos
-  add_fav_ok: El Script se adiciono en la tabla de favoritos
+  add_fav_ok: El Script %{script} se adiciono en la tabla de favoritos
   add_fav_error: El Script %{script} ya existe en Favoritos
-  update_fav_ok: El Script fue Actualizado
-  update_fav_error: El Script no se ha Actualizado
-  del_fav_ok: El script se elimino de los Favoritos
+  update_fav_ok: El Script %{script} fue Actualizado
+  update_fav_error: El Script %{script} no se ha Actualizado
+  del_fav_ok: El script %{script} se elimino de los Favoritos
   del_fav_error: El script no existe
   bad_params: Los parametros no estan permitidos
   search_not_found: No se encontraron scripts !
