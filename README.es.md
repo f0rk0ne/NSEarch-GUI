@@ -215,23 +215,32 @@ config:
 <br>
 <p>Permite gestionar los scripts NSE.</p>
 <br>
-<p align="center">    
-    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/210820228-2d16c4ae-441e-42fa-94ec-18166fe65fb6.png#gh-dark-mode-only"/>
-    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/210813328-3a5ec8f3-fa3e-4aa2-8024-05a0675e3e6e.png#gh-light-mode-only"/>
+<p align="center">
+    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/211223950-12a56f96-d6d9-41a0-894d-91da69f05b15.png#gh-dark-mode-only">
+    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/211223951-d0fd9ef5-7f8a-42ac-90dd-3e77f39b2dba.png#gh-dark-mode-only">        
+    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/211213584-770c3faa-8e17-4007-9358-34f30b40ac94.png#gh-light-mode-only">
+    <img title="NSEarch panel scripts" src="https://user-images.githubusercontent.com/77067446/211213582-c6b11899-0a37-4013-a040-2182fc1a8319.png#gh-light-mode-only">
 </p>
 <h4>Agregar script a favoritos</h4>
 <br>
 <p>Permite agregar un script a favoritos con un ranking.</p>
 <p align="center">         
-    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/210811473-e8ec8b94-422f-4467-ac86-83771c6dc0e4.png#gh-light-mode-only"/>   
-    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/210824678-6de51a59-69cd-4098-918b-0126991fecfc.png#gh-dark-mode-only"/>
+    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/211224216-d795c3cd-f13d-4412-9c89-612169fdfaf2.png#gh-dark-mode-only">    
+    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/211224215-b751407d-4c6a-46e2-8bed-8b3e4b067087.png#gh-dark-mode-only">      
+    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/211213904-015703a8-fd4f-42f6-a899-e57dc54159e2.png#gh-light-mode-only">
+    <img title="NSEarch Agregar script a favoritos" src="https://user-images.githubusercontent.com/77067446/211213903-395bffb7-0756-40c7-ab00-d9f9732ee820.png#gh-light-mode-only">
 </p>
+
 <h3>Panel Favoritos</h3>
 <br>
 <p>Permite actualizar y eliminar los scripts favoritos.</p>
-<p align="center">    
-    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/210815358-6592b0f0-1da6-4734-8d6a-b8da46cafae6.png#gh-light-mode-only"/>
-    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/210825679-1a676de2-8cac-4d06-8a60-4e205635bd46.png#gh-dark-mode-only"/>
+<p align="center">
+    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/211224872-f05a206f-6e1e-4696-b0ae-6e40007a5aa0.png#gh-dark-mode-only"/>
+    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/211224619-5f8efc14-729a-423d-befe-09ea31a42e0b.png#gh-dark-mode-only"/>
+    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/211224620-67e3131d-3860-450e-a7fe-9133939194f5.png#gh-dark-mode-only"/>
+    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/211214216-d3c073c2-5d80-4948-99c8-e1bc1776bdb5.png#gh-light-mode-only"/>
+    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/211214215-888067c0-0ea1-4e8d-a3d3-16957d9db1c7.png#gh-light-mode-only"/>
+    <img title="NSEarch panel favoritos" src="https://user-images.githubusercontent.com/77067446/211214214-660149a7-6e43-482b-9166-a17500ab721a.png#gh-light-mode-only"/>
 </p>
 
 <br>
