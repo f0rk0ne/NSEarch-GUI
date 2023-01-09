@@ -246,6 +246,6 @@ config:
     <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211231931-1cff1272-47e8-477f-8487-92454f3e5fea.png#gh-dark-mode-only"/>
     <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211231980-1148dcbb-ea98-4f0e-b2b8-17d1a171280e.png#gh-dark-mode-only"/>
     <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211232199-cd38e1b3-554c-4bd4-962d-25ce5e633549.png#gh-light-mode-only"/>
-    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211232203-33cd1261-dd53-4424-aa04-fec41083ea85.png#gh-light-mode-only"/>
+    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211232395-decd71a3-75ab-4ebf-8a1a-41ebe8aa63de.png#gh-light-mode-only"/>
     <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211232197-2f00c7f8-c02e-4888-8196-9650911f06c5.png#gh-light-mode-only"/>
 </p>
