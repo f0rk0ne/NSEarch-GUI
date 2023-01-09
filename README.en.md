@@ -244,8 +244,8 @@ config:
 <p align="center">
     <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211231841-681905f7-f69a-4ad9-a5c0-b7a615f2d8a3.png#gh-dark-mode-only"/>
     <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211231931-1cff1272-47e8-477f-8487-92454f3e5fea.png#gh-dark-mode-only"/>
-    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211231980-1148dcbb-ea98-4f0e-b2b8-17d1a171280e.png#gh-dark-mode-only"/>    
-    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211231705-1ec62bfa-8d23-4030-972d-779404be52d3.png#gh-light-mode-only"/>
-    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211231706-63b7d756-d49f-4612-8b8f-4dc601664f5d.png#gh-light-mode-only"/>    
-    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211231708-81c2af98-3208-4cbf-8aa4-e2d5c3247849.png#gh-light-mode-only"/>
+    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211231980-1148dcbb-ea98-4f0e-b2b8-17d1a171280e.png#gh-dark-mode-only"/>
+    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211232199-cd38e1b3-554c-4bd4-962d-25ce5e633549.png#gh-light-mode-only"/>
+    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211232203-33cd1261-dd53-4424-aa04-fec41083ea85.png#gh-light-mode-only"/>
+    <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211232197-2f00c7f8-c02e-4888-8196-9650911f06c5.png#gh-light-mode-only"/>
 </p>
