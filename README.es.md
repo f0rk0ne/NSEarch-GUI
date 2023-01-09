@@ -7,8 +7,10 @@
 <br>
 <p>Es un fork de la aplicación NSEarch de <a href="https://github.com/jtibaquira/nsearch">Jacobo Tibaquirá</a> de la comunidad <a href="https://www.dragonjar.org">DragonJAR</a>, el cual integra una interfaz gráfica y agrega nuevos comandos.
 </p>
-<p align="center">
-    <img title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/209729693-a69a9032-f004-43c8-9cc8-37d0fb2d5ad4.png"/>    
+<p align="center">    
+    <img width="320" title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/211227761-b074f8c5-21bf-48d9-9c76-7b2201316f45.png"/>
+    <img width="320" title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/211227760-578ee02c-c1f8-4c9c-97be-2209082baa2a.png"/>
+    <img width="320" title="NSEarch GUI temas" src="https://user-images.githubusercontent.com/77067446/211227758-c53c351d-23e7-4015-8ee8-c06bbd02976e.png"/>
 </p>
 <br/>
 <h2>Requerimientos</h2>
@@ -177,7 +179,12 @@ config:
 <br>
 <h2>Novedades</h2>
 <h3>Consola</h3>
-<img title="NSEarch modo consola" src="https://user-images.githubusercontent.com/77067446/209735845-577dac54-b9e2-429e-8019-103ec67e81b3.png">
+
+<p align="center">
+<img width="320" title="NSEarch modo consola" src="https://user-images.githubusercontent.com/77067446/211227519-2306cf1e-bfb3-4718-ba3f-63ffe447d7b9.png">
+<img width="320" title="NSEarch modo consola" src="https://user-images.githubusercontent.com/77067446/211227521-7198dcf0-4573-4b6d-a3ec-ec5473d3f342.png">
+<img width="320" title="NSEarch modo consola" src="https://user-images.githubusercontent.com/77067446/211227523-c90cdb0b-af12-4303-88e3-7fe55dd3c0b7.png">
+</p>
 
 - La Base de datos ahora está incluida en el repositorio, ya que contiene todos los scripts de la web de nmap.
 - Al integrar el módulo Python rich, se incluyeron varias de las funcionalidades en la versión consola, por ejemplo, resultados en columnas, animaciones al crear la BD entre otras.
