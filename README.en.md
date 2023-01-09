@@ -249,3 +249,7 @@ config:
     <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211232395-decd71a3-75ab-4ebf-8a1a-41ebe8aa63de.png#gh-light-mode-only"/>
     <img title="NSEarch favorites panel" src="https://user-images.githubusercontent.com/77067446/211232197-2f00c7f8-c02e-4888-8196-9650911f06c5.png#gh-light-mode-only"/>
 </p>
+<br>
+<p>
+    For more information about application, visit <a href="https://github.com/f0rk0ne/NSEarch-GUI/wiki/NSEarch-Documentation">NSEarch Wiki<a/>
+</p>
