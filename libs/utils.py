@@ -1107,7 +1107,9 @@ class Utils:
                     f"{self.get_nmap_version(result['stats'])}"
                 )
                 table.add_row(
-                    result['stats']['args']
+                    str(
+                        result['stats']['args']
+                    ).replace("-v -oX - ","")
                 )
                 self.print(
                     Panel(table, box=box.MINIMAL)
