@@ -442,9 +442,11 @@ class Utils:
 
     # get database checksum
     def get_checksum(self):
-        return hashlib.sha256(
-            open(DB_NAME, "rb").read()
-        ).hexdigest()
+        if os.path.exists(DB_NAME):
+            return hashlib.sha256(
+                open(DB_NAME, "rb").read()
+            ).hexdigest()
+        return False
 
     # check database checksum
     def is_db_checksum(self, current_checksum):
