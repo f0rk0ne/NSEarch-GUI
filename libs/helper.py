@@ -219,7 +219,11 @@ class Helper:
             self.args += f"{words[a]} "
         self.args = self.args.replace("\n", "")
         self.args = self.args[:-1]
-        if self.command == 'doc':
+        if self.command == 'run':
+            from helpernmap import HelperNmap
+            nmap_helper = HelperNmap(self.args, self.__parent)
+            nmap_helper.process()
+        elif self.command == 'doc':
             self.display_doc()
         elif self.command == 'help':
             self.__parent.do_help(self.args)
